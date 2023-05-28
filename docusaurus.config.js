@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'use 🔥 Fireproof',
+  tagline: 'Live data hooks for React, accelerated by cryptographic proofs',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -64,9 +64,9 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'My Site',
+        title: 'useFireproof',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'Fireproof Logo',
           src: 'img/logo.svg',
         },
         items: [
@@ -74,12 +74,19 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Documentation',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
+            type: 'docSidebar',
+            sidebarId: 'tutorialSidebar',
+            position: 'left',
+            label: 'Tutorials',
+          },
+          {to: '/blog', label: 'FAQ', position: 'left'},
+          {to: '/blog', label: 'Security', position: 'left'},
+          {
+            href: 'https://github.com/fireproof-storage/fireproof/tree/main/packages/react#readme',
+            label: 'Star me on GitHub',
             position: 'right',
           },
         ],
@@ -91,7 +98,15 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
+                label: 'React Hooks',
+                to: '/docs/intro',
+              },
+              {
+                label: 'Database API',
+                to: '/docs/intro',
+              },
+              {
+                label: 'Coding with ChatGPT',
                 to: '/docs/intro',
               },
             ],
@@ -127,7 +142,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Fireproof`,
       },
       prism: {
         theme: lightCodeTheme,
