@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# App Config
+# Optional Config
 
 Most applications will only need the [`useLiveQuery`](./use-live-query) or [`useDocument`](./use-document) hooks, which use the default configuration. But if you need to do custom database setup, or configure a database name other than the React hook default (`"useFireproof"`) you can call the `useFireproof` hook directly. This is also useful if you want to distribute the Fireproof React hooks through your app with a React Context.
 
