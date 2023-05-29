@@ -35,10 +35,11 @@ export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Live data hook - ${siteConfig.title}`}
+      title={`Live data React hook - ${siteConfig.title}`}
       description="Description will go into a meta tag in <head />">
       <HomepageHeader />
       <main>
+        <pre style={{'textAlign':'center'}}>npm install use-fireproof</pre>
         <HomepageFeatures />
       </main>
     </Layout>

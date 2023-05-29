@@ -82,8 +82,7 @@ const config = {
             position: 'left',
             label: 'Tutorials',
           },
-          {to: '/blog', label: 'FAQ', position: 'left'},
-          {to: '/blog', label: 'Security', position: 'left'},
+          {to: '/docs/faq', label: 'FAQ', position: 'left'},
           {
             href: 'https://github.com/fireproof-storage/fireproof/tree/main/packages/react#readme',
             label: 'Star me on GitHub',

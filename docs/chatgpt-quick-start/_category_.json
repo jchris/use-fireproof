@@ -1,0 +1,8 @@
+{
+  "label": "ChatGPT Quick Start",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Kick off your conversation with a model trained on the Fireproof API."
+  }
+}
