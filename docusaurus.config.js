@@ -93,15 +93,15 @@ const config = {
             items: [
               {
                 label: 'React Hooks',
-                to: '/docs/intro',
+                to: '/docs/react-tutorial',
               },
               {
                 label: 'Database API',
-                to: '/docs/intro',
+                to: '/docs/category/database-api',
               },
               {
                 label: 'Coding with ChatGPT',
-                to: '/docs/intro',
+                to: '/docs/chatgpt-quick-start',
               },
             ],
           },
@@ -109,16 +109,16 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                label: 'NPM',
+                href: 'https://www.npmjs.com/package/use-fireproof',
               },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
+              // {
+              //   label: 'Discord',
+              //   href: 'https://discordapp.com/invite/docusaurus',
+              // },
               {
                 label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                href: 'https://twitter.com/FireproofStorge',
               },
             ],
           },
@@ -127,11 +127,11 @@ const config = {
             items: [
               {
                 label: 'Blog',
-                to: '/blog',
+                to: 'https://fireproof.storage/blog/',
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/fireproof-storage/fireproof/tree/main/packages/react',
               },
             ],
           },

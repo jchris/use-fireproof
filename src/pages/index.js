@@ -16,10 +16,10 @@ function HomepageHeader() {
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
-          <Link className="button button--secondary button--lg" to="/docs/intro">
+          <Link className="button button--secondary button--lg" to="https://fireproof.storage/try-free/">
             Live Demo
           </Link>
-          <Link className="button button--primary button--lg margin-left--md" to="/docs/intro">
+          <Link className="button button--primary button--lg margin-left--md" to="/docs/welcome">
             Get Started
           </Link>
         </div>

@@ -48,7 +48,7 @@ Another pattern involves sharing the key with a server-side rendering agent. In 
 
 ### Enjoy
 
-We hope this guide has helped you understand how Fireproof handles encryption and key management. If you have any questions or feedback, please [reach out to us.](developers@fireproof.storage)
+We hope this guide has helped you understand how Fireproof handles encryption and key management. If you have any questions or feedback, please [reach out to us.](mailto:developers@fireproof.storage)
 
 ```
 There was a block of data plain,
