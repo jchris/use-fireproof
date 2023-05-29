@@ -22,8 +22,8 @@ Learn more about the company behind Fireproof at [Fireproof Storage](https://fir
 </p>
 
 <p align="center">
-  <a href="https://github.com/jchris/fireproof/actions/workflows/test.yml">
-    <img src="https://github.com/jchris/fireproof/actions/workflows/test.yml/badge.svg" alt="Test" />
+  <a href="https://github.com/fireproof-storage/fireproof/actions/workflows/test.yml">
+    <img src="https://github.com/fireproof-storage/fireproof/actions/workflows/test.yml/badge.svg" alt="Test" />
   </a>{" "}
   <a href="https://standardjs.com" rel="nofollow">
     <img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="JavaScript Style Guide"  />
