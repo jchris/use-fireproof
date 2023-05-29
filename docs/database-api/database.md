@@ -18,15 +18,15 @@ The `storage` method will load the database config from the correct storage loca
 
 If you want to manage your own database config, you can call `Fireproof.fromConfig("my-database", configObject)` method instead, where `configObject` has the necessary fields. See [Database Headers](#database-headers) on this page for more information about managing your own config.
 
-*Coming in 0.7.0*: In 0.6 and before, storage was automatically chosen by Fireproof based on the environment. 0.7.0 brings pluggable storage, including optional secondary storage for automatic replication. See [Storage](/docs/storage) for more information.
+*Coming in 0.7.0*: In 0.6 and before, storage was automatically chosen by Fireproof based on the environment. 0.7.0 brings pluggable storage, including optional secondary storage for automatic replication. See [Storage](./storage) for more information.
 
 ## Document APIs
 
-JSON documents can be saved, read, and deleted. Read more about the [document API](/docs/database-api/documents).
+JSON documents can be saved, read, and deleted. Read more about the [document API](./documents).
 
 ## Query and Index APIs
 
-Fireproof allows you to create flexible indexes on any document field. You can then query the index to find documents that match your query. Read more about the [query and index API](/docs/database-api/query).
+Fireproof allows you to create flexible indexes on any document field. You can then query the index to find documents that match your query. Read more about the [query and index API](./index-query).
 
 ## Subscribing to Changes
 
@@ -66,7 +66,7 @@ const newChange = await database.changesSince(changes.clock);
 // newChange.rows will contain only the new change
 ```
 
-You can see an example of how this is used in the [external indexer documentation](/docs/database-api/index-query#external-indexers).
+You can see an example of how this is used in the [external indexer documentation](./index-query#external-indexers).
 
 ## Database Headers
 
@@ -91,4 +91,4 @@ The header tracks CAR files (content-addressed-archive) which it uses to load th
 }
 ```
 
-Read more about [encryption](/docs/database-api/encryption) in the API docs.
+Read more about [encryption](./encryption) in the API docs.
