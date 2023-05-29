@@ -77,7 +77,7 @@ const config = {
             label: 'Documentation',
           },
           {to: '/docs/react-tutorial', label: 'Tutorial', position: 'left'},
-          {to: '/docs/faq', label: 'FAQ', position: 'left'},
+          // {to: '/docs/faq', label: 'FAQ', position: 'left'},
           {
             href: 'https://github.com/fireproof-storage/fireproof/tree/main/packages/react#readme',
             label: 'Star me on GitHub',

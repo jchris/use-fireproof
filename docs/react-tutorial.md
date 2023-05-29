@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # React Tutorial
 
-This article will walk you through creating a simple To Do list application from scratch. If you are new to React, it should be all you need to get started. If you are an expert, skim ahead and then check out the [API docs](/docs/react-hooks/use-live-query).
+This article will walk you through creating a simple todo list application from scratch. If you are new to React, it should be all you need to get started. If you are an expert, skim ahead and then check out the [API docs](/docs/react-hooks/use-live-query).
 
 ## Create a New App
 
