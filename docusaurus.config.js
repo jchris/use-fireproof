@@ -84,6 +84,11 @@ const config = {
             position: 'left'
           },
           {
+            label: 'Demo Dashboard',
+            to: 'https://fireproof.storage/try-free/',
+            position: 'right'
+          },
+          {
             href: 'https://github.com/fireproof-storage/fireproof/tree/main/packages/react',
             label: 'Star me on GitHub',
             position: 'right',

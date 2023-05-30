@@ -41,8 +41,11 @@ export default function Home() {
         <div className="container">
           <h2>📦 Lightweight install</h2>
           <CodeBlock language="jsx">npm install use-fireproof</CodeBlock>
-          <p> You are in the right place: <Link to="https://www.npmjs.com/package/use-fireproof">use-fireproof</Link> is optimized for React,{' '}
-            and <Link to="https://www.npmjs.com/package/@fireproof/core">@fireproof/core</Link> runs anywhere.
+          <p>
+            {' '}
+            You are in the right place: <Link to="https://www.npmjs.com/package/use-fireproof">use-fireproof</Link> is
+            optimized for React, and <Link to="https://www.npmjs.com/package/@fireproof/core">@fireproof/core</Link>{' '}
+            runs anywhere.
           </p>
           <h2>🚀 Write apps without setup</h2>
           <p>
@@ -50,7 +53,15 @@ export default function Home() {
             <Link to="/docs/react-hooks/use-document">useDocument</Link> React hooks. Connect to the cloud after your
             app is awesome.
           </p>
-          <CodeBlock language="jsx">{`import { useLiveQuery } from 'use-fireproof'
+          <ThemedImage
+            className="margin-bottom--md margin-left--lg"
+            alt="useLiveQuery screenshot"
+            sources={{
+              light: ('/img/code.png'),
+              dark: ('/img/code.png')
+            }}
+          />
+          {/* <CodeBlock language="jsx">{`import { useLiveQuery } from 'use-fireproof'
 function App() {
   const todos = useLiveQuery('date').docs
   return (
@@ -61,20 +72,26 @@ function App() {
     </ul>
   )
 }
-`}</CodeBlock>
-<p>See the <Link to="/docs/react-tutorial">React tutorial</Link> for the expanded version of this code.</p>
+`}</CodeBlock> */}
+          <p>
+            See the <Link to="/docs/react-tutorial">React tutorial</Link> for the code and the concepts.
+          </p>
           <h2>🔐 Strong cryptographic verification</h2>
           <p>
             Every operation in Fireproof is <Link to="/docs/database-api/encryption">end-to-end encrypted</Link> and{' '}
             <Link to="https://fireproof.storage/posts/from-mlops-to-point-of-sale:-merkle-proofs-and-data-locality/">
               accelerated by cryptographic proofs
             </Link>
-            , making it suitable for all your data needs.
+            , making it 🎮 suitable 🏦 for all your data needs.
           </p>
           <h2>📂 Open-source</h2>
-          <p>Fireproof is dual-licensed under the Apache 2.0 and MIT license and is free to use. <Link to="/docs/contributing">Read about contributing</Link>.</p>
+          <p>
+            Fireproof is dual-licensed under the Apache 2.0 and MIT license and is free to use.{' '}
+            <Link to="/docs/contributing">Read about contributing</Link>.
+          </p>
         </div>
       </main>
     </Layout>
   )
 }
+import ThemedImage from '@theme/ThemedImage'
