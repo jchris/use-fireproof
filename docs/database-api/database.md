@@ -16,7 +16,7 @@ The `storage` method will load the database config from the correct storage loca
 
 ### `Fireproof.fromConfig()`
 
-If you want to manage your own database config, you can call `Fireproof.fromConfig("my-database", configObject)` method instead, where `configObject` has the necessary fields. See [Database Headers](#database-headers) on this page for more information about managing your own config.
+If you want to manage your own database config, you can call `Fireproof.fromConfig("my-database", configObject)` method instead, where `configObject` has the necessary fields. See [Database Headers](/docs/database-api/storage#database-headers) for more information about managing your own config.
 
 *Coming in 0.7.0*: In 0.6 and before, storage was automatically chosen by Fireproof based on the environment. 0.7.0 brings pluggable storage, including optional secondary storage for automatic replication. See [Storage](./storage) for more information.
 
@@ -68,27 +68,5 @@ const newChange = await database.changesSince(changes.clock);
 
 You can see an example of how this is used in the [external indexer documentation](./index-query#external-indexers).
 
-## Database Headers
-
-The database header contains the clock, which is used to track the most recent commit. Parallel writes, and sync or merges between two databases can result in a clock with more than one head. Fireproof will resolve the clock to a single head on the next write.
-
-The header also tracks the database encryption key and the encryption key for the indexes. These keys are 32 bytes long and are randomly generated when the database is created. The database key is used to encrypt the database, and the index key is used to encrypt the indexes. By storing the headers separately from the data CAR files, you can utilize untrusted storage for the data, while keeping the keys in a trusted location.
-
-The header tracks CAR files (content-addressed-archive) which it uses to load the database. The listed CAR file name for each storage option points to an encrypted map which Fireproof uses to load the rest of the database.
-
-```json
-{
-  "clock": [
-    "bafyreibllbdlexr25r2fe42dh56rqbfif3vcu4iyzh5ltk4z33myo74mcu"
-  ],
-  "name": "my-database",
-  "index": {
-    "key": "15b539987a562e1d62315858149d3b337adbee45f6c4d3f5a5d306b8f6cd45a9"
-  },
-  "indexes": [],
-  "key": "0502a306341364c63a12d0c7468e50659d909127bb6b784b79214d2961d7b14d",
-  "car": "bafkreieznsnhlyjoffytquju4qydz4unyblno7fjvtzs7u75y6tgu3cnti"
-}
-```
 
 Read more about [encryption](./encryption) in the API docs.
