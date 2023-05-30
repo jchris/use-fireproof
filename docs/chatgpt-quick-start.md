@@ -28,6 +28,15 @@ We like [Ant Design](https://ant.design) best for this use case, because it seem
 
 [Tailwind](https://tailwindcss.com) is a great choice for apps that want clean results and easy editing. [Tailwind builder for Fireproof React apps](https://chat.openai.com/share/f8b0899c-9783-40ca-b643-7d850bac33d2).
 
+## 🏗 Start building
 
+The experts builders are preloaded with [code sandbox links](https://codesandbox.io/s/fireproof-react-antd-f6zbi7?file=/src/App.tsx) and API expertise, so you should be able to get a working prototype without leaving your browser.
+
+![ChatGPT continue button](/img/continue.png)
+
+Once you've chosen a builder, click the button to continue the conversation. You can then use the conversation to generate code for your app.
+
+
+## 🤖 Train your own builders
 
 We encourage you to review the conversation history and learn how to create your own expert builders. If you create a new expert builder, please share it with us so we can add it to the list!

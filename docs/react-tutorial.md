@@ -17,7 +17,7 @@ cd my-app
 
 ## Install Fireproof
 
-Installing the React hooks package will also install the core Fireproof library.
+Installing the React hooks package will also install the [core Fireproof](https://www.npmjs.com/package/@fireproof/core) library.
 
 ```bash
 npm install use-fireproof
