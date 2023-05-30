@@ -39,13 +39,12 @@ export default function Home() {
       <main>
         <HomepageFeatures />
         <div className="container">
-          <h2>Easy install</h2>
+          <h2>📦 Lightweight install</h2>
           <CodeBlock language="jsx">npm install use-fireproof</CodeBlock>
-          <p>
-            <Link to="https://www.npmjs.com/package/use-fireproof">use-fireproof</Link> is optimized for React,{' '}
-            <Link to="https://www.npmjs.com/package/@fireproof/core">@fireproof/core</Link> runs anywhere.
+          <p> You are in the right place: <Link to="https://www.npmjs.com/package/use-fireproof">use-fireproof</Link> is optimized for React,{' '}
+            and <Link to="https://www.npmjs.com/package/@fireproof/core">@fireproof/core</Link> runs anywhere.
           </p>
-          <h2>Write apps without setup</h2>
+          <h2>🚀 Write apps without setup</h2>
           <p>
             Query realtime data with the <Link to="/docs/react-hooks/use-live-query">useLiveQuery</Link> and{' '}
             <Link to="/docs/react-hooks/use-document">useDocument</Link> React hooks. Connect to the cloud after your
@@ -63,7 +62,8 @@ function App() {
   )
 }
 `}</CodeBlock>
-          <h2>Strong cryptographic verification</h2>
+<p>See the <Link to="/docs/react-tutorial">React tutorial</Link> for the expanded version of this code.</p>
+          <h2>🔐 Strong cryptographic verification</h2>
           <p>
             Every operation in Fireproof is <Link to="/docs/database-api/encryption">end-to-end encrypted</Link> and{' '}
             <Link to="https://fireproof.storage/posts/from-mlops-to-point-of-sale:-merkle-proofs-and-data-locality/">
@@ -71,8 +71,8 @@ function App() {
             </Link>
             , making it suitable for all your data needs.
           </p>
-          <h2>Open-source</h2>
-          <p>Fireproof is dual-licensed under the Apache 2.0 and MIT license and is free to use.</p>
+          <h2>📂 Open-source</h2>
+          <p>Fireproof is dual-licensed under the Apache 2.0 and MIT license and is free to use. <Link to="/docs/contributing">Read about contributing</Link>.</p>
         </div>
       </main>
     </Layout>

@@ -2,9 +2,9 @@
 sidebar_position: 4
 ---
 
-# Sync
+# Live Sync
 
-Fireproof Sync can use any socket connection between peers to share changes in real-time. This is great for building collaborative applications, multi-player games, or for syncing data between a server and a client.
+Fireproof Sync can use any socket connection between peers to share changes in real-time. This is great for building collaborative applications, multi-player games, or for syncing data between a server and a client. You can [play a simple game using Fireproof LiveSync with WebRTC here.](https://game.fireproof.storage)
 
 Fireproof Sync currently ships with [Simple Peer's WebRTC transport](https://github.com/feross/simple-peer) for peer-to-peer connections. Other stream API libraries, like [Socket Supply](https://socketsupply.co), [libp2p](https://libp2p.io), or [PartyKit](https://partykit.io) might be preferable for your application. If you are interested in more transports for Fireproof Sync, please [open an issue](https://github.com/fireproof-storage/fireproof/issues/new).
 

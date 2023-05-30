@@ -22,7 +22,7 @@ const FeatureList = [
     icon: '🌩',
     description: (
       <>
-        Use your existing authentication system or Fireproof's sensible defaults. Live sync user-to-user and replicate
+        Use your existing authentication system or Fireproof's sensible defaults. <Link to="/docs/database-api/sync">Live sync user-to-user</Link> and replicate
         with any cloud.
       </>
     )
@@ -33,7 +33,7 @@ const FeatureList = [
     icon: '🏔',
     description: (
       <>
-        Fireproof's encrypted serverless backend works anywhere, allowing you to tune security, price, and performance
+        Fireproof's <Link to="/docs/database-api/encryption">encrypted serverless backend</Link> works anywhere, allowing you to tune security, price, and performance
         for your app.
       </>
     )
