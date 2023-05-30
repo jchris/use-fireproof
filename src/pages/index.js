@@ -32,8 +32,8 @@ export default function Home() {
   const { siteConfig } = useDocusaurusContext()
   return (
     <Layout
-      title={`Live data React hook - ${siteConfig.title}`}
-      description="Use Fireproof to build realtime apps with React."
+      title={`Live data React hooks - ${siteConfig.title}`}
+      description="Use Fireproof to build realtime apps with verifiable data."
     >
       <HomepageHeader />
       <main>
