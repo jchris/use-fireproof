@@ -79,7 +79,12 @@ const config = {
           {to: '/docs/react-tutorial', label: 'Tutorial', position: 'left'},
           // {to: '/docs/faq', label: 'FAQ', position: 'left'},
           {
-            href: 'https://github.com/fireproof-storage/fireproof/tree/main/packages/react#readme',
+            label: 'Blog',
+            to: 'https://fireproof.storage/blog/',
+            position: 'left'
+          },
+          {
+            href: 'https://github.com/fireproof-storage/fireproof/tree/main/packages/react',
             label: 'Star me on GitHub',
             position: 'right',
           },
@@ -125,6 +130,10 @@ const config = {
           {
             title: 'More',
             items: [
+              {
+                label: 'Fireproof Storage',
+                to: 'https://fireproof.storage/',
+              },
               {
                 label: 'Blog',
                 to: 'https://fireproof.storage/blog/',
