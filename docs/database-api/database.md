@@ -13,6 +13,8 @@ import { fireproof } from '@fireproof/core';
 
 const db = fireproof('my-db')
 
+// const { put, get, del, query, changes, subscribe } = db
+
 // put a document
 const ok = await db.put({ _id: 'my-doc', hello: 'world' })
 
