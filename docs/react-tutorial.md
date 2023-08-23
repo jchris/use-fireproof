@@ -8,11 +8,13 @@ This article will walk you through creating a simple todo list application from 
 
 ## Create a New App
 
-We'll start with a fresh React app. You can use [create-react-app](https://create-react-app.dev/) to get started, but Fireproof works equally well with other React distributions such as [Remix](https://remix.run/) or [Next.js](https://nextjs.org/). 
+We'll start with a fresh React app. We'll use Vite, but we've tested with Next.js and it works great. We need help with [Remix](https://github.com/fireproof-storage/fireproof/issues/1), and there's a [known workaround if you prefer Create React App](https://github.com/fireproof-storage/fireproof/issues/2). If you have a favorite React starter, make a note on that issue and we'll add it to the list.
 
 ```bash
-npx create-react-app my-app
-cd my-app
+npm create vite@latest my-vite-fp-tutorial
+# ✔ Select a framework: › React
+# ✔ Select a variant: › TypeScript
+cd my-vite-fp-tutorial
 ```
 
 ## Install Fireproof
@@ -25,7 +27,7 @@ npm install use-fireproof
 
 ## Connect Your Component
 
-In this example, our todo list application can create todo items, list them, and toggle their completed status. We'll start by modifying the component called `App` in `src/App.js`. This component is wired as the root of the application by `create-react-app` in `src/index.js` so it's best to work within it. By the end of the tutorial we will have replaced the whole file, but take it one step at a time, to learn how the pieces fit together. The final file is shared below. Also, you can clone [the resulting application here](https://github.com/jchris/my-fireproof-app), or [view the live demo](https://codesandbox.io/p/github/jchris/my-fireproof-app/main).
+In this example, our todo list application can create todo items, list them, and toggle their completed status. We'll start by modifying the component called `App` in `src/App.tsx`. This component is wired as the root of the application by Vite in `src/main.tsx` so it's best to work within it. By the end of the tutorial we will have replaced the whole file, but take it one step at a time, to learn how the pieces fit together. The final file is shared below.
 
 In this app, we use the top-level `useLiveQuery` hook to auto-refresh query responses (so your app dynamically refreshes with no extra work), and the `useDocument` hook to create new documents. These hooks can also be [configured by the optional `useFireproof` hook](/docs/react-hooks/use-fireproof), but most apps should start with the defaults.
 
@@ -90,19 +92,21 @@ The `useDocument` hook is used to create a new document with an empty `text` fie
 Here is the JSX that renders the form. The common React pattern described above is used here: the input field is bound to `todo.text`, `setTodo` is called with a new text field when the input changes, and `saveTodo` is called when the form is submitted, persisting the new todo to the database.
 
 ```jsx
-<input 
-  type="text" 
-  value={todo.text} 
-  onChange={e => setTodo({ text: e.target.value })} 
-/>
-<button
-  onClick={() => {
-    saveTodo()
-    setTodo(false)
-  }}
->
-  Save
-</button>
+<div>
+  <input 
+    type="text" 
+    value={todo.text} 
+    onChange={e => setTodo({ text: e.target.value })} 
+  />
+  <button
+    onClick={() => {
+      saveTodo()
+      setTodo(false)
+    }}
+  >
+    Save
+  </button>
+</div>
 ```
 Another convenience detail: `setTodo` is called with `false` to clear the input field (and reset to the `useDocument` call's initial value) after the todo is saved. This is a common pattern in React, and it's handled automatically by the hook. In our current application, we want the document managed by `useDocument` to be a new one each time, so we do not specify an `_id` in the initial document value. If the initial document value had an `_id` field, the hook would update that document instead of creating a new one with each save. [Read more about the `useDocument` hook](/docs/react-hooks/use-document.md).
 
@@ -110,14 +114,14 @@ Another convenience detail: `setTodo` is called with `false` to clear the input 
 
 By default, Fireproof stores data in the browser's local storage. This is great for development, but once your app is ready to share, you'll want to [connect it to cloud storage.](/docs/database-api/replication.md) For now, you can manage and delete the encrypted data from your browser developer tools. There are two components to the data, the header and the encrypted files. The header is kept in `localStorage` under the key `fp.useFireproof`. The files are stored in IndexedDB under the key `fp.<keyId>.useFireproof`. This arrangement means that files can be stored with an untrusted provider, and the header can be stored with a trusted provider. For instance, customers of [Fireproof Storage](https://fireproof.storage) can secure headers in their existing authentication and session management tools, while relying on Fireproof Storage for the encrypted files.
 
-Once your data is replicated to the cloud, you can view and edit it with the Fireproof developer tools. [Try the dashboard demo here.](https://fireproof.storage/try-free/)
+Coming soon: Once your data is replicated to the cloud, you can view and edit it with the Fireproof developer tools. [Try the dashboard demo here.](https://fireproof.storage/try-free/)
 
 ## The Completed App
 
 Here's the example to-do list that initializes the database and sets up automatic refresh for query results. The list of todos will redraw for all users in real-time. Replace the code in `src/App.js` with the following:
 
 ```jsx
-import React from 'react'
+import './App.css'
 import { useLiveQuery, useDocument } from 'use-fireproof'
 
 function App() {
@@ -126,14 +130,16 @@ function App() {
   const [todo, setTodo, saveTodo] = useDocument({ text: '', date: Date.now(), completed: false })
 
   return (
-    <div>
-      <input 
-        type="text" 
-        value={todo.text} 
-        onChange={e => setTodo({ text: e.target.value })} 
+    <>
+      <input
+        title="text"
+        type="text"
+        value={todo.text as string}
+        onChange={e => setTodo({ text: e.target.value })}
       />
       <button
-        onClick={() => {
+        onClick={e => {
+          e.preventDefault()
           saveTodo()
           setTodo(false)
         }}
@@ -144,15 +150,16 @@ function App() {
         {todos.map(todo => (
           <li key={todo._id}>
             <input
+              title="completed"
               type="checkbox"
-              checked={todo.completed}
+              checked={todo.completed as boolean}
               onChange={() => useLiveQuery.database.put({ ...todo, completed: !todo.completed })}
             />
-            {todo.text}
+            {todo.text as string}
           </li>
         ))}
       </ul>
-    </div>
+    </>
   )
 }
 
@@ -164,12 +171,12 @@ export default App
 Now take a look at your app. It will allow you to add items to the list and check the box.
 
 ```bash
-npm start
+npm run dev
 ```
 
 ![React screenshot](./img/todos.png)
 
-You can clone [the resulting application here](https://github.com/jchris/my-fireproof-app), or [view the live demo](https://codesandbox.io/p/github/jchris/my-fireproof-app/main).
+You can clone [the resulting application here](https://github.com/jchris/my-vite-fp-tutorial).
 
 ## Learn More
 
