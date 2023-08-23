@@ -6,11 +6,40 @@ sidebar_position: 2
 
 Read about creating and configuring a database, and APIs for interacting with data. If you are writing a React application, you will probably want to use [the React Hooks](/docs/react-hooks/use-live-query) instead. These APIs are for advanced use cases or server-side code.
 
+See the [basics page for a super quick start about the raw database API](/docs/database-api/basics)
+
+```js
+import { fireproof } from '@fireproof/core';
+
+const db = fireproof('my-db')
+
+// put a document
+const ok = await db.put({ _id: 'my-doc', hello: 'world' })
+
+// get a document
+const doc = await db.get('my-doc')
+
+// delete a document
+const ok = await db.del('my-doc')
+
+// query for documents, leave out the options for all documents with the queried field
+const { rows } = await db.query('hello', { range: ['a', 'z'] })
+
+// recent changes since a clock. leave out the clock for all changes.
+const changes = await db.changes(ok.clock)
+
+// subscribe to live updates
+const unsub = db.subscribe((updates) => {
+  // updates is an array of documents
+})
+```
+
+
 ## Creating a Database
 
-### `Fireproof.storage()`
+### `fireproof("database-name")`
 
-Most of the time you will create a database using `Fireproof.storage("my-database")`. The database name is optional, and if you don't provide one, the database will operate in-memory only. This is useful for testing, or for creating a database that you don't want to persist.
+Most of the time you will create a database using `fireproof("my-database")`. The database name is optional, and if you don't provide one, the database will operate in-memory only. This is useful for testing, or for creating a database that you don't want to persist. 
 
 The `storage` method will load the database config from the correct storage location, and will create the database if it doesn't exist. 
 
