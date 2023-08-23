@@ -3,13 +3,28 @@ sidebar_position: 8
 ---
 # Bundler Compatibility
 
-Bundlers are tools that help you manage your project's dependencies and assets. They are used to bundle your code and assets into a single file, which can then be deployed to a server. They can save size and improve performance by reducing the number of requests made to the server. Most development environments use a bundler to manage dependencies and assets.
+Bundlers can save size and improve performance by reducing the number of requests made to the server. Most development environments use a bundler to manage dependencies and assets.
 
-Fireproof should world smoothly with most bundlers. However, you might need to make some configuration changes to your bundler to get Fireproof to work properly. This guide will outline some common issues you might encounter when using Fireproof with bundlers, and how to resolve them.
+Fireproof has been tested with most bundlers. However, you might need to make some configuration changes to your bundler to get Fireproof to work properly. This guide will outline some common issues you might encounter when using Fireproof with bundlers, and how to resolve them.
 
-## Bundling with Next.js
+## The Browser
 
-In this guide, we will outline how to overcome issues you might encounter when using Fireproof with Next.js due to the differing module systems.
+For the most consistent experience, you can use our pre-bundled IIFE build available on CDN so you can include it in your HTML directly:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@fireproof/core/dist/browser/fireproof.iife.js"></script>
+```
+
+You can see [the short example program that is used to validate the browser build.](https://github.com/fireproof-storage/fireproof/blob/main/packages/fireproof/test/www/todo.html)
+
+
+## Vite
+
+[Vite](https://vitejs.dev/) is a modern front-end build tool, created by Evan You (the creator of Vue.js), that offers a faster and leaner development experience for modern web projects. Vite is the easiest to work with for single-page apps, so we suggest using it to get started. There are no issues with Vite compatibility. We tested with the React / TypeScript template.
+
+## Next.js
+
+Next.js works for client components, but the following might be helpful if you run into issues.
 
 ### Issue
 
@@ -23,7 +38,9 @@ The conflict arises from the differences in module formats. Fireproof uses the E
 
 ### Solution
 
-To overcome this issue, we can use the `next-transpile-modules` package, which enables Next.js to transpile specific modules in `node_modules`.
+One option is to import the esm file directly from the Fireproof bundle. The package contiains multiple builds, so look at [package.json's exports field for more details](https://github.com/fireproof-storage/fireproof/blob/main/packages/fireproof/package.json)
+
+Alternatively, to overcome this issue, we can use the `next-transpile-modules` package, which enables Next.js to transpile specific modules in `node_modules`.
 
 #### Step 1: Install `next-transpile-modules`
 
@@ -45,16 +62,11 @@ module.exports = withTM();
 
 This tells Next.js to transpile the Fireproof modules, which should help resolve the incompatibility issue. 
 
-## Other bundlers
+## Create React App
 
+[Create React App](https://create-react-app.dev/) is a popular environment to create single-page React applications, handling build configurations so you can focus on writing code. There is [currently a required workaround for issues in the create-react-app bundler.](https://github.com/fireproof-storage/fireproof/issues/2) It's relatively easy to fix (no polyfill or additional packages required.)
 
-### Vite
-
-[Vite](https://vitejs.dev/) is a modern front-end build tool, created by Evan You (the creator of Vue.js), that offers a faster and leaner development experience for modern web projects. As of now, there are no known issues when using Fireproof with a Vite setup. 
-
-### Create React App
-
-[Create React App](https://create-react-app.dev/) is a popular environment to create single-page React applications, handling build configurations so you can focus on writing code. Again, there are no known issues when using Fireproof with Create React App.
+### Feedback
 
 We aim to make Fireproof compatible with as many environments as possible. However, if you do encounter issues or inconsistencies when using Fireproof with Vite, Create React App, or any other environment, we highly encourage you to reach out. 
 
@@ -68,7 +80,7 @@ When developing with Fireproof, you might prefer to use an online developer sand
 
 [CodeSandbox](https://codesandbox.io/) is a versatile online code editor, supporting a wide range of frameworks and libraries, including Next.js and React. It provides a complete development environment in your browser and handles bundling and transpiling of modules effortlessly.
 
-Fireproof works smoothly on CodeSandbox, making it a perfect choice for live development, quick prototyping, and debugging. You can import your project directly from GitHub, and it's also easy to share your sandbox with others, making collaborative work a breeze.
+Fireproof works smoothly on CodeSandbox, making it a perfect choice for live development, quick prototyping, and debugging. You can import your project directly from GitHub, and it's also easy to share your sandbox with others, making collaborative work a breeze. Below the fold on the ChatGPT Expert Builders page, you can see [links to three ready-to-go Fireproof code sandboxes.](/docs/chatgpt-quick-start)
 
 ### CodePen
 
