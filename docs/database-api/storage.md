@@ -17,7 +17,7 @@ IPLD blocks are stored in [CAR (Content Addressable aRchive)](https://ipld.io/sp
 
 ## Storage Backends
 
-Fireproof supports multiple storage backends. The requirements are documented in [Replication](./replication). All storage keeps data as encrypted car files and metadata as json header. All app store in the browser by default, with configurable remotes, including REST, S3, and IPFS. For enterprises, the header can be stored in SSO and the data can be stored in any cloud.
+Fireproof supports multiple storage backends. The requirements are documented in [Replication](./replication). All storage keeps data as encrypted car files and metadata as json header. All app data is stored in the browser by default, with configurable remotes, including REST, S3, and IPFS. For enterprises, the header can be stored in SSO and the data can be stored in any cloud.
 
 ## Database Headers
 
