@@ -10,6 +10,8 @@ The default package import provides a concise way to access Fireproof, this quic
 ```js
 import { fireproof } from '@fireproof/core';
 
+// const { put, get, del, query, changes, subscribe } = db
+
 const db = fireproof('my-db')
 
 // put a document

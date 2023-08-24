@@ -11,22 +11,13 @@ Clients can ship CAR transactions to other clients on the network. Each CAR tran
 Furthermore, Fireproof allows each database to be archived to a single CAR file, enabling high-performance page loads and other use cases where fast start is crucial. By leveraging IPLD-over-ObjectStores, Fireproof can function as an IPLD database with key-value stores, indexing, and a powerful query language that can handle privacy and access patterns. Object stores like S3, R2, or any cloud provider with compatible interfaces can be used to host Fireproof backends. By following some simple patterns, Fireproof enables the creation of a larger graph database that can travel like a graph itself, mutate into other states, filter out data, and combine data from different sources, with limitless options for storage and distribution, all enabled by efficient append-only hash-linked immutable data structures.
 
 ## Storage Format
-
-Fireproof uses [IPLD (InterPlanetary Linked Data)](https://ipld.io/) to store data. This means that all data is stored as a Merkle DAG (Directed Acyclic Graph). This means all operations in Fireproof are immutable, and you can always access the history of your data.
+Fireproof uses encrypted [IPLD](https://ipld.io/) ((InterPlanetary Linked Data](https://ipld.io/)) for local and remote storage. This means that all data is stored as a Merkle DAG (Directed Acyclic Graph). This means all operations in Fireproof are immutable, and you can always access the history of your data.
 
 IPLD blocks are stored in [CAR (Content Addressable aRchive)](https://ipld.io/specs/transport/car/) files, with each 
 
 ## Storage Backends
 
-Fireproof supports multiple storage backends. The default in the browser is IndexedDB, but you can also use REST storage, or the filesystem.
-
-More about storage backends coming in 0.7.0.
-
-<!-- ## Working with Storage
-
-To export a database to a CAR file, use the `export` method:
-
-```js -->
+Fireproof supports multiple storage backends. The requirements are documented in [Replication](./replication). All storage keeps data as encrypted car files and metadata as json header. All app store in the browser by default, with configurable remotes, including REST, S3, and IPFS. For enterprises, the header can be stored in SSO and the data can be stored in any cloud.
 
 ## Database Headers
 
@@ -36,17 +27,12 @@ The header also tracks the database encryption key and the encryption key for th
 
 The header tracks CAR files (content-addressed-archive) which it uses to load the database. The listed CAR file name for each storage option points to an encrypted map which Fireproof uses to load the rest of the database.
 
+A header:
+
 ```json
 {
-  "clock": [
-    "bafyreibllbdlexr25r2fe42dh56rqbfif3vcu4iyzh5ltk4z33myo74mcu"
-  ],
-  "name": "my-database",
-  "index": {
-    "key": "15b539987a562e1d62315858149d3b337adbee45f6c4d3f5a5d306b8f6cd45a9"
-  },
-  "indexes": [],
-  "key": "0502a306341364c63a12d0c7468e50659d909127bb6b784b79214d2961d7b14d",
-  "car": "bafkreieznsnhlyjoffytquju4qydz4unyblno7fjvtzs7u75y6tgu3cnti"
+  "car": {"/":"bafkreia2zaxpnlarzkh2ss7iekuggzrirdl2vwzuulrdh4xfnvfqntboua"},
+  "key": "9b8a11b88f43fc9045736ae73ef99dbcddfb6ca1be584a1202a061917c166677"
 }
 ```
+

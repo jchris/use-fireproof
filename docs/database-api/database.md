@@ -43,13 +43,13 @@ const unsub = db.subscribe((updates) => {
 
 Most of the time you will create a database using `fireproof("my-database")`. The database name is optional, and if you don't provide one, the database will operate in-memory only. This is useful for testing, or for creating a database that you don't want to persist. 
 
-The `storage` method will load the database config from the correct storage location, and will create the database if it doesn't exist. 
+The `fireproof` method will load the database config from the correct storage location, and will create the database if it doesn't exist. You can also load with config:
 
-### `Fireproof.fromConfig()`
+### `fireproof("database-name", configObject)`
 
 If you want to manage your own database config, you can call `Fireproof.fromConfig("my-database", configObject)` method instead, where `configObject` has the necessary fields. See [Database Headers](/docs/database-api/storage#database-headers) for more information about managing your own config.
 
-*Coming in 0.7.0*: In 0.6 and before, storage was automatically chosen by Fireproof based on the environment. 0.7.0 brings pluggable storage, including optional secondary storage for automatic replication. See [Storage](./storage) for more information.
+*Now in 0.11.x beta*: Fireproof is more lightweight, and getting lighter. By default the build picks browser or node `fs` and you can connect remote storage. There is an included S3 connector, as well as a raw connector in the tests you can use as a model for your own REST APIs.
 
 ## Document APIs
 

@@ -2,6 +2,8 @@
 sidebar_position: 4
 ---
 
+Note: These are docs for [Fireproof alpha](https://github.com/fireproof-storage/fireproof-alpha), the beta will offer similar features but is focussed on the core right now.
+
 # Live Sync
 
 Fireproof Sync can use any socket connection between peers to share changes in real-time. This is great for building collaborative applications, multi-player games, or for syncing data between a server and a client. You can [play a simple game using Fireproof LiveSync with WebRTC here.](https://game.fireproof.storage)
