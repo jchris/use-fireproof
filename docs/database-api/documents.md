@@ -19,6 +19,82 @@ const theDocument = await database.get(putResponse.id)
 // { _id, hello : "world"  }
 ```
 
+### `put() with Files`
+
+If you add an upload `<input>` to your html like this:
+
+```html
+<input accept="image/*" title="save to Fireproof" type="file" id="files" multiple>
+```
+
+And some JS to handle it:
+
+```js
+function handleFiles() {
+  const fileList = this.files;
+  const doc = {
+    type: "files",
+    _files: {}
+  }
+  for (const file of fileList) {
+    // assign the File object to the document
+    // under doc._files["myname.jpeg"]
+    doc._files[file.name] = file
+  }
+  const ok = db.put(doc);
+}
+
+const fileInput = document.getElementById("files");
+fileInput.addEventListener("change", handleFiles, false);
+```
+
+Fireproof will take care of encoding it to UnixFS, encrypting it, and replicating with your chosen storage backend.
+
+To get files back out, you `get` the document, and access the files from the `_files` property. 
+
+The result looks like:
+
+```js
+{
+  _id: "my-doc",
+  _files: {
+    "myname.jpeg": {
+      type: "image/jpeg",
+      size: 12345,
+      file: () => Promise<File>
+    }
+  }
+}
+```
+
+Here's an example. Note how we use `await` to get the file from the promise, and also that we've wrapped each file in an async function so the images can load in parallel:
+
+```js
+const doc = await db.get(ok.id)
+
+// adjust this for your app
+const li = document
+            .querySelector('ul')
+            .appendChild(document.createElement('li'))
+
+for (const file of Object.keys(doc._files)) {
+  (async () => {
+    const meta = doc._files[file]
+    if (meta.file && /image/.test(meta.type)) {
+      const img = document.createElement("img");
+      img.src = URL.createObjectURL(await meta.file());
+      img.height = 100;
+      img.onload = () => {
+        URL.revokeObjectURL(img.src);
+      };
+      li.appendChild(img);
+    }
+  })();
+}
+```
+
+[Read more about Files on the web at MDN.](https://developer.mozilla.org/en-US/docs/Web/API/File_API/Using_files_from_web_applications)
+
 ### `get()`
 
 When special fields like `id` or `clock` appear in the document, they are prefixed with an underscore, like `_id` above. If you don't specify an `_id` in your document body, Fireproof will generate one for you. That is what is returned as `putResponse.id` above.
@@ -44,7 +120,7 @@ const putResponse4 = await database.put(theDocument)
 
 If multiple users are working this way, whoever writes last wins, overwriting the other changes (at least until conflict merge.)
 
-## Multi-version concurrency control (MVCC)
+## Multi-version concurrency control (MVCC) (available in alpha, coming soon in beta)
 
 If you want to prevent that scenario, you can enable multi-version concurrency control, which will require that writers prove they are updating from the latest version, or else the write fails. This can give them a chance to reload from the source and incorporate their changes before writing, instead of doing it later as a conflict merge.
 
