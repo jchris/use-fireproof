@@ -93,7 +93,7 @@ for (const file of Object.keys(doc._files)) {
 }
 ```
 
-[Read more about Files on the web at MDN.](https://developer.mozilla.org/en-US/docs/Web/API/File_API/Using_files_from_web_applications)
+[Read more about Files on the web at MDN.](https://developer.mozilla.org/en-US/docs/Web/API/File_API/Using_files_from_web_applications) And [follow along with feature developement.](https://github.com/fireproof-storage/fireproof/discussions/9)
 
 ### `get()`
 
