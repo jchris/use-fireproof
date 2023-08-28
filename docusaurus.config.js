@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'use 🔥 Fireproof',
-  tagline: 'Live database hooks for React, accelerated by cryptographic proofs',
+  tagline: 'Live query hooks for Fireproof realtime database',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
