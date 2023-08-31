@@ -15,7 +15,7 @@ This replication mechanism allows for replication targets to be an S3 bucket, ba
 Import the `connect` module to configure replication, create a database, and connect it to a service:
 
 ```js
-import { fireproof, connect } from 'fireproof'
+import { fireproof, connect } from 'use-fireproof'
 
 const db = fireproof('my-database')
 const connection = new connect.raw({ upload, download })
