@@ -9,7 +9,7 @@ Read about creating and configuring a database, and APIs for interacting with da
 See the [basics page for a super quick start about the raw database API](/docs/database-api/basics)
 
 ```js
-import { fireproof } from '@fireproof/core';
+import { fireproof } from 'use-fireproof';
 
 const db = fireproof('my-db')
 

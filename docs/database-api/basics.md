@@ -3,12 +3,12 @@ sidebar_position: 1
 ---
 # Basics
 
-Of course, you already ran `npm install @fireproof/core`
+Of course, you already ran `npm install use-fireproof`
 
 The default package import provides a concise way to access Fireproof, this quick sketch will give you a sense of how the API works:
 
 ```js
-import { fireproof } from '@fireproof/core';
+import { fireproof } from 'use-fireproof';
 
 // const { put, get, del, query, changes, subscribe } = db
 
