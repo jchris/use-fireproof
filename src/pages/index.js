@@ -17,7 +17,7 @@ function HomepageHeader() {
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
           <Link className="button button--secondary button--lg" to="https://fireproof.storage/try-free/">
-            Live Demo
+            Try Live
           </Link>
           <Link className="button button--primary button--lg margin-left--md" to="/docs/react-tutorial">
             Get Started
@@ -43,9 +43,8 @@ export default function Home() {
           <CodeBlock language="jsx">npm install use-fireproof</CodeBlock>
           <p>
             {' '}
-            You are in the right place: <Link to="https://www.npmjs.com/package/use-fireproof">use-fireproof</Link> is
-            optimized for React, and <Link to="https://www.npmjs.com/package/@fireproof/core">@fireproof/core</Link>{' '}
-            runs anywhere.
+            You are in the right place: <Link to="https://www.npmjs.com/package/use-fireproof">use-fireproof</Link> runs anywhwere, 
+            with bundles built for node.js, the browser, and optional React hooks.
           </p>
           <h2>🚀 Write apps without setup</h2>
           <p>

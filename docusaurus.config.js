@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'use 🔥 Fireproof',
-  tagline: 'Live query hooks for Fireproof realtime database',
+  title: 'Fireproof',
+  tagline: 'Simplify your application state with with a live database.',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -64,7 +64,7 @@ const config = {
       // Replace with your project's social card
       image: 'img/card.png',
       navbar: {
-        title: 'useFireproof',
+        title: 'Fireproof',
         logo: {
           alt: 'Fireproof Logo',
           src: 'img/logo.svg',
@@ -89,7 +89,7 @@ const config = {
             position: 'right'
           },
           {
-            href: 'https://github.com/fireproof-storage/fireproof/tree/main/packages/react',
+            href: 'https://github.com/fireproof-storage/fireproof',
             label: 'Star me on GitHub',
             position: 'right',
           },
