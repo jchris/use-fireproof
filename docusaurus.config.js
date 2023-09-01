@@ -66,7 +66,7 @@ const config = {
       navbar: {
         title: 'Fireproof',
         logo: {
-          alt: 'Fireproof Logo',
+          alt: 'Fireproof Flame Logo',
           src: 'img/logo.svg',
         },
         items: [
