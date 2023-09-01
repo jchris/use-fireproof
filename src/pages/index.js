@@ -16,10 +16,16 @@ function HomepageHeader() {
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
-          <Link className="button button--secondary button--lg" to="https://fireproof.storage/try-free/">
+          <Link
+            className="button button--secondary button--lg"
+            to="https://fireproof.storage/try-free/"
+          >
             Try Live
           </Link>
-          <Link className="button button--primary button--lg margin-left--md" to="/docs/react-tutorial">
+          <Link
+            className="button button--primary button--lg margin-left--md"
+            to="/docs/react-tutorial"
+          >
             Get Started
           </Link>
         </div>
@@ -40,44 +46,42 @@ export default function Home() {
         <HomepageFeatures />
         <div className="container">
           <h2>📦 Lightweight install</h2>
+          <p>
+            Live queries, database branches and snapshots, and file attachments make Fireproof ideal
+            for browser-based apps big or small.
+          </p>
+
           <CodeBlock language="jsx">npm install use-fireproof</CodeBlock>
           <p>
             {' '}
-            You are in the right place: <Link to="https://www.npmjs.com/package/use-fireproof">use-fireproof</Link> runs anywhwere, 
-            with bundles built for node.js, the browser, and optional React hooks.
+            You are in the right place:{' '}
+            <Link to="https://www.npmjs.com/package/use-fireproof">use-fireproof</Link> runs
+            anywhwere, with bundles built for Node.js and the browser, with optional React hooks.
           </p>
           <h2>🚀 Write apps without setup</h2>
           <p>
-            Query realtime data with the <Link to="/docs/react-hooks/use-live-query">useLiveQuery</Link> and{' '}
-            <Link to="/docs/react-hooks/use-document">useDocument</Link> React hooks. Connect to the cloud after your
-            app is awesome.
-          </p>
+            Fireproof makes it easy to for JavaScript developers to {' '}
+            <a href="/docs/database-api/basics/">light up any app with live data</a>. For
+            React developers, check out the{' '}
+            <Link to="/docs/react-tutorial">useLiveQuery tutorial</Link> for the recommended auto-refresh APIs.
+          {/* </p>
           <ThemedImage
             className="margin-bottom--md margin-left--lg"
             alt="useLiveQuery screenshot"
             sources={{
-              light: ('/img/code.png'),
-              dark: ('/img/code.png')
+              light: '/img/code.png',
+              dark: '/img/code.png'
             }}
           />
-          {/* <CodeBlock language="jsx">{`import { useLiveQuery } from 'use-fireproof'
-function App() {
-  const todos = useLiveQuery('date').docs
-  return (
-    <ul>
-      {todos.map(todo => (
-        <li key={todo._id}>{todo.text}</li>
-      ))}
-    </ul>
-  )
-}
-`}</CodeBlock> */}
-          <p>
-            See the <Link to="/docs/react-tutorial">React tutorial</Link> for the code and the concepts.
+          <p> */}
+            {' '} Get started by writing features, and connect to the cloud after your app is awesome.
           </p>
+
+      
           <h2>🔐 Strong cryptographic verification</h2>
           <p>
-            Every operation in Fireproof is <Link to="/docs/database-api/encryption">end-to-end encrypted</Link> and{' '}
+            Every operation in Fireproof is{' '}
+            <Link to="/docs/database-api/encryption">end-to-end encrypted</Link> and{' '}
             <Link to="https://fireproof.storage/posts/from-mlops-to-point-of-sale:-merkle-proofs-and-data-locality/">
               accelerated by cryptographic proofs
             </Link>
