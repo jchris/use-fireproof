@@ -10,9 +10,12 @@ const FeatureList = [
     icon: '🏗',
     description: (
       <>
-        Write shareable realtime apps without configuring anything. No setup makes Fireproof great for{' '}
-        <Link to="/docs/chatgpt-quick-start">ChatGPT quick starts</Link> and{' '}
-        <Link to="https://codesandbox.io/s/fireproof-react-antd-f6zbi7?file=/src/App.tsx">code sandbox demos</Link>.
+        Write shareable realtime apps without configuring anything. No setup makes Fireproof great
+        for <Link to="/docs/chatgpt-quick-start">ChatGPT quick starts</Link> and{' '}
+        <Link to="https://codesandbox.io/s/fireproof-react-antd-f6zbi7?file=/src/App.tsx">
+          code sandbox demos
+        </Link>
+        .
       </>
     )
   },
@@ -22,8 +25,9 @@ const FeatureList = [
     icon: '🌩',
     description: (
       <>
-        Use your existing authentication system or Fireproof's sensible defaults. <Link to="/docs/database-api/sync">Live sync user-to-user</Link> and replicate
-        with any cloud.
+        Use your existing authentication system or Fireproof's sensible defaults.{' '}
+        <Link to="/docs/database-api/sync">Live sync user-to-user</Link> and{' '}
+        <Link to="/docs/database-api/replication">replicate with any cloud.</Link>
       </>
     )
   },
@@ -33,8 +37,8 @@ const FeatureList = [
     icon: '🏔',
     description: (
       <>
-        Fireproof's <Link to="/docs/database-api/encryption">encrypted serverless backend</Link> works anywhere, allowing you to tune security, price, and performance
-        for your app.
+        Fireproof's <Link to="/docs/database-api/encryption">encrypted serverless backend</Link>{' '}
+        works anywhere, allowing you to tune security, price, and performance for your app.
       </>
     )
   }

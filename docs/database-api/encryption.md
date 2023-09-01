@@ -10,13 +10,11 @@ The encryption process itself employs the Advanced Encryption Standard (AES) in 
 
 ## Configuring encryption
 
-By default, Fireproof employs 256-bit AES-GCM encryption for all persistent databases. Persistence and encryption are activated by setting a database name using the `Fireproof.storage('dbname')` function. This not only provides data persistence but also enables robust encryption for enhanced data security.
+By default, Fireproof employs 256-bit AES-GCM encryption for all persistent databases. Persistence and encryption are activated by setting a database name using the `fireproof('dbname')` function. This not only provides data persistence but also enables robust encryption for enhanced data security.
 
-While encryption is a vital aspect of data security, there may be instances, particularly during testing or development, where you might want to disable it. For such cases, Fireproof allows disabling encryption via the environment variable `NO_ENCRYPT`. Simply set this variable to disable encryption temporarily. This functionality is also used when passing a `null` key to `Sync.makeCar()` which allows you to create unencrypted database files for publishing.
+While encryption is a vital aspect of data security, there may be instances, particularly during testing or development, or for content-delivery workloads, where you might want to disable it. For such cases, Fireproof allows disabling encryption via the configuration option `{ public: true }`. Simply set this to encryption. This functionality also allows you to create unencrypted database files for publishing.
 
-Key management is an integral part of the encryption process. The key material, which is necessary for both encrypting and decrypting the data, is automatically included in the output of `JSON.stringify(database)`. By default, Fireproof stores this key material in the browser's `localStorage`, ensuring it is readily available for encryption and decryption processes.
-
-However, it's crucial to remember that any process that needs to read the encrypted data must have access to this key material. Therefore, you must securely share the key with any reader process. Please handle this key with utmost care to maintain the integrity and confidentiality of your data.
+Key management is an integral part of the encryption process. By default, Fireproof stores this key material in the browser's `localStorage`, ensuring it is readily available for encryption and decryption processes. However, it's crucial to remember that any process that needs to read the encrypted data must have access to this key material. Therefore, you must securely share the key with any reader process. Please handle this key with utmost care to maintain the integrity and confidentiality of your data.
 
 ## How encryption works
 

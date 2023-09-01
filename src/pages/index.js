@@ -20,7 +20,7 @@ function HomepageHeader() {
             className="button button--secondary button--lg"
             to="https://fireproof.storage/try-free/"
           >
-            Try Live
+            Try Demo
           </Link>
           <Link
             className="button button--primary button--lg margin-left--md"
@@ -54,17 +54,17 @@ export default function Home() {
           <CodeBlock language="jsx">npm install use-fireproof</CodeBlock>
           <p>
             {' '}
-            You are in the right place:{' '}
-            <Link to="https://www.npmjs.com/package/use-fireproof">use-fireproof</Link> runs
-            anywhwere, with bundles built for Node.js and the browser, with optional React hooks.
+            You are in the right place: the{' '}
+            <Link to="https://www.npmjs.com/package/use-fireproof">use-fireproof</Link> module runs
+            anywhere, with bundles built for Node.js and the browser, with optional React hooks.
           </p>
-          <h2>🚀 Write apps without setup</h2>
+          <h2>🚀 Simple app state, anywhere</h2>
           <p>
-            Fireproof makes it easy to for JavaScript developers to {' '}
-            <a href="/docs/database-api/basics/">light up any app with live data</a>. For
-            React developers, check out the{' '}
-            <Link to="/docs/react-tutorial">useLiveQuery tutorial</Link> for the recommended auto-refresh APIs.
-          {/* </p>
+            Fireproof makes it easy to for JavaScript developers to{' '}
+            <a href="/docs/database-api/basics/">light up any app with live data</a>. For React
+            developers, check out the <Link to="/docs/react-tutorial">useLiveQuery tutorial</Link>{' '}
+            for the recommended auto-refresh APIs.
+            {/* </p>
           <ThemedImage
             className="margin-bottom--md margin-left--lg"
             alt="useLiveQuery screenshot"
@@ -73,11 +73,10 @@ export default function Home() {
               dark: '/img/code.png'
             }}
           />
-          <p> */}
-            {' '} Get started by writing features, and connect to the cloud after your app is awesome.
+          <p> */}{' '}
+            Get started by writing features, and <Link to="/docs/database-api/replication">connect to the cloud</Link> after your app is awesome.
           </p>
 
-      
           <h2>🔐 Strong cryptographic verification</h2>
           <p>
             Every operation in Fireproof is{' '}
