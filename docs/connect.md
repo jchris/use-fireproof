@@ -3,6 +3,8 @@ sidebar_position: 8
 ---
 # Sharing and Sync
 
+Fireproof's verifiable CRDT makes it ideal for multi-user applications involving mission-critical data. Because Fireproof's clocks are multi-device aware, and each operation corresponds to a snapshot that is archived by default, user collaboration is as simple and safe as sharing a link.
+
 Fireproof includes the ability to save to any cloud storage provider. Because encryption keys are managed separately from the data, you aren't giving control of your data to 3rd parties, you are just using the cloud as a place to store opaque bytes. Content addressing makes this fast and secure, so it doesn't matter much which cloud provider you choose. Fireproof database metadata consists of a pointer to the latest immutable database commit (CAR file) and its encryption key. Assuming your CAR data files are accessible you can keep Fireproof metadata in your existing authenticated session management, cloud provider, or pub/sub system.
 
 ### Intelligent Defaults
@@ -35,6 +37,8 @@ cx.ready.then(() => {
 ```
 
 The call to `cx.authorize(email)` will send the user a validation email from web3.storage. Once they click the link, they will be able to read and write to the cloud. Logging into the app from another device is as simple as entering the same email address. Fireproof automatically syncs a copy of the database to the new device. Connected devices continue to sync.
+
+In the repo, there is a [full plain JavaScript application](https://github.com/fireproof-storage/fireproof/blob/main/packages/fireproof/test/www/todo.html) that utilizes `connect` as well as the sharing features described below. You can [try a running copy of it here.](https://fireproof.storage/test/todo.html)
 
 #### Note: Device Authorization
 
@@ -74,3 +78,16 @@ Once you are connected, you can open a snapshot of the database by calling `db.o
 ## S3 Storage
 
 Read about configuring Fireproof to use S3 [here](/docs/database-api/replication#s3-connection).
+
+## Limitations
+
+These are not inherent limits to the software, just things that haven't been implemented yet.
+
+* Safari multi-device authorization. This is [something with the delegation handling, looks fixable](https://github.com/web3-storage/w3up/issues/924).
+* Faster handshakes. Fireproof uses [w3clock](https://github.com/web3-storage/w3clock/tree/main) as the source of truth for merging multi-user writes. It doesn't currently support websockets, but since it uses Cloudflare durable objects, this is addable. In the short term we are using polling, which works but is not thrilling.
+
+We can use the current channel for WebRTC signaling, and upgrade to near real-time sync, even without any changes to w3clock, so that is on the roadmap.
+
+## Next Steps
+
+Please [build an app](/docs/react-tutorial), follow the instructions above to connect it for sharing, and [tell us about it on our Discord!](https://discord.gg/JkDbYXUG7W)
