@@ -91,3 +91,10 @@ We can use the current (not fast) channel for WebRTC signaling, and use WebRTC d
 ## Next Steps
 
 Please [build an app](/docs/react-tutorial), follow the instructions above to connect it for sharing, and [tell us about it on our Discord!](https://discord.gg/JkDbYXUG7W) Here are [some app ideas to get started.](https://github.com/fireproof-storage/fireproof/discussions/6)
+
+
+## Video Demo
+
+You can [see a video demo to accompany these docs here.](https://www.youtube.com/watch?v=aN1LpSltAzo)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/aN1LpSltAzo?si=ru_DJd_6xv81vQix" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
