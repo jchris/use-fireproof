@@ -86,8 +86,8 @@ These are not inherent limits to the software, just things that haven't been imp
 * Safari multi-device authorization. This is [something with the delegation handling, looks fixable](https://github.com/web3-storage/w3up/issues/924).
 * Faster handshakes. Fireproof uses [w3clock](https://github.com/web3-storage/w3clock/tree/main) as the source of truth for merging multi-user writes. It doesn't currently support websockets, but since it uses Cloudflare durable objects, this is addable. In the short term we are using polling, which works but is not thrilling.
 
-We can use the current channel for WebRTC signaling, and upgrade to near real-time sync, even without any changes to w3clock, so that is on the roadmap.
+We can use the current (not fast) channel for WebRTC signaling, and use WebRTC data-channel upgrade to near real-time sync, even without any changes to w3clock, so that is on the roadmap. Your app will get much faster with only a module upgrade on your part.
 
 ## Next Steps
 
-Please [build an app](/docs/react-tutorial), follow the instructions above to connect it for sharing, and [tell us about it on our Discord!](https://discord.gg/JkDbYXUG7W)
+Please [build an app](/docs/react-tutorial), follow the instructions above to connect it for sharing, and [tell us about it on our Discord!](https://discord.gg/JkDbYXUG7W) Here are [some app ideas to get started.](https://github.com/fireproof-storage/fireproof/discussions/6)
