@@ -48,4 +48,4 @@ You can [see an application test case using the S3 connection here](https://fire
 
 ### Web3 Connection
 
-[web3.storage](https://web3.storage) is an IPFS upload API that uses self-sovereign [UCAN](https://ucan.xyz) authorization. Currently it's the recommended option if you want your users to be able to store to the cloud, and link to them from the web. The Web3 connection does not currently store mutable metadata headers, just the data files themselves. But as long as you link to the latest CAR file, you can send snapshots. Here is [an example of configuring the web3.storage connection](https://github.com/fireproof-storage/fireproof/blob/cca8cdabe0e64672cbcd20f6d261bf832f5748ff/packages/fireproof/test/www/todo.html#L22)
+[web3.storage](https://web3.storage) is an IPFS upload API that uses self-sovereign [UCAN](https://ucan.xyz) authorization. Currently it's the recommended option if you want your users to be able to store to the cloud, and link to them from the web. Read about the web3.storage connection [here](./connect).

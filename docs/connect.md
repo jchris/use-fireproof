@@ -1,0 +1,76 @@
+---
+sidebar_position: 8
+---
+# Sharing and Sync
+
+Fireproof includes the ability to save to any cloud storage provider. Because encryption keys are managed separately from the data, you aren't giving control of your data to 3rd parties, you are just using the cloud as a place to store opaque bytes. Content addressing makes this fast and secure, so it doesn't matter much which cloud provider you choose. Fireproof database metadata consists of a pointer to the latest immutable database commit (CAR file) and its encryption key. Assuming your CAR data files are accessible you can keep Fireproof metadata in your existing authenticated session management, cloud provider, or pub/sub system.
+
+### Intelligent Defaults
+
+For simplicity, Fireproof ships with a default storage provider, [web3.storage](https://web3.storage) — a web-first bridge to the IPFS ecosystem. By default Fireproof is configured to work with [user-owned storage accounts using UCAN](https://ucan.xyz), so application developers can ship without having to worry about the business implications of managing user data. Hiding these implementation details from your users is easy, either by using our S3 adapter instead, or [delegating your users the ability to write to your app's web3.storage account.](https://blog.web3.storage/posts/ucan-delegation-with-w3up)
+
+### Built-in Sharing 👥
+
+We know that getting data between your users is the second thing you'll want to do after you have a working app experience. Fireproof APIs allow you to connect databases among multiple users with just a few lines of code by forwarding simple tokens. Read on for an example.
+
+## Easy Start
+
+Assuming you already have a working app with data in Fireproof, you can connect your users to the cloud with just a few lines of code.
+
+```js
+import { fireproof } from 'use-fireproof'
+
+const db = fireproof('myDbName')
+
+const cx = db.connect()
+
+cx.ready.then(() => {
+  if (cx.authorized)  {
+    // hide email input
+  } else {
+    // get email from user input
+    cx.authorize(email)
+  }
+})
+```
+
+The call to `cx.authorize(email)` will send the user a validation email from web3.storage. Once they click the link, they will be able to read and write to the cloud. Logging into the app from another device is as simple as entering the same email address. Fireproof automatically syncs a copy of the database to the new device. Connected devices continue to sync.
+
+#### Note: Device Authorization
+
+Fireproof's default option uses self-sovereign keys, generated and held by non-extractable keypair APIs in the browser. This means that the user's private signing key is never exposed to the server, and the server can't impersonate the user. The downside is that the user must be online to authorize new devices. In practice, users will need to have more than one logged-in device open at the same time to transfer initial credentials. After that, the devices can operate independently.
+
+### Share with Friends
+
+Say you used Fireproof's [file-sharing support](https://use-fireproof.com/docs/database-api/documents#put-with-files) to build an encrypted photo gallery, and now you want to invite friends to upload. Once all the parties are authorized, sharing is as simple as:
+
+```js
+const myShareToken = await cx.shareToken()
+```
+
+The `shareToken` is a long DID key that looks something like this: `did:key:z4MXj1wBzi9jUstyPWCrgoqyPVcZgGUPU51VmPmChhgAQ8wNqddQ3kWJ763SABec1ddBFQjk5BB7Vf1aHAkrQVpZpFqPXbechbi4STuXmmTFB4R7tRAWFeCWoHoEfn4yGvyCc7PZvTDtn9jD8mHANv3yGNvHHR1zgfHYLXsjzHyKjDpxumjPWP8uy3Sh7T2qNCsW2R2uxYHaSqRZFQ3U651EaUgf5EJNfGWRAtdXKBXJ2tPj3agEwd1UQUJHpjrfxg5wccQJ4HmNJBFrMt4CXZ8tzxkzYRc1Zx6EM6GurghidZEccKHVpKbiUFPai76CsB951vQT1GkC4DSxhDDHA4mYgCAaPnVhWzcrEqmvbt4a9ydg5jAxQ`
+
+It's probably best to think of it as an ugly user handle or contact ID. It corresponds to the user's current device public key. By communicating it to people you want to collaborate with, you give them the opportunity to share databases with you.
+
+On the database owner's device, they can initiate sharing by calling:
+
+```js
+const inviteLinkCid = await cx.shareWith(myShareToken)
+```
+
+The resulting CID looks something like this: `bafkreifzpfmjjmkrqwtzazzj46l6m4sa4umhyd5fv7hvjauyz2eftcvbda` -- this material is safe to publish because it can only be utilized by someone who has the private key the share token corresponds with. Send this `inviteLinkCid` to the person who's share token you used to initiate the share. They can then call:
+
+```js
+const { database, connection } = await cx.joinShared(inviteLinkCid)
+```
+
+Now you can query your shared database as usual, only results will be synced with the other participants, enabling interactive collaboration.
+
+### Open a snapshot
+
+Once you are connected, you can open a snapshot of the database by calling `db.openDashboard()` which will open a new window with a read-only view of the database. This is useful for debugging, or for sharing a read-only view of the database with a friend.
+
+
+## S3 Storage
+
+Read about configuring Fireproof to use S3 [here](/docs/database-api/replication#s3-connection).
