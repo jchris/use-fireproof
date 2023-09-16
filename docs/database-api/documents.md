@@ -48,7 +48,7 @@ const fileInput = document.getElementById("files");
 fileInput.addEventListener("change", handleFiles, false);
 ```
 
-Fireproof will take care of encoding it to UnixFS, encrypting it, and replicating with your chosen storage backend.
+Fireproof will take care of encoding it to UnixFS, encrypting it, and replicating with your chosen storage backend. There is a 1MB limit per document, but we have a plan to remove the limit in the future. You should use these files for data you want replicated and available offline with the database. By default the files are encrypted, so they are safe to store in untrusted storage. 
 
 To get files back out, you `get` the document, and access the files from the `_files` property. 
 
@@ -94,6 +94,12 @@ for (const file of Object.keys(doc._files)) {
 ```
 
 [Read more about Files on the web at MDN.](https://developer.mozilla.org/en-US/docs/Web/API/File_API/Using_files_from_web_applications) And [follow along with feature developement.](https://github.com/fireproof-storage/fireproof/discussions/9)
+
+### Public Files
+
+The public files API looks just like above, except you save to `doc._publicFiles` instead of `doc._files` and the files are not encrypted. This is useful for storing files that you want to share with the world, like images for your website. In addition to the `car`, `cid`, and `size` properties, public files also have a `url` property that you can use to access the file directly from the web3.storage content delivery network. 
+
+The feature is designed to support systems like self-publishing blogs, which can write their own markdown to html output, reference assets, etc. The default encrpyted `_files` interface is better suited to social media sharing, field data collection, and other controlled access data sharing.
 
 ### `get()`
 
