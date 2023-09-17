@@ -26,7 +26,7 @@ const FeatureList = [
     description: (
       <>
         Use your existing authentication system or Fireproof's sensible defaults.{' '}
-        <Link to="/docs/database-api/sync">Live sync user-to-user</Link> and{' '}
+        <Link to="/docs/connect">Sync and share user-to-user</Link> and{' '}
         <Link to="/docs/database-api/replication">replicate with any cloud.</Link>
       </>
     )
