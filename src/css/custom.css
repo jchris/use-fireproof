@@ -32,7 +32,7 @@
 .fireproof {
   background: linear-gradient(-45deg, #000000, #ff6f00, #ffa000, #000, #ff8200);
   background-size: 400% 400%;
-  animation: gradient 30s ease infinite;
+  animation: gradient 120s ease infinite;
 }
 
 @keyframes gradient {
