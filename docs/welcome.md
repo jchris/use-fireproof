@@ -24,7 +24,7 @@ Fireproof is optimized to make [building React apps](https://github.com/fireproo
   <a href="https://standardjs.com" rel="nofollow">
     <img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="JavaScript Style Guide"  />
   </a>{" "}
-  <a href="https://github.com/fireproof-storage/fireproof/blob/main/packages/react/README.md">
+  <a href="/docs/react-hooks/use-live-query">
     <img src="https://shields.io/badge/react-black?logo=react&style=for-the-badge%22" alt="React"  />
   </a>{" "}
   <a href="https://bundlephobia.com/package/@fireproof/core" rel="nofollow">
