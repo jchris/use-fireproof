@@ -119,13 +119,13 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'NPM',
-                href: 'https://www.npmjs.com/package/use-fireproof',
+                label: 'Forum',
+                href: 'https://github.com/fireproof-storage/fireproof/discussions',
               },
-              // {
-              //   label: 'Discord',
-              //   href: 'https://discordapp.com/invite/docusaurus',
-              // },
+              {
+                label: 'Discord',
+                href: 'https://discord.gg/3cGbju6W',
+              },
               {
                 label: 'Twitter',
                 href: 'https://twitter.com/FireproofStorge',
