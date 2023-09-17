@@ -33,7 +33,7 @@ Fireproof is optimized to make [building React apps](https://github.com/fireproo
 </p>
 
 
-With Fireproof, you **build first** and connect it to your cloud of choice when you are ready, so nothing is holding you back from adding it to your existing apps or [writing something new.](https://codesandbox.io/s/fireproof-react-antd-f6zbi7?file=/src/App.tsx)
+With Fireproof, you **build first** and [connect it to your cloud of choice](/docs/connect) when you are ready, so nothing is holding you back from adding it to your existing apps or [writing something new.](https://codesandbox.io/s/fireproof-react-antd-f6zbi7?file=/src/App.tsx)
 
 
 <p align="center" >

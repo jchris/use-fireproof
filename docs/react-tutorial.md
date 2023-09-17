@@ -41,7 +41,7 @@ import { useLiveQuery, useDocument } from 'use-fireproof'
 
 These hooks are all you need to automatically initiate a browser-local copy of the database and begin development. The `useLiveQuery` hook will automatically refresh query results, and the `useDocument` hook loads and saves Fireproof documents and handles refreshing them when data changes.
 
-Fireproof takes a build-first approach, so after your UI is running, you can connect to your cloud of choice.
+Fireproof takes a build-first approach, so after your UI is running, you can connect to your cloud of choice. For now, let's build the app.
 
 ### Query Todos
 
