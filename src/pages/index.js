@@ -53,10 +53,9 @@ export default function Home() {
 
           <CodeBlock language="jsx">npm install use-fireproof</CodeBlock>
           <p>
-            {' '}
-            You are in the right place: the{' '}
+            The{' '}
             <Link to="https://www.npmjs.com/package/use-fireproof">use-fireproof</Link> module runs
-            anywhere, with bundles built for Node.js and the browser, with optional React hooks.
+            anywhere, with bundles built for Node.js and the browser, and optional <Link to="/docs/react-hooks/use-live-query">React hooks</Link>.
           </p>
           <h2>🚀 Simple app state, anywhere</h2>
           <p>
@@ -77,16 +76,16 @@ export default function Home() {
             Get started by writing features, and <Link to="/docs/database-api/replication">connect to the cloud</Link> after your app is awesome.
           </p>
 
-          <h2>🔐 Strong cryptographic verification</h2>
+          <h2>🔐 Verifiable CRDTs</h2>
           <p>
             Every operation in Fireproof is{' '}
             <Link to="/docs/database-api/encryption">end-to-end encrypted</Link> and{' '}
             <Link to="https://fireproof.storage/posts/from-mlops-to-point-of-sale:-merkle-proofs-and-data-locality/">
               accelerated by cryptographic proofs
             </Link>
-            , making it 🎮 suitable 🏦 for all your data needs.
+            , making it 🎮 suitable 🏦 for all your data needs. Offline and multi-leader operations are fully supported.
           </p>
-          <h2>📂 Open-source</h2>
+          <h2>📝 Open-source</h2>
           <p>
             Fireproof is dual-licensed under the Apache 2.0 and MIT license and is free to use.{' '}
             <Link to="/docs/contributing">Read about contributing</Link>.
