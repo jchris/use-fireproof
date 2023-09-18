@@ -112,9 +112,9 @@ Another convenience detail: `setTodo` is called with `false` to clear the input 
 
 ### Where's My Data?
 
-By default, Fireproof stores data in the browser's local storage. This is great for development, but once your app is ready to share, you'll want to [connect it to cloud storage.](/docs/database-api/replication.md) For now, you can manage and delete the encrypted data from your browser developer tools. There are two components to the data, the header and the encrypted files. The header is kept in `localStorage` under the key `fp.useFireproof`. The files are stored in IndexedDB under the key `fp.<keyId>.useFireproof`. This arrangement means that files can be stored with an untrusted provider, and the header can be stored with a trusted provider. For instance, customers of [Fireproof Storage](https://fireproof.storage) can secure headers in their existing authentication and session management tools, while relying on Fireproof Storage for the encrypted files.
+By default, Fireproof stores data in the browser's local storage. This is great for development, but once your app is ready to share, you'll want to [connect it to cloud storage.](/docs/connect) For now, you can manage and delete the encrypted data from your browser developer tools. There are two components to the data, the header and the encrypted files. The header is kept in `localStorage` under the key `fp.useFireproof`. The files are stored in IndexedDB under the key `fp.<keyId>.useFireproof`. This arrangement means that files can be stored with an untrusted provider, and the header can be stored securely. For instance, you can keep the encrypted data files in IPFS or a public S3 bucket, and keep the headers locally or in your applications session store.
 
-Coming soon: Once your data is replicated to the cloud, you can view and edit it with the Fireproof developer tools. [Try the dashboard demo here.](https://fireproof.storage/try-free/)
+Once your data is replicated to the cloud, you can view and edit it with the Fireproof developer tools. (See the [Connect](/docs/connect) documentation for more information.)
 
 ## The Completed App
 
