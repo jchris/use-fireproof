@@ -83,17 +83,17 @@ useEffect(
 
 ## Querying Changes
 
-### `changeSince()`
+### `changes()`
 
-You can also query the database for changes since the last time you asked. This is useful for updating external indexes and is used internally by Fireproof for syncing data between databases. To get the recent changes, call `database.changesSince()`. This will return an array of changes since the last time you called `changesSince()`. The changes are returned in the order they were made.
+You can also query the database for changes since the last time you asked. This is useful for updating external indexes and is used internally by Fireproof for syncing data between databases. To get the recent changes, call `database.changes()`. This will return an array of changes since the last time you called `changes()`. The changes are returned in the order they were made.
 
 ```js
-const changes = await database.changesSince();
+const changes = await database.changes();
 // changes.rows is an array of changes
 // changes.clock is the high water mark
 const didPut = await database.put({ foo: "bar" });
 
-const newChange = await database.changesSince(changes.clock);
+const newChange = await database.changes(changes.clock);
 // newChange.rows will contain only the new change
 ```
 

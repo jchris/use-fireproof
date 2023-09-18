@@ -79,7 +79,7 @@ function withFlexsearch(database, flexsearchOptions = {}) {
   const index = new Index(flexsearchOptions)
   let clock = null
   const search = async (query, options) => {
-    const changes = await database.changesSince(clock)
+    const changes = await database.changes(clock)
     clock = changes.clock
     for (let i = 0; i < changes.rows.length; i++) {
       const { key, value } = changes.rows[i]
@@ -122,4 +122,4 @@ To implement this, you would need to create a new function, similar to `withFlex
 
 Similar to withFlexsearch, `withGraphQL` would take a Fireproof database object as its first argument and an optional configuration object as its second argument. The returned object would contain a single method, `query`, which could be used to perform GraphQL queries on the indexed data.
 
-To ensure that the GraphQL index is always up-to-date with the Fireproof database, you would need to listen to changes in the database and update the index with any new data. This can be done by copying the `changesSince` code from `withFlexsearch`. Once the data has been indexed, you can use GraphQL to query it. Because the index is always up-to-date with the Fireproof database, you can be sure that your queries will return accurate results.
+To ensure that the GraphQL index is always up-to-date with the Fireproof database, you would need to listen to changes in the database and update the index with any new data. This can be done by copying the `changes` code from `withFlexsearch`. Once the data has been indexed, you can use GraphQL to query it. Because the index is always up-to-date with the Fireproof database, you can be sure that your queries will return accurate results.
