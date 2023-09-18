@@ -46,6 +46,8 @@ Fireproof's default option uses self-sovereign keys, generated and held by non-e
 
 ### Share with Friends
 
+The below flow is meant as a bare-bones illustration of the moving parts involved. If you want to make the experience invisible to users, you can exchange these tokens in the background via your app server (if you have one.) If you don't plan to run a server, you can also [streamline the user experience compared to the below description](https://github.com/fireproof-storage/fireproof/issues/19), at the expense of a little more complexity in your handshake code, as described in the linked issue.
+
 Say you used Fireproof's [file-sharing support](https://use-fireproof.com/docs/database-api/documents#put-with-files) to build an encrypted photo gallery, and now you want to invite friends to upload. Once all the parties are authorized, sharing is as simple as:
 
 ```js
