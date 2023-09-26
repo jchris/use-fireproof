@@ -6,6 +6,8 @@ sidebar_position: 2
 
 This article will walk you through creating a simple todo list application from scratch. If you are new to React, it should be all you need to get started. If you are an expert, skim ahead and then check out the [API docs](/docs/react-hooks/use-live-query).
 
+If you are starting a fresh project, you might want to fork [the Fireproof React Starter Kit](https://github.com/fireproof-storage/fireproof-starter-kit-react-ts-vite). It has routes, authentication, and a basic data model already built, so you can win a hackathon just be changing the parts you need.
+
 ## Create a New App
 
 We'll start with a fresh React app. We'll use Vite, but we've tested with Next.js and it works great. We need help with [Remix](https://github.com/fireproof-storage/fireproof/issues/1), and there's a [known workaround if you prefer Create React App](https://github.com/fireproof-storage/fireproof/issues/2). If you have a favorite React starter, make a note on that issue and we'll add it to the list.
@@ -179,5 +181,7 @@ npm run dev
 You can clone [the resulting application here](https://github.com/jchris/my-vite-fp-tutorial).
 
 ## Learn More
+
+If you are starting a fresh project, you might want to fork [the Fireproof React Starter Kit](https://github.com/fireproof-storage/fireproof-starter-kit-react-ts-vite). It has routes, authentication, and a basic data model already built, so you can win a hackathon just be changing the parts you need.
 
 Continue reading about [how to integrate Fireproof with your existing authentication system](/), or check out the [ChatGPT quickstart](./chatgpt-quick-start) to learn how to use ChatGPT to rapidly prototype new applications with Fireproof.
