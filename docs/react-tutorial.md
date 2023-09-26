@@ -6,7 +6,7 @@ sidebar_position: 2
 
 This article will walk you through creating a simple todo list application from scratch. If you are new to React, it should be all you need to get started. If you are an expert, skim ahead and then check out the [API docs](/docs/react-hooks/use-live-query).
 
-If you are starting a fresh project, you might want to fork [the Fireproof React Starter Kit](https://github.com/fireproof-storage/fireproof-starter-kit-react-ts-vite). It has routes, authentication, and a basic data model already built, so you can win a hackathon just be changing the parts you need.
+If you are starting a fresh project, you might want to fork [the Fireproof React Starter Kit](https://github.com/fireproof-storage/fireproof-starter-kit-react-ts-vite). It has routes, authentication, and a basic data model already built, so you'll have a winning app in no time.
 
 ## Create a New App
 
@@ -182,6 +182,6 @@ You can clone [the resulting application here](https://github.com/jchris/my-vite
 
 ## Learn More
 
-If you are starting a fresh project, you might want to fork [the Fireproof React Starter Kit](https://github.com/fireproof-storage/fireproof-starter-kit-react-ts-vite). It has routes, authentication, and a basic data model already built, so you can win a hackathon just be changing the parts you need.
+If you are starting a fresh project, you might want to fork [the Fireproof React Starter Kit](https://github.com/fireproof-storage/fireproof-starter-kit-react-ts-vite). It has routes, authentication, and a basic data model already built, so you can win a hackathon just by changing the parts you need.
 
 Continue reading about [how to integrate Fireproof with your existing authentication system](/), or check out the [ChatGPT quickstart](./chatgpt-quick-start) to learn how to use ChatGPT to rapidly prototype new applications with Fireproof.
