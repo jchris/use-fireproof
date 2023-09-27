@@ -19,6 +19,21 @@ npm create vite@latest my-vite-fp-tutorial
 cd my-vite-fp-tutorial
 ```
 
+This app will manage todos. There's no schema to set up -- you can use TypeScript to enforce schemas, see [the React TypeScript Starter Kit for examples](https://github.com/fireproof-storage/fireproof-starter-kit-react-ts-vite). Instead we just start with a query that returns nothing, and a form that write the documents to the database. In plain-JS apps, you can subscribe your `redraw()` function to the database, or inspect the updates stream an surgically update the parts of the page that need to change. In React, you don't have to worry about that, the hooks will do it for you.
+
+A todo document looks like this:
+
+```js
+{
+  _id: '018ad289-efc6-7c93-acaa-202cf4b3cdb7',
+  text: 'Learn Fireproof',
+  completed: false,
+  date: 1623937200000
+}
+```
+
+The `_id` is automatically set by Fireproof so you can ignore it -- it comes in handy for uniqueness constraints, for instance you could set the `_id` equal to `todo.text` and then you'd never have two todos with the same text. The `date` field is used to sort the todos, and the `completed` field is used to toggle the checkbox.
+
 ## Install Fireproof
 
 Installing the React hooks package will also install the [core Fireproof](https://www.npmjs.com/package/@fireproof/core) library.
