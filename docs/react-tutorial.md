@@ -51,9 +51,11 @@ Now, inside of your component, you can call `useLiveQuery` to get a list of todo
 
 ```js
 function App() {
-  const response = useLiveQuery('date')
+  const response = useLiveQuery('date', {limit: 10, descending: true})
   const todos = response.docs
 ```
+
+In short, this is indexing the database by the `date` field, and will ignore any documents that don't have a `date` field. Queries will be sorted by `date`. Learn more about queries in the [index and query documentation](/docs/database-api/index-query).
 
 The `useLiveQuery` hook will automatically refresh the `response` object when the database changes. The response object contains the `docs` array, which is the list of todos. The response also has `rows` which are the index rows, in this case they will have a `key` with the `date` field of the todo, and an `id` field with the document id of the todo. In more complex applications you can customize the `value` of these rows, for instance to provide full-name from first and last. [Read more about indexes and queries in the documentation.](/docs/database-api/index-query)
 
