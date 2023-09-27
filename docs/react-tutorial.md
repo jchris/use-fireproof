@@ -19,7 +19,9 @@ npm create vite@latest my-vite-fp-tutorial
 cd my-vite-fp-tutorial
 ```
 
-This app will manage todos. There's no schema to set up -- you can use TypeScript to enforce schemas, see [the React TypeScript Starter Kit for examples](https://github.com/fireproof-storage/fireproof-starter-kit-react-ts-vite). Instead we just start with a query that returns nothing, and a form that write the documents to the database. In plain-JS apps, you can subscribe your `redraw()` function to the database, or inspect the updates stream an surgically update the parts of the page that need to change. In React, you don't have to worry about that, the hooks will do it for you.
+This app will manage todos. There's no schema to set up -- you can use TypeScript to enforce schemas, see [the React TypeScript Starter Kit for examples](https://github.com/fireproof-storage/fireproof-starter-kit-react-ts-vite). Instead we just start with a query that returns nothing, and a form that writes the documents to the database. In plain JavaScript apps, you can subscribe your `redraw()` function to the database, or inspect the update stream and surgically update the parts of the page that need to change. In React, you don't have to worry about any of that, the hooks will do it for you.
+
+### The Data Model
 
 A todo document looks like this:
 
@@ -32,11 +34,13 @@ A todo document looks like this:
 }
 ```
 
-The `_id` is automatically set by Fireproof so you can ignore it -- it comes in handy for uniqueness constraints, for instance you could set the `_id` equal to `todo.text` and then you'd never have two todos with the same text. The `date` field is used to sort the todos, and the `completed` field is used to toggle the checkbox.
+The `_id` is automatically set by Fireproof so you can ignore it -- it comes in handy for uniqueness constraints, for instance you could set the `_id` equal to `todo.text` and then you'd never have two todos with the same text (but not be able to edit the text without creating a new document). The `date` field is used to sort the todos, and the `completed` field is used to toggle the checkbox.
+
+More complex apps might have a `listId` on the todo, so you can group them into different lists. Then each list could be viewed independently.
 
 ## Install Fireproof
 
-Installing the React hooks package will also install the [core Fireproof](https://www.npmjs.com/package/@fireproof/core) library.
+Installing the React hooks package will also install the [core Fireproof](https://www.npmjs.com/package/@fireproof/core) library. You don't need to run a server or install anything else, Fireproof includes connectors for S3 and IPFS.
 
 ```bash
 npm install use-fireproof
