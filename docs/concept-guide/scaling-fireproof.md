@@ -2,13 +2,12 @@
 sidebar_position: 5
 ---
 
+# Scaling Fireproof
+
 <!-- Figures:
 Session Management: A diagram showing how to manage per session, per collab database apps.
 Compaction Process: A flowchart showing the process of compaction in the context of scaling Fireproof.
 Binary Attachments Usage: A diagram showing when to use binary attachments in the context of scaling Fireproof. -->
-
-
-# Scaling Fireproof
 
 ## Managing Per Session, Per Collab Database Apps
 
@@ -16,9 +15,9 @@ Each database in Fireproof is a unit of synchronization, preserving a verifiable
 
 Consider the following examples:
 
-* For a scheduling app, you might have a database per month, syncing the upcoming few months but not those from a year ago.
-* For a storyboarding app, each world of characters could be its own database, with documents for in-process storyline development, reflecting the collaborative group nature of the app.
-* For chatbot apps, it makes sense to have one database per chat, so that each chat can be loaded and managed individually, instead of requiring clients to load all chats to interact with any of them.
+- For a scheduling app, you might have a database per month, syncing the upcoming few months but not those from a year ago.
+- For a storyboarding app, each world of characters could be its own database, with documents for in-process storyline development, reflecting the collaborative group nature of the app.
+- For chatbot apps, it makes sense to have one database per chat, so that each chat can be loaded and managed individually, instead of requiring clients to load all chats to interact with any of them.
 
 Complex apps, like a public content management system, can use a multi-database backend. Here, users each have their own writable copy of the database, and can nominate contributions for merge into the public copy by moderators. Moderators can load and review the change, and push it to the public instance.
 
@@ -35,4 +34,3 @@ There are numerous compaction optimizations that can be implemented. Before 1.0,
 Fireproof file attachments are read and written through the database API and via the Fireproof storage and encryption system, but they are replicated independently from the database. This is useful for instance, in a museum app which can load gallery metadata up-front, lazy load thumbnails on browse events, and sync full media assets on demand.
 
 If you add multiple files in the same document update, they will end up in the same encrypted file, so they will all sync together. This is useful in cases where you know you need them all. For instance, all the assets for a game level can be in one car file, so they are delivered atomically. If you replace a few of the assets, Fireproof will load both car files and serve the latest version. This makes it efficient for occasionally updated internal content repositories like field service apps.
-

@@ -2,12 +2,12 @@
 sidebar_position: 1
 ---
 
+# Reactive Apps
+
 <!-- Figures:
 Reactive App Workflow: A flowchart showing the process of developing a reactive app, highlighting the ease of development.
 Local vs Remote Database: A comparison diagram showing the benefits of having a reactive database local versus remote.
 Integration Database: A diagram showing how a reactive app with hard storage and replication can be used as an integration database. -->
-
-# Reactive Apps
 
 ## Why Reactive Apps are Easier to Develop
 

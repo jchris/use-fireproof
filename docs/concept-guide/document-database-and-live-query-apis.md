@@ -2,13 +2,12 @@
 sidebar_position: 2
 ---
 
+# Document Database and Live Query APIs
+
 <!-- Figures: Document Database Structure: A diagram showing the structure of a document database.
 Live Query Process: A flowchart showing how live queries work in the context of a front end application.
 Async backend API Interaction: A diagram showing how APIs interact with the document database and live queries.
 LLM streaming response API -->
-
-
-# Document Database and Live Query APIs
 
 ## Why a document database?
 

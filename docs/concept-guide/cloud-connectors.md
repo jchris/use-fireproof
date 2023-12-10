@@ -2,11 +2,11 @@
 sidebar_position: 5
 ---
 
+# Cloud Connectors
+
 <!-- Figures: Metadata Connector: A diagram showing how the metadata connector works.
 Storage Connector: A diagram showing how the storage connector works.
 Key Pinning and Rotation: A flowchart showing the process of key pinning and rotation. -->
-
-# Cloud Connectors
 
 ## Local-first
 

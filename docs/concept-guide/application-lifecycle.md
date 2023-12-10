@@ -2,13 +2,12 @@
 sidebar_position: 4
 ---
 
+# Application Lifecycle
+
 <!-- Figures:
 App Development Process: A flowchart showing the process of developing an app with Fireproof, from npm install to state management.
 Deployment Process: A diagram showing how to deploy an app and connect to a suitable Fireproof backend.
 App Monitoring: A diagram showing how to monitor apps using session store and observability tools. -->
-
-
-# Application Lifecycle
 
 ## Make apps your way, install Fireproof, simplify state management
 
@@ -45,4 +44,3 @@ The S3 adapter uses signed URLs so data flows directly from your users to the bu
 ## Monitor your apps – use your session store, observability tools
 
 Log Fireproof clock metadata to your existing tools to make it trivial to reconstruct any database at any time.
-

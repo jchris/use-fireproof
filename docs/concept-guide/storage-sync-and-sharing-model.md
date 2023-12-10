@@ -2,13 +2,12 @@
 sidebar_position: 3
 ---
 
+# Storage, Sync and Sharing Model
+
 <!-- Figures:
 CAR File Structure: A diagram showing the structure of an opaque CAR file with encrypted blocks and hard-to-guess IDs.
 Sync Process: A flowchart showing the process of event notification and key sync via a secure channel.
 Sharing Model: A diagram showing how existing auth can manage multi-device and multi-user sharing. -->
-
-
-# Storage, Sync and Sharing Model
 
 Before we get into how Fireproof storage, sync and sharing work, it’s worth discussing their design goals.
 
