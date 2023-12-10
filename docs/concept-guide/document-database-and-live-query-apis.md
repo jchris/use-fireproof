@@ -2,11 +2,13 @@
 sidebar_position: 2
 ---
 
-# Document Database and Live Query APIs
+# Using a Live Database
+
+Database design, document granularity, live queries, state machine sync, database sharding, and more.
 
 ## Why a document database?
 
-Document databases can model application data in the form you see it at runtime. Instead of breaking it into columns and rows, you store the data as a single document. This approach makes it easy to store, retrieve, interpret data, and sync it across devices. What you store is what you get, and you can easily add new fields to your documents as your application evolves.
+Document databases can model application data in the form you see at runtime. Instead of breaking it into columns and rows, you store the data as a single document. This approach makes it easy to store, retrieve, interpret data, and sync it across devices. What you store is what you get, and you can easily add new fields to your documents as your application evolves.
 
 Document APIs are straightforward to get started with and the structure sets you on the path to scalable collaborative applications. Documents can be mapped cleanly to your application’s storage needs, with minimal complexity or translation. This reduces the cost of creating new apps and features. However, designing document-based systems that remain maintainable even after years of real-world development can be an art form. Fortunately, the most crucial sense you need to develop to do it well is that of simplicity. This concept guide aims to sharpen your intuition for document database design and help you avoid common pitfalls.
 
@@ -54,7 +56,7 @@ All of these patterns are driven by Fireproof’s subscribe function, which prov
 
 Once you are this far, you can use the [Cloud Connectors](/docs/concept-guide/cloud-connectors) to share your app’s data with other users and backend processes. Remote changes will render seamlessly in your UI, and the local user's changes will be shared with others.
 
-## Durable state machine pattern
+## Durable state machine queues
 
 There’s a fundamental pattern for reliable software that Fireproof is designed to support. State machines are an excellent model to bring to a document database. In Fireproof, you can track the transition of, say, a driver's license application entry from draft status, through testing, approval, printing, and mailing. Each update is cryptographically verifiable, so it’s clear everyone is seeing the same thing.
 

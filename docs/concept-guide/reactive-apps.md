@@ -4,11 +4,11 @@ sidebar_position: 1
 
 # Reactive Apps
 
-In this guide, we will explore the concept of reactive applications, and how they streamline the development process of interactive and collaborative applications. We will delve into how state changes trigger UI updates, use React as an example, and discuss the Fireproof `useLiveQuery` hook. Finally we will discuss how reactive databases can be used as integration databases, and how they can be used to simplify the development of collaborative applications.
+Reactive architectures streamline interactive and collaborative application development and operation. We will delve into how state changes trigger UI updates, use React as an example, and discuss the Fireproof `useLiveQuery` hook. Finally we will discuss how reactive live databases can be used for data integration, and how they can be used to simplify the development of collaborative and mulit-cloud applications.
 
 ## Easy Development
 
-Reactive applications streamline the development process by automatically updating the user interface in real-time as the underlying state changes. This eliminates the need for manual refresh calls, freeing developers from the worry of keeping the UI in sync with the data. 
+Reactive code streamlines the development process by automatically updating the user interface in real-time as the underlying state changes. This eliminates the need for manual refresh calls, freeing developers from the worry of keeping the UI in sync with the data. 
 
 ```js
 // Reactive pseudo-code
