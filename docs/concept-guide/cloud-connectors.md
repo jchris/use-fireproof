@@ -4,10 +4,6 @@ sidebar_position: 5
 
 # Cloud Connectors
 
-<!-- Figures: Metadata Connector: A diagram showing how the metadata connector works.
-Storage Connector: A diagram showing how the storage connector works.
-Key Pinning and Rotation: A flowchart showing the process of key pinning and rotation. -->
-
 ## Local-first
 
 When you first start using Fireproof, you can simply add it to your application, start saving documents, and writing queries. Fireproof handles data storage, making it easy to access. This local-first development approach means you don’t need to configure service providers or deployments to get started. Just import the `use-fireproof` module and start coding features.
@@ -45,3 +41,7 @@ If you look at the existing storage connectors, you can see that they all implem
 Currently, the key is static for each database, chosen randomly when the database is created. When a client tries to sync a database that exists on both sides for the first time, it can see a “key mismatch” error. For now, the workaround is copying all documents from the old client database to a new one that starts as a fork of the remote. In a future version of Fireproof, we’ll make pinning to the first remote key seen a default behavior.
 
 Today, the key is frozen for the duration of the database lifecycle, so you can accomplish rotation by creating a new database and copying all (or the relevant) data to the new key. You’ll want to name the database eg “deals-02-2023” or some other rotating identifier so clients know where to look for the new key.
+
+<!-- Figures: Metadata Connector: A diagram showing how the metadata connector works.
+Storage Connector: A diagram showing how the storage connector works.
+Key Pinning and Rotation: A flowchart showing the process of key pinning and rotation. -->

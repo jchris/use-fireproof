@@ -4,11 +4,6 @@ sidebar_position: 3
 
 # Storage, Sync and Sharing Model
 
-<!-- Figures:
-CAR File Structure: A diagram showing the structure of an opaque CAR file with encrypted blocks and hard-to-guess IDs.
-Sync Process: A flowchart showing the process of event notification and key sync via a secure channel.
-Sharing Model: A diagram showing how existing auth can manage multi-device and multi-user sharing. -->
-
 Before we get into how Fireproof storage, sync and sharing work, it’s worth discussing their design goals.
 
 ## Storage
@@ -28,3 +23,8 @@ Sync is best when it’s fast, so most connectors use a real time data channel. 
 ## Sharing
 
 How does the database decide who can update the metadata? We leave it up to the host environment – this is one of the benefits of being embedded. For instance, with the PartyKit connector, anyone who can access the host party can update the database, and in the IPFS connector, database update access is delegated with UCAN. In any case, Fireproof shines when it is shared amongst a collaborative group. Because it is immutable you can also rollback to previous state, limiting the potential for damage.
+
+<!-- Figures:
+CAR File Structure: A diagram showing the structure of an opaque CAR file with encrypted blocks and hard-to-guess IDs.
+Sync Process: A flowchart showing the process of event notification and key sync via a secure channel.
+Sharing Model: A diagram showing how existing auth can manage multi-device and multi-user sharing. -->

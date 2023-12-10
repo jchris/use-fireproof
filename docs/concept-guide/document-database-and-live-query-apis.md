@@ -4,7 +4,6 @@ sidebar_position: 2
 
 # Document Database and Live Query APIs
 
-
 ## Why a document database?
 
 Document databases can model application data in the form you see it at runtime. Instead of breaking it into columns and rows, you store the data as a single document. This approach makes it easy to store, retrieve, interpret data, and sync it across devices. What you store is what you get, and you can easily add new fields to your documents as your application evolves.
@@ -59,7 +58,7 @@ Once you are this far, you can use the [Cloud Connectors](/docs/concept-guide/cl
 
 There’s a fundamental pattern for reliable software that Fireproof is designed to support. State machines are an excellent model to bring to a document database. In Fireproof, you can track the transition of, say, a driver's license application entry from draft status, through testing, approval, printing, and mailing. Each update is cryptographically verifiable, so it’s clear everyone is seeing the same thing.
 
-You can use this pattern as an RPC channel. For instance, the front-end can make a service request by writing a document with state `please-run`, and the service can load the document, run the action, and add the result to the document while changing the state to `ran-ok`. 
+You can use this pattern as an RPC channel. For instance, the front-end can make a service request by writing a document with state `please-run`, and the service can load the document, run the action, and add the result to the document while changing the state to `ran-ok`.
 
 The client makes a service request by writing a local document with state 'please-run':
 
@@ -96,7 +95,7 @@ jobs.rows.forEach(job => {
 The runner can also subscribe to new jobs:
 
 ```js
-db.subscribe((changes) => {
+db.subscribe(changes => {
   changes.forEach(doc => {
     if (doc.state === 'please-run') {
       doc.result = runAction(doc)
@@ -138,7 +137,6 @@ In addition to the unit-of-work and per-user databases, you might have an applic
 Gaming can benefit from per-level asset delivery and sync, as well as on-demand file sync. This allows you to sync a catalog of games and download only the played ones. Or sync levels on demand, and within the levels, lazy load shaders for different runtime environments. You can also use Fireproof to organize game rooms, sync player settings across devices, and manage leaderboards from edge functions.
 
 Read more about when to use multiple databases in [the scaling section.](/docs/concept-guide/scaling-fireproof)
-
 
 <!-- Figures: Document Database Structure: A diagram showing the structure of a document database.
 Live Query Process: A flowchart showing how live queries work in the context of a front end application.
