@@ -6,7 +6,7 @@ sidebar_position: 2
 
 Whether you're using React or another JavaScript framework, this guide will help you get started with Fireproof quickly and efficiently. If you're using React, you might find our [React tutorial](/docs/react-tutorial) more relevant.
 
-## Step 1: Install Fireproof
+## Install the Package
 
 The first step is to add Fireproof to your project. You can do this by running the following command in your project directory:
 
@@ -20,7 +20,7 @@ Or, if you're using Yarn:
 yarn add @fireproof/core
 ```
 
-## Step 2: Import Fireproof
+## Import Fireproof
 
 Next, you'll need to import Fireproof into your project. Add the following line to the top of your file:
 
@@ -28,7 +28,7 @@ Next, you'll need to import Fireproof into your project. Add the following line 
 import { fireproof } from '@fireproof/core'
 ```
 
-## Step 3: Create a Database
+## Create a Database
 
 Now, let's create your first database. You can do this with the following line of code:
 
@@ -36,7 +36,7 @@ Now, let's create your first database. You can do this with the following line o
 const db = fireproof("my-database")
 ```
 
-## Step 4: Create and Read Documents
+## Create and Read Documents
 
 With your database set up, you can now create your first document. Here's how:
 
@@ -50,7 +50,7 @@ To read your first document, use the following code:
 const doc = await db.get(ok.id)
 ```
 
-## Step 5: Update Documents
+## Update Documents
 
 Updating your document is just as easy. Here's how you can do it:
 
@@ -59,7 +59,7 @@ doc.hello = "universe"
 const ok2 = await db.put(doc)
 ```
 
-## Step 6: Query Documents
+## Query Documents
 
 Finally, you can query all documents or query documents by a specific field. Here's how:
 
