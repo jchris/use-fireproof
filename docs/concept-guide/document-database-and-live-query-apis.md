@@ -4,10 +4,6 @@ sidebar_position: 2
 
 # Document Database and Live Query APIs
 
-<!-- Figures: Document Database Structure: A diagram showing the structure of a document database.
-Live Query Process: A flowchart showing how live queries work in the context of a front end application.
-Async backend API Interaction: A diagram showing how APIs interact with the document database and live queries.
-LLM streaming response API -->
 
 ## Why a document database?
 
@@ -131,7 +127,7 @@ You can also use this model for tracking a human-driven process like an employee
 
 When you’re designing an application with Fireproof, it’s important to identify the synchronization unit of your app. For example, in a ride-hailing app, each ride would be an individual database, recording all the interactions and clicks from search to drop-off. You would use additional per-user databases to store links to all the rides for a given user or driver.
 
-The above scenario describes a common pattern: per-session or [unit-of-work](https://martinfowler.com/eaaCatalog/unitOfWork.html) databases, which are tracked by per-user databases. A few other scenarios are worth describing.
+The above scenario describes a common pattern of per-session or [unit-of-work](https://martinfowler.com/eaaCatalog/unitOfWork.html) databases, which are tracked by per-user databases. The architectural shift here is aligned with the increasing capabilities of the client, manifest as full state management as a session paradigm. A few other scenarios share this alignment:
 
 In a chat application, you can use a shared database for each group chat, and each user sends messages by writing documents. (You can write a document with a “composing” state and a timestamp, and then update it with the user content when the message is sent, for a more real-time feel.) Each user would have their own list of group chats synced among their devices with a per-user database.
 
@@ -141,4 +137,10 @@ In addition to the unit-of-work and per-user databases, you might have an applic
 
 Gaming can benefit from per-level asset delivery and sync, as well as on-demand file sync. This allows you to sync a catalog of games and download only the played ones. Or sync levels on demand, and within the levels, lazy load shaders for different runtime environments. You can also use Fireproof to organize game rooms, sync player settings across devices, and manage leaderboards from edge functions.
 
-Read more about when to use multiple databases in the scaling section.
+Read more about when to use multiple databases in [the scaling section.](/docs/concept-guide/scaling-fireproof)
+
+
+<!-- Figures: Document Database Structure: A diagram showing the structure of a document database.
+Live Query Process: A flowchart showing how live queries work in the context of a front end application.
+Async backend API Interaction: A diagram showing how APIs interact with the document database and live queries.
+LLM streaming response API -->
