@@ -4,6 +4,8 @@ sidebar_position: 5
 
 # Scaling Fireproof
 
+Fireproof provides scalable, collaborative database solutions with the option of per session, per collab database apps, efficient compaction, and flexible file attachments.
+
 ## Managing Per Session, Per Collab Database Apps
 
 Each database in Fireproof is a unit of synchronization, preserving a verifiable event log. It's recommended to scope each instance to a group or task, rather than running it like a universe with everyone's data intermingled, as you might do with a site-wide relational database. Use an individual database for each project, chat room, or collaboration task. This way, you are only syncing the relevant data, and users can choose which databases to sync based on their interest and usage. If a database seems like it could grow indefinitely, consider ways to segment it. For instance, giving each shopping cart session a fresh database can simplify app development as you don't have to worry as much about segmenting data in your queries and app; all the data is relevant.
