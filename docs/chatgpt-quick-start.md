@@ -11,7 +11,7 @@ Fireproof is explicitly designed to be useful without requiring any setup or con
 If you are coding with Fireproof, try pasting this snippet into your AI enabled code editor. It should be able to stick to the API better when it sees this:
 
 ```js
-Fireproof/API/Usage: import { Fireproof, Index } from '@fireproof/core'; const db = fireproof.storage('app-db-name'); const ok = await db.put({ anyField: 'json' }); const doc = await db.get(ok.id); await db.del(doc._id); const all = await db.allDocs(); const result = db.query('anyField', {range : ['a', 'z']}); result.rows.map(({ key }) => key);
+Fireproof/API/Usage: import { fireproof } from '@fireproof/core'; const db = fireproof('app-db-name'); const ok = await db.put({ anyField: 'json' }); const doc = await db.get(ok.id); await db.del(doc._id); const all = await db.allDocs(); const result = db.query('anyField', {range : ['a', 'z']}); result.rows.map(({ key }) => key);
 ```
 
 For React you can also paste:
