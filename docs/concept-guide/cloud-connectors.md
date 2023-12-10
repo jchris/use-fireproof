@@ -4,6 +4,8 @@ sidebar_position: 5
 
 # Cloud Connectors
 
+Cloud Connectors provide the flexibility to choose your own storage and metadata backends, enabling data synchronization and sharing across different platforms and devices, in whatever deployment environment you choose.
+
 ## Local-first
 
 When you first start using Fireproof, you can simply add it to your application, start saving documents, and writing queries. Fireproof handles data storage, making it easy to access. This local-first development approach means you don’t need to configure service providers or deployments to get started. Just import the `use-fireproof` module and start coding features.
