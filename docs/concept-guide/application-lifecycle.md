@@ -2,9 +2,9 @@
 sidebar_position: 4
 ---
 
-Create, deploy, and monitor your applications with Fireproof, simplifying state management and ensuring a reliable API across JavaScript environments.
-
 # Application Lifecycle
+
+Create, deploy, and monitor your applications with Fireproof, simplifying state management and ensuring a reliable API across JavaScript environments.
 
 ## Make apps your way, install Fireproof, simplify state management
 
