@@ -11,13 +11,17 @@ LLM streaming response API -->
 
 ## Why a document database?
 
-Document databases model application data in the form you see it at runtime in many content-based applications. Instead of breaking it into columns and rows, you store the data as a single document. This approach makes it easy to store, retrieve, interpret data, and sync it across devices. A document database API is straightforward to get started with and sets you on the path to scalable collaborative applications. Documents can map cleanly to your application’s storage needs, with minimal complexity or translation. This reduces the cost of creating new apps and features. However, designing document-based systems that remain maintainable even after years of real-world development can be an art form. Fortunately, the most crucial sense you need to develop to do it well is that of simplicity. This concept guide aims to sharpen your intuition for document database design and help you avoid common pitfalls.
+Document databases can model application data in the form you see it at runtime. Instead of breaking it into columns and rows, you store the data as a single document. This approach makes it easy to store, retrieve, interpret data, and sync it across devices. What you store is what you get, and you can easily add new fields to your documents as your application evolves.
+
+Document APIs are straightforward to get started with and the structure sets you on the path to scalable collaborative applications. Documents can be mapped cleanly to your application’s storage needs, with minimal complexity or translation. This reduces the cost of creating new apps and features. However, designing document-based systems that remain maintainable even after years of real-world development can be an art form. Fortunately, the most crucial sense you need to develop to do it well is that of simplicity. This concept guide aims to sharpen your intuition for document database design and help you avoid common pitfalls.
+
+Document databases play well with others, importing any data and providing simple ways to query and export it. Live databases have event susbcription APIs that make data integration even simpler. This guide is mostly about structuring your data for your application, but we’ll also touch on how to use Fireproof as an integration database, adding custom indexers and other data processing to your application.
 
 ## Store user actions and API responses
 
-If you can conceptualize your application in terms of user actions and API responses, you already possess crucial insights to inform your document database design. Other patterns, like data pipeline flows and visualization queries, also become easier to model when you understand the database in the context of an interactive app.
+If you can conceptualize your application in terms of individual user actions (like publishing a post or joining a group) and API responses (like search results or LLM token stream), you already have important clues about your document design. In addition to direct user interactions, other patterns such as data pipeline flows and visualization queries also become more manageable when you ground your understanding of the database within the context of an interactive application.|
 
-The fundamental question of document database design is when to split your data and when to colocate it in a single document. For instance, if you have a catalog item in a shopping app, do you want to keep the price information for each item separate from the description and image links? It's probably best to keep that information together because you'll almost always want to load or change it together. For a social posting app, it also makes sense to keep a user’s post together, e.g., by storing any media links or other metadata in the same document as the post content. However, a list of user posts would rarely be stored in a single document, because then you end up loading the whole list just to read a single post, and also writing the whole list each time you write a post.
+The fundamental question of document design is when to split your data and when to combine it in a single document. For instance, if you have a catalog item in a shopping app, do you want to keep the price for each item separate from the description and image links? It's probably best to keep that information together because you'll almost always want to load or change it together. In a social media application, it's logical to store all the elements of a user's post, such as media links or other metadata, in the same document as the post content. However, storing a list of user posts in a single document is not typically efficient. This is because you would need to load the entire list just to read a single post, and each time a post is written, the entire list would need to be rewritten.
 
 One easy rule of thumb: if you find yourself writing logic to update a document by appending complex items to an unbounded array, each of those items should probably be its own document.
 
@@ -33,15 +37,19 @@ Another reason to watch your document granularity is write amplification. Firepr
 
 ## Group documents with secondary keys
 
-Foreign keys can be utilized in various ways to establish relationships between documents. For instance, a document can be tagged with a `groupId` field that corresponds to the `_id` of a parent document, creating a 'belongs to' relationship. This can be useful in scenarios such as categorizing blog posts under a specific topic, associating comments with a particular post, or linking order items to a specific order. This method allows for efficient querying and organization of related documents within the database.
+Foreign keys can be leveraged in a variety of ways to create relationships between documents. For example, a document could have a `groupId` field that matches the `_id` of a parent document, establishing a 'belongs to' relationship. This approach is useful in scenarios such as categorizing blog posts under a specific topic, associating comments with a particular post, or linking order items to a specific order. This method facilitates efficient querying and organization of related documents within the database.
+
+Fireproof automatically creates incremental indexes for queries, so they stay fast even as the dataset grows. Read more about indexes and queries in the [Query API](/docs/database-api/index-query) documentation.
 
 ## Crawl graphs in memory
 
-In-memory graph access allows you to query a graph by loading each document by its ID from its child's parent-ID list or its parent's children-ID list, recursively. This is done without caching in your application because Fireproof handles caching for you. This approach is not only straightforward but also efficient, enabling fast access to your data.
+Accessing graphs in-memory allows you to traverse a graph by loading each node via its ID from the edge list of its parent node or its child nodes, recursively. For example, consider a graph where each node represents a user and the edges represent friendships. To find all friends of a user, you would start at the user node and traverse the edges to load each friend node. This process can be repeated recursively to find friends of friends, and so on.
 
-## Note about sharing
+This is done without caching in your application because Fireproof handles caching for you. This approach is not only straightforward but also efficient, enabling fast access to your data. By keeping the data structure simple and letting Fireproof manage the caching, you avoid the overhead of complex data management in your application. This results in faster data retrieval and improved application performance with simpler code.
 
-Live query means your app UI automatically updates when relevant data changes. Once you’ve written your app this way, changes coming from remote collaborators are just as easy to interact with as your user’s local changes.
+## Live UI updates enable sharing
+
+Reactive programming with live query means your app UI automatically updates when relevant data changes. Once you’ve written your app this way, changes coming from remote collaborators are just as easy to interact with as your user’s local changes. You can read more in the [Reactive Apps](/docs/concept-guide/reactive-apps) section.
 
 Many popular libraries and frameworks, including React, already work this way. When you use the Fireproof React hooks, you don’t have to worry about when to refresh, you just write JSX that includes your data.
 
@@ -49,19 +57,75 @@ If you have raw JavaScript and want to experience the benefits of reactive codin
 
 All of these patterns are driven by Fireproof’s subscribe function, which provides live updates from the database. That’s what drives the `useLiveQuery` and `useDocument` React hooks, as well as many raw JS and backend examples.
 
-## State machine pattern for reliable backend interactions, use db for availability
+Once you are this far, you can use the [Cloud Connectors](/docs/concept-guide/cloud-connectors) to share your app’s data with other users and backend processes. Remote changes will render seamlessly in your UI, and the local user's changes will be shared with others.
+
+## Durable state machine pattern
 
 There’s a fundamental pattern for reliable software that Fireproof is designed to support. State machines are an excellent model to bring to a document database. In Fireproof, you can track the transition of, say, a driver's license application entry from draft status, through testing, approval, printing, and mailing. Each update is cryptographically verifiable, so it’s clear everyone is seeing the same thing.
 
-You can use a variation of this pattern to use database sync as an RPC channel. For instance, the front end can make a service request by writing a document with state `please-run`, and the service can load the document, run the action, and add the result to the document while changing the state to `ran-ok`. Each program only interacts with the database, there’s no direct connection between the mobile device and the API calling function. Instead, writes to the shared database by the backend are synchronized and read from the local replica in the browser.
+You can use this pattern as an RPC channel. For instance, the front-end can make a service request by writing a document with state `please-run`, and the service can load the document, run the action, and add the result to the document while changing the state to `ran-ok`. 
+
+The client makes a service request by writing a local document with state 'please-run':
+
+```js
+db.put({
+  _id: 'doc1',
+  state: 'please-run'
+  // other data...
+})
+```
+
+Syncing the document to the backend triggers a service to run the action.
+
+On the backend, the service queries for documents with state 'please-run':
+
+```js
+const jobs = db.query('state', { key: 'please-run' })
+```
+
+The runner uses the key 'please-run' to find jobs:
+
+```js
+jobs.rows.forEach(job => {
+  const doc = job.doc
+  // save the result of running the action to the document
+  doc.result = runAction(doc)
+  // change the state to 'ran-ok'
+  doc.state = 'ran-ok'
+  // save the document so it can sync
+  db.put(doc)
+})
+```
+
+The runner can also subscribe to new jobs:
+
+```js
+db.subscribe((changes) => {
+  changes.forEach(doc => {
+    if (doc.state === 'please-run') {
+      doc.result = runAction(doc)
+      doc.state = 'ran-ok'
+      db.put(doc)
+    }
+  })
+})
+```
+
+The client can use a live query to render the list of completed jobs:
+
+```js
+const ranJobs = useLiveQuery('state', { key: 'ran-ok' })
+```
+
+Each program only interacts with the database, so there’s no direct connection between the mobile device and the API calling function. Instead, writes to the shared database by the backend are synchronized and read from the local replica in the browser.
 
 This prevents re-running API calls with the same query, and makes response data automatically available across all of the user’s synced devices.
 
-On the backend, you can use a Fireproof database to coordinate worker processes. For instance, you could have a database full of raw PDF uploads and write a service that subscribes to the database and adds an image thumbnail for any PDFs that don’t have it, both historical and live.
+On the backend you can use a Fireproof database to coordinate worker processes. For instance, you could have a database full of raw PDF uploads and write a service that subscribes to the database and adds an image thumbnail for any PDFs that don’t have it, both historical and live. Following the same pattern as above one process adds PDFs to the list, and another set of processes does the thumbnailing. By adding a state transition from `please-run` to `running`, you can prevent multiple workers from trying to thumbnail the same PDF.
 
-If API responses are large, you can use file attachments for selective replication. Fireproof files are replicated on-demand, so for instance, if you are archiving StreamLit runs, you might store the parameters in the document and the result as a binary HAR attachment, including media, etc. This would allow replay without needing access to the original StreamLit server.
+When API responses are large use file attachments for selective replication. Files are replicated on-demand, so for instance, if you are archiving StreamLit runs you might store parameters in the document and results as a binary HAR file, including media, etc. This allows replay without access to the original StreamLit server.
 
-You can also use this model for human-driven processes. For instance, if a moderator needs to approve the first post from new users, you can create a moderation queue, and when the user is approved, they can post normally.
+You can also use this model for tracking a human-driven process like an employee raise approval. A raise request can transition from draft status, through various levels of managerial approval, to final approval and implementation. Document databases are a natural fit for this type of workflow because they allow you to track the state of each document and the transitions between states. This makes it easy to see where a document is in the process and what actions have been taken on it. Fireproof extends this pattern with live updates, so you can see the state of each document in real-time. It also has cryptographic verification, so updates are never in question, and time-travel, so you can see how the database got to its current state.
 
 ## When to go multi-database
 
