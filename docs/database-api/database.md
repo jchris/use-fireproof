@@ -12,33 +12,61 @@ See the [basics page for a super quick start about the raw database API](/docs/d
 
 ## Creating a Database
 
-### `fireproof("database-name")`
+```js
+fireproof("db-name")
+```
 
-Most of the time you will create a database using `fireproof("my-database")`. The database name is optional, and if you don't provide one, the database will operate in-memory only. This is useful for testing, or for creating a database that you don't want to persist. 
+Opens a database with the given name, safe to call repeatedly.
+
+```ts
+import { fireproof } from 'use-fireproof'
+
+const db = fireproof('my-database')
+```
+
+Most of the time you will create a database using `fireproof("my-database")`. The database name is optional, and if you don't provide one, the database will operate in-memory only. This is useful for testing, or for creating a database that you don't want to persist.
 
 The `fireproof` method will load the database config from the correct storage location, and will create the database if it doesn't exist. You can also load with config:
 
-### `fireproof("database-name", configObject)`
+### Database Config
 
-If you want to manage your own database config, you can call `Fireproof.fromConfig("my-database", configObject)` method instead, where `configObject` has the necessary fields. See [Database Headers](/docs/database-api/storage#database-headers) for more information about managing your own config.
+```ts
+fireproof("database-name", configObject)
+```
 
-*Now in 0.11.x beta*: Fireproof is more lightweight, and getting lighter. By default the build picks browser or node `fs` and you can connect remote storage. There is an included S3 connector, as well as a raw connector in the tests you can use as a model for your own REST APIs.
+You can call `fireproof` with a config object. Pass `{ public: true }` to bypass encryption. This is useful for creating a database that you want to share with other users.
+
+```ts
+const db = fireproof('my-database', { public: true })
+```
+
+If you want to manage your own database config, you can call `Fireproof.fromConfig("my-database", configObject)` method instead, where `configObject` has the necessary fields. See [Database Headers](/docs/database-api/storage#database-headers) for more information about managing your own config. Please contribute pull requests to move local storage configuration here instead of in the build.
 
 ## Document APIs
 
-JSON documents can be saved, read, and deleted. Read more about the [document API](./documents).
+Read more about the [document API](./documents). Create, read, update, delete with 
 
 ## Query and Index APIs
 
 Fireproof allows you to create flexible indexes on any document field. You can then query the index to find documents that match your query. Read more about the [query and index API](./index-query).
 
+### All Docs
+
+### `allDocs()`
+
+You can query all documents in a database using the `database.allDocs()` method. This will return an array of all documents in the database.
+
+```ts
+const docs = await database.allDocs()
+```
+
 ## Subscribing to Changes
 
-You can register a callback to be notified when a document changes. This is useful for updating your UI in real-time. 
+You can register a callback to be notified when a document changes. This is useful for updating your UI in real-time.
 
 ### `subscribe()`
 
-Subscriptions are attached using the `database.subscribe((changes) => {...})` method, which returns a callback for unsubscribing, compatible with React's `useEffect` hook. 
+Subscriptions are attached using the `database.subscribe((changes) => {...})` method, which returns a callback for unsubscribing, compatible with React's `useEffect` hook.
 
 Here is an example of how the `useDocument` hook uses subscriptions to update the UI:
 
@@ -61,16 +89,15 @@ useEffect(
 You can also query the database for changes since the last time you asked. This is useful for updating external indexes and is used internally by Fireproof for syncing data between databases. To get the recent changes, call `database.changes()`. This will return an array of changes since the last time you called `changes()`. The changes are returned in the order they were made.
 
 ```js
-const changes = await database.changes();
+const changes = await database.changes()
 // changes.rows is an array of changes
 // changes.clock is the high water mark
-const didPut = await database.put({ foo: "bar" });
+const didPut = await database.put({ foo: 'bar' })
 
-const newChange = await database.changes(changes.clock);
+const newChange = await database.changes(changes.clock)
 // newChange.rows will contain only the new change
 ```
 
 You can see an example of how this is used in the [external indexer documentation](./index-query#external-indexers).
-
 
 Read more about [encryption](./encryption) in the API docs.
