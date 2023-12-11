@@ -16,7 +16,7 @@ Fireproof uses immutable data and distributed protocols to offer a new kind of d
 
 #### [Learn principles with the React tutorial](/docs/react-tutorial) or [have fun with the ChatGPT Expert Builders](/docs/chatgpt-quick-start).
 
-Fireproof allows developers to construct robust data-driven applications without the need for additional dependencies. This reduces the complexity of creating new applications and simplifies the process of adding new features to existing ones. Given that Fireproof is compatible with any cloud service (or even without one), it can be effortlessly integrated into your current applications or used to develop new ones.
+Fireproof allows developers to construct robust data-driven applications without the need for additional dependencies. This reduces the complexity of creating new applications and simplifies the process of adding new features to existing ones. Given that Fireproof is compatible with any cloud service (and even runs without one), it can be quickly integrated into your current applications or used to develop new ones.
 
 Among the local-first and JavaScript database renaissance, Fireproof stands at the intersection of simplicity, power, and reliability. If you need SQL support, there are plenty of options, but Fireproof is written for the browser first, so it does a lot in a little bit of code. Fireproof’s encrypted CRDT storage makes it fit securely into any interactive workload, from the boardroom to the game studio. The live query and background sync don’t require complex web worker builds, just an import statement or a script tag. Fireproof is as accessible from edge functions and server code as it is from a mobile device, so your data is available anywhere your app runs.
 

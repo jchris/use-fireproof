@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Reactive Apps
 
-Reactive architectures streamline interactive and collaborative application development and operation. We will delve into how state changes trigger UI updates, use React as an example, and discuss the Fireproof `useLiveQuery` hook. Finally we will discuss how reactive live databases can be used for data integration, and how they can be used to simplify the development of collaborative and mulit-cloud applications.
+Reactive architectures and live databases streamline interactive and collaborative application development and operation. Topics: state-driven UI updates, React as an example, the Fireproof `useLiveQuery` hook, and how live databases can be used for data integration, as well as collaborative and multi-cloud applications.
 
 ## Easy Development
 
@@ -27,7 +27,7 @@ React optimizes the re-rendering process using a concept known as the virtual DO
 
 ## Live Databases
 
-Similarly, using a live database as a local state manager in your app, React or otherwise, can simplify your development process. Fireproof is inspired by more than a decade of reactive database and app authoring experience. The goal is to give you a simple handle on your data, that you can interact with anywhere.
+Similarly, using a live database as a local state manager in your app, React or otherwise, can simplify your development process. Fireproof is inspired by more than a decade of reactive database and app authoring experience. The goal is to give you a simple handle on your data so you can interact with it anywhere.
 
 In Fireproof, the core of reactivity is the `database.subscribe` method. This method allows you to subscribe to changes in the database, and trigger updates to the UI. In a raw JS context, you'd use it like this:
 

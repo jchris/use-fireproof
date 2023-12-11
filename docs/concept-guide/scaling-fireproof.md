@@ -6,9 +6,9 @@ sidebar_position: 5
 
 Fireproof provides scalable, collaborative database solutions with the option of per session, per collab database apps, efficient compaction, and flexible file attachments.
 
-## Managing Per Session, Per Collab Database Apps
+## Granular Database Scope
 
-Each database in Fireproof is a unit of synchronization, preserving a verifiable event log. It's recommended to scope each instance to a group or task, rather than running it like a universe with everyone's data intermingled, as you might do with a site-wide relational database. Use an individual database for each project, chat room, or collaboration task. This way, you are only syncing the relevant data, and users can choose which databases to sync based on their interest and usage. If a database seems like it could grow indefinitely, consider ways to segment it. For instance, giving each shopping cart session a fresh database can simplify app development as you don't have to worry as much about segmenting data in your queries and app; all the data is relevant.
+Each database in Fireproof is a unit of synchronization, preserving a verifiable event log. It's recommended to scope each instance to a group or task, rather than running it like a universe with everyone's data intermingled, as you might do with a site-wide relational database. Use an individual database for each project, chat room, or collaboration task. This way, you are only syncing the relevant data, and users can choose which databases to sync based on their interest and usage. If a database seems like it could grow indefinitely, consider ways to segment it. For instance, giving each shopping cart session a fresh database can simplify app development as you don't have to worry as much about filtering data in your queries and app; all the data is relevant.
 
 Consider the following examples:
 
@@ -24,7 +24,7 @@ There’s no limit to the number of databases a Fireproof install can have, so n
 
 Each database transaction is written to a new file or key as a lightweight encrypted diff, including links to the previous diff to allow reconstructing the complete dataset. After a certain number of transactions have accumulated, the set of diffs to load creates its own performance challenges. To address this, Fireproof periodically compacts the dataset to a single file, by default when the number of diffs is greater than 100.
 
-There are numerous compaction optimizations that can be implemented. Before 1.0, we need to decide on semantics for data preservation. Most databases allow for a system purge to remove old versions of data, either on a key or historic basis. Currently, Fireproof compaction preserves all database history, but discards unreferenced internal index blocks, etc. Each compaction links to the dataset it replaces, so it’s possible to reconstruct history from immutable archives even from a compacted lean dataset.
+There are numerous compaction optimizations that can be implemented. Before 1.0, we need to decide on semantics for data preservation. Most databases allow for a system purge to remove old versions of data, either on a key or historic basis. Currently, Fireproof compaction preserves all database history, but discards unreferenced internal index blocks, etc. Each compaction links to the dataset it replaces, so it’s possible to reconstruct history from immutable archives even from a compacted lean dataset. This is a great topic to bring up in the [Discord](https://discord.gg/xC55bhgf6n).
 
 ## When to Use File Attachments
 

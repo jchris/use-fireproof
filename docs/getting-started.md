@@ -28,6 +28,8 @@ Next, you'll need to import Fireproof into your project. Add the following line 
 import { fireproof } from '@fireproof/core'
 ```
 
+You can import `use-fireproof` instead of `@fireproof/core` if you're using React, it also exports the `fireproof` function as above.
+
 ## Create a Database
 
 Now, let's create your first database. You can do this with the following line of code:
@@ -35,6 +37,8 @@ Now, let's create your first database. You can do this with the following line o
 ```js
 const db = fireproof("my-database")
 ```
+
+The `fireproof` function takes a single argument, the name of your database. It is safe to call this function multiple times with the same name. If the database already exists, it will be opened. If it doesn't exist, it will be created. The database connection is cached, so subsequent calls to `fireproof` with the same name will return the same database object, making it safe to call `fireproof` with every render.
 
 ## Create and Read Documents
 
@@ -69,3 +73,5 @@ const docs = await db.query('hello') // This will return documents with 'world' 
 ```
 
 And that's it! You've successfully set up Fireproof in your project. Happy coding!
+
+See the [React tutorial](/docs/react-tutorial) for a more complete example, or the [database basics](/docs/database-api/basics) section for more details on how to use Fireproof. Check out the [GitHub Discussions](https://github.com/fireproof-storage/fireproof/discussions) for example apps and more help.
