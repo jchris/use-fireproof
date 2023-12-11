@@ -2,7 +2,9 @@
 sidebar_position: 4
 ---
 
-To sync between devices, you need to connect to a cloud. Fireproof supports a variety of cloud connectors, including [PartyKit](https://www.npmjs.com/package/@fireproof/partykit) and [IPFS](https://www.npmjs.com/package/@fireproof/ipfs).
+# Sync
+
+To sync between devices, first choose a cloud connector. Fireproof supports a variety of cloud connectors, including [PartyKit](https://www.npmjs.com/package/@fireproof/partykit) and [IPFS](https://www.npmjs.com/package/@fireproof/ipfs).
 
 Sync works by uploading encrypted files to storage and maintaining a pointer in the metadata header. Once a device is connected, it will share data with all other connected devices.
 

@@ -4,6 +4,8 @@ sidebar_position: 2
 
 # Database
 
+Fireproof database operations include creating, reading, updating, and deleting documents, as well as querying and indexing.
+
 Read about creating and configuring a database, and APIs for interacting with data. If you are writing a React application, you will probably want to use [the React Hooks](/docs/react-hooks/use-live-query) instead. These APIs are for advanced use cases or server-side code.
 
 See the [basics page for a super quick start about the raw database API](/docs/database-api/basics)

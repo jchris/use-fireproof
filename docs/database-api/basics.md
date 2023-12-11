@@ -3,6 +3,8 @@ sidebar_position: 1
 ---
 # Basics
 
+Learn to use Fireproof in a few simple steps.
+
 Install Fireproof with NPM:
 
 ```sh

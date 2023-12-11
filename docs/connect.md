@@ -6,11 +6,11 @@ sidebar_position: 8
 
 Fireproof's verifiable CRDTs make it ideal for multi-user applications involving mission-critical data. Because Fireproof's clocks are multi-device aware, and each operation corresponds to a snapshot that is archived by default, user collaboration is as simple and safe as sharing a link. This article will help you transform any app that uses Fireproof into a multi-user experience.
 
-### Intelligent Defaults
-
-For simplicity, Fireproof ships with a default storage provider, [web3.storage](https://web3.storage) — a web-first bridge to the IPFS ecosystem. By default Fireproof is configured to work with [user-owned storage accounts using UCAN](https://ucan.xyz), so application developers can ship without having to worry about the business implications of managing user data. Hiding these implementation details from your users is easy, either by using our S3 adapter instead, or [delegating your users the ability to write to your app's web3.storage account.](https://blog.web3.storage/posts/ucan-delegation-with-w3up)
+### Modular Connectors
 
 Fireproof works with any cloud storage provider. Because encryption keys are managed separately from the data, you aren't giving control of your data to 3rd parties, you are just using the cloud as a place to store opaque bytes. Content addressing makes this fast and secure, so it doesn't matter much which cloud provider you choose. Fireproof database metadata consists of a pointer to the latest immutable database commit (CAR file) and its encryption key. Assuming your CAR data files are accessible you can keep Fireproof metadata in your existing authenticated session management, cloud provider, or pub/sub system.
+
+Fireproof provides a variety of connectors, including [web3.storage](https://web3.storage) — a web-first bridge to the IPFS ecosystem. This connector Fireproof is configured to work with [user-owned storage accounts using UCAN](https://ucan.xyz), so application developers can ship without having to worry about the business implications of managing user data. Hiding these implementation details from your users is easy, either by using our S3 adapter instead, or [delegating your users the ability to write to your app's web3.storage account.](https://blog.web3.storage/posts/ucan-delegation-with-w3up)
 
 ### Built-in Sharing 👥
 
