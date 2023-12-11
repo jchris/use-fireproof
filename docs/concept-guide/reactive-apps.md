@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Reactive Apps
 
-Reactive architectures and live databases streamline interactive and collaborative application development and operation. Topics: state-driven UI updates, React as an example, the Fireproof `useLiveQuery` hook, and how live databases can be used for data integration, as well as collaborative and multi-cloud applications.
+*Reactive architectures and live databases streamline interactive and collaborative application development and operation. Topics: state-driven UI updates, React as an example, the Fireproof `useLiveQuery` hook, and how live databases can be used for data integration, as well as collaborative and multi-cloud applications.*
 
 ## Easy Development
 
