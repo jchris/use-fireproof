@@ -3,39 +3,75 @@ sidebar_position: 1
 ---
 # Basics
 
-Of course, you already ran `npm install use-fireproof`
+Install Fireproof with NPM:
+
+```sh
+npm install use-fireproof
+```
+
+or Yarn:
+
+```sh
+yarn add use-fireproof
+```
 
 The default package import provides a concise way to access Fireproof, this quick sketch will give you a sense of how the API works:
-
 ```js
 import { fireproof } from 'use-fireproof';
+```
 
-// const { put, get, del, query, changes, subscribe } = db
+We cache the database instance so you can call this on every render.
 
+```js
 const db = fireproof('my-db')
+```
 
-// put a document
+## Document API
+
+Here's how to put a document and get an 'ok' response with an id.
+
+```js
 const ok = await db.put({ _id: 'my-doc', hello: 'world' })
+```
 
-// get a document
+To get a document, use the document's id. The returned document's _id field will be 'my-doc'. You can `put` again to update.
+
+```js
 const doc = await db.get('my-doc')
+doc.hello = 'universe'
+const ok2 = await db.put(doc)
+```
 
-// delete a document
-const ok = await db.del('my-doc')
+To delete a document, use the document's id.
 
-// query for documents
+```js
+const ok3 = await db.del('my-doc')
+```
+
+You can query for documents with a specific field. In this case, we're querying for documents with a 'hello' field.
+
+```js
 const { rows } = await db.query('hello', { range: ['a', 'z'] })
+```
 
-// query for recent changes since a clock
+You can also query for changes since an operation's clock.
+
+```js
 const { rows : chs } = await db.changes(ok.clock)
+```
 
-// subscribe to live updates
+To subscribe to live updates, use the subscribe method. The updates parameter is an array of documents.
+
+```js
 const unsub = db.subscribe((updates) => {
   // updates is an array of documents
 })
 ```
 
 You can read more about the [database API](./database) and the [document API](./documents) in the API docs.
+
+
+## Practical Example
 
 For getting started with React, see the [React tutorial](/docs/react-tutorial).
 

@@ -2,57 +2,53 @@
 sidebar_position: 3
 ---
 
-# Index and Query
+# Querying Data
 
+Fireproof provides a powerful querying API that allows you to search and retrieve data quickly. This is done using the `db.query(mapFn, params)` method. The `mapFn` is a synchronous function that defines the mapping of your data, and `params` is an optional object that can be used to specify query parameters.
 
-### Defining indexes
-
-To define custom indexes for your Fireproof database, you can use the `Index` constructor along with a synchronous function that defines the database. This function should be run before any asynchronous calls are made.
-
-Here's an example of defining indexes using the `Index` constructor, for a database that stores todos on multiple lists:
+Here's an example of querying data from a database that stores todos on multiple lists:
 
 ```js
-const allLists = new Index(database, function (doc, map) {
-  if (doc.type === 'list') map(doc.type, doc)
+// Querying all lists
+const allLists = await database.query(doc => {
+  if (doc.type === 'list') return doc
 })
 
-const todosByList = new Index(database, function (doc, map) {
-  if (doc.type === 'todo' && doc.listId) {
-    map([doc.listId, doc.createdAt], doc)
+// Querying all todos from a specific list
+const todosByList = await database.query(
+  doc => {
+    if (doc.type === 'todo' && doc.listId) return doc.listId
+  },
+  { key: listId }
+)
+```
+
+In this example, we define two queries: `allLists` and `todosByList`. The `allLists` query retrieves all documents with a type property of `'list'`, while the `todosByList` query retrieves all documents with a type property of `'todo'` and a `listId` property, for a specific list.
+
+One of the advantages of using the `db.query(mapFn, params)` method is the ability to normalize your data for querying. This allows you to handle data variety and schema drift by normalizing any data to the desired query. For example, you could normalize data to lowercase or remove special characters before querying.
+
+With the ability to define custom queries for any JSON data, you can handle data of any variety, making Fireproof an ideal solution for applications with complex data requirements.
+
+Fireproof runs queries locally, making data processing faster than traditional cloud databases. You can query data with a variety of parameters, including range.
+
+Below are some examples of how to use parameters in your queries:
+
+```js
+// Querying all todos from a list within a specific date range
+const todosByDate = await database.query(
+  doc => {
+    if (doc.type === 'todo' && doc.listId && doc.date) return [doc.listId, doc.date]
+  },
+  {
+    range: [
+      [listId, startDate],
+      [listId, endDate]
+    ]
   }
-})
+)
 ```
 
-In this example, we define two custom indexes: `allLists` and `todosByList`. The `allLists` index maps all documents with a type property of `'list'`, while the `todosByList` index maps all documents with a type property of `'todo'` and a `listId` property, using a compound key of `[listId, createdAt]`.
-
-One of the advantages of defining custom indexes is the ability to normalize your data for indexing. This allows you to handle data variety and schema drift by normalizing any data to the desired index. For example, you could normalize data to lowercase or remove special characters before indexing.
-
-With the ability to define custom indexes for any JSON data, you can handle data of any variety, making Fireproof an ideal solution for applications with complex data requirements.
-
-### Querying indexed Data
-
-To access JSON data in Fireproof, you can use the put, get, and delete methods. Once you have defined indexes for your data, you can use queries to search and retrieve data quickly.
-
-Fireproof runs queries locally, making data processing faster than traditional cloud databases. You can query indexes with a variety of parameters, including range.
-
-Below are some examples of how to query indexes in Fireproof:
-
-```js
-// Example 1: Querying all lists
-const result = await allLists.query()
-// Or in case you have more types of documents in your database
-const result = await allLists.query({ key: 'list' })
-
-// Example 2: Querying all todods from a list
-const result = await database.todosByList.query({ prefix: listId })
-// You can also specify a range
-const result = await database.todosByList.query({ range: [[listId, NaN], [listId, Infinity]] })
-```
-
-In the first example, `fetchAllLists` queries the `allLists` index for all lists. Because the type is hard-coded in the example, you'd get the same result just by querying the index without any parameters.
-
-The second example queries the `todosByList` index for all todos belonging to a specific list. In the second option we see that `NaN` and `Infinity` can be used to specify the beginning and end of a range.
-
+In this example, `todosByDate` queries for all todos belonging to a specific list and within a specific date range. Here, `startDate` and `endDate` can be used to specify the beginning and end of the range.
 
 ## External Indexers
 
@@ -95,8 +91,8 @@ To use the `withFlexsearch` function, you should call it with a Fireproof databa
 
 ```js
 const flexed = withFlexsearch(database, {
-  encode: "icase",
-  tokenize: "full"
+  encode: 'icase',
+  tokenize: 'full'
 })
 ```
 
@@ -114,7 +110,7 @@ The `withFlexsearch` function creates a Flexsearch index object and keeps it upd
 
 The `search` method simply searches the Flexsearch index for documents that match the given query string. Because the index is always up-to-date with the database, searches are fast and accurate.
 
-### Connection to GraphQL
+### Connection to GraphQL or Vector index
 
 The technique used in `withFlexsearch` for adding search functionality to a Fireproof database could also be used for connecting to a GraphQL query index. Instead of using Flexsearch to index the data, you would use a GraphQL query index such as Elasticsearch or Apollo Studio.
 

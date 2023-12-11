@@ -1,6 +1,7 @@
 ---
 sidebar_position: 8
 ---
+
 # Sharing and Sync
 
 Fireproof's verifiable CRDTs make it ideal for multi-user applications involving mission-critical data. Because Fireproof's clocks are multi-device aware, and each operation corresponds to a snapshot that is archived by default, user collaboration is as simple and safe as sharing a link. This article will help you transform any app that uses Fireproof into a multi-user experience.
@@ -15,25 +16,85 @@ Fireproof works with any cloud storage provider. Because encryption keys are man
 
 We know that getting data between your users is the second thing you'll want to do after you have a working app experience. Fireproof APIs allow you to connect databases among multiple users with just a few lines of code by forwarding simple tokens. Read on for an example.
 
-## Easy Start
+## PartyKit
+
+The PartyKit adapter assumes you are deploying via the `partykit` command-line tool. Jump to [the PartyKit connector docs](https://www.npmjs.com/package/@fireproof/partykit) installation instructions. Here is a summary:
+
+First, install the connector:
+
+```js
+npm install @fireproof/partykit
+```
+
+Next, configure your project:
+
+```js
+{
+  "name": "my-app-name",
+  "main": "src/partykit/server.ts",
+  "parties": {
+    "fireproof": "node_modules/@fireproof/partykit/src/server.ts"
+  }
+}
+```
+
+If you haven't added PartyKit to your app, run the PartyKit CLI:
+
+```js
+npx partykit init
+```
+
+Finally, connect to the party in your client code:
+
+```js
+import { useFireproof } from 'use-fireproof'
+import { connect } from '@fireproof/partykit'
+
+const { database } = useFireproof('my-app-database-name')
+const connection = connect.partykit(database, process.env.PUBLIC_PARTYKIT_HOST!)
+```
+
+The end result is that your app will sync data with all users connected to the party. Perfect for collaboration, or for sharing data between a user's devices. Take a look at the full instructions in the [PartyKit connector docs](https://www.npmjs.com/package/@fireproof/partykit).
+
+## IPFS
 
 Assuming you already have a working app with data in Fireproof, you can connect your users to the cloud with just a few lines of code.
 
+First, import the Fireproof library:
+
 ```js
 import { fireproof } from 'use-fireproof'
+import { connect } from '@fireproof/ipfs'
+```
 
+Next, initialize a Fireproof database instance with the name 'myDbName':
+
+```js
 const db = fireproof('myDbName')
+```
 
-const cx = db.connect()
+Then, connect to the database:
 
+```js
+const cx = connect.ipfs(db)
+```
+
+Once the connection is ready, you can check if the user is already authorized:
+
+```js
 cx.ready.then(() => {
-  if (cx.authorized)  {
-    // hide email input
-  } else {
-    // get email from user input
-    cx.authorize(email)
+  if (cx.authorized) {
+    // Hide the email input field
   }
 })
+```
+
+If the user is not authorized, get the email from user input and authorize the user:
+
+```js
+else {
+  cx.authorize(email)
+}
 ```
 
 The call to `cx.authorize(email)` will send the user a validation email from web3.storage. Once they click the link, they will be able to read and write to the cloud. Logging into the app from another device is as simple as entering the same email address. Fireproof automatically syncs a copy of the database to the new device. Connected devices continue to sync.
@@ -42,7 +103,7 @@ In the repo, there is a [full plain JavaScript application](https://github.com/f
 
 #### Note: Device Authorization
 
-Fireproof's default option uses self-sovereign keys, generated and held by non-extractable keypair APIs in the browser. This means that the user's private signing key is never exposed to the server, and the server can't impersonate the user. The downside is that the user must be online to authorize new devices. In practice, users will need to have more than one logged-in device open at the same time to transfer initial credentials. After that, the devices can operate independently.
+The IPFS connector uses self-sovereign keys, generated and held by non-extractable keypair APIs in the browser. This means that the user's private signing key is never exposed to the server, and the server can't impersonate the user. The downside is that the user must be online to authorize new devices. In practice, users will need to have more than one logged-in device open at the same time to transfer initial credentials. After that, the devices can operate independently.
 
 ### Share with Friends
 
@@ -76,7 +137,6 @@ Now you can query your shared database as usual, only results will be synced wit
 
 Once you are connected, you can open a snapshot of the database by calling `db.openDashboard()` which will open a new window with a read-only view of the database. This is useful for debugging, or for sharing a read-only view of the database with a friend.
 
-
 ## S3 Storage
 
 Read about configuring Fireproof to use S3 [here](/docs/database-api/replication#s3-connection).
@@ -85,15 +145,14 @@ Read about configuring Fireproof to use S3 [here](/docs/database-api/replication
 
 These are not inherent limits to the software, just things that haven't been implemented yet.
 
-* Safari multi-device authorization. This is [something with the delegation handling, looks fixable](https://github.com/web3-storage/w3up/issues/924).
-* Faster handshakes. Fireproof uses [w3clock](https://github.com/web3-storage/w3clock/tree/main) as the source of truth for merging multi-user writes. It doesn't currently support websockets, but since it uses Cloudflare durable objects, this is addable. In the short term we are using polling, which works but is not thrilling.
+- Safari multi-device authorization. This is [something with the delegation handling, looks fixable](https://github.com/web3-storage/w3up/issues/924).
+- Faster handshakes. Fireproof uses [w3clock](https://github.com/web3-storage/w3clock/tree/main) as the source of truth for merging multi-user writes. It doesn't currently support websockets, but since it uses Cloudflare durable objects, this is addable. In the short term we are using polling, which works but is not thrilling.
 
 We can use the current (not fast) channel for WebRTC signaling, and use WebRTC data-channel upgrade to near real-time sync, even without any changes to w3clock, so that is on the roadmap. Your app will get much faster with only a module upgrade on your part.
 
 ## Next Steps
 
 Please [build an app](/docs/react-tutorial), follow the instructions above to connect it for sharing, and [tell us about it on our Discord!](https://discord.gg/JkDbYXUG7W) Here are [some app ideas to get started.](https://github.com/fireproof-storage/fireproof/discussions/6)
-
 
 ## Video Demo
 

@@ -4,11 +4,11 @@ sidebar_position: 5
 
 # Replication
 
-Replication is distinct from database-level peer-to-peer realtime [Sync](./sync), which is designed to power collaborative applications. Replication allows you to store data in multiple locations for backup or performance reasons. Replication is also how traditional client/server experiences can be built with Fireproof.
+Replication allows you to store data in multiple locations for backup or performance reasons. Replication is also how traditional client/server experiences can be built with Fireproof.
 
-Fireproof's replication mechanism is built on top of IPFS and HTTP, which enables the efficient and reliable replication of data across multiple nodes on the network. Each node on the network maintains its own copy of the database and its clock. When a new update is made to the database, a new CID is generated and added to the local clock. The CID is then broadcast to other nodes on the network, which validates the update and applies it to their local copy of the database.
+Fireproof's replication can use PartyKit, S3, IPFS, or HTTP, which enables the efficient and reliable replication of data across multiple nodes on the network. Each node on the network maintains its own copy of the database and its clock. When a new update is made to the database, a new CID is generated and added to the local clock. The CID is then shared with other devices in the group, which validate the update and applies it to their local copy of the database.
 
-This replication mechanism allows for replication targets to be an S3 bucket, basic REST server, or IPFS-compatible block store, such as web3.storage, or any Fireproof instance running in another browser or a cloud environment. In addition, Fireproof enables serving database snapshots from static asset servers, allowing for fast loading of game levels, web pages, and other content. By leveraging IPFS, Fireproof can replicate and distribute data across a decentralized network, ensuring data availability and reliability, even in the face of network disruptions or failures.
+This replication mechanism allows for storage in a PartyKit instance, an S3 bucket, basic REST server, or IPFS-compatible block store, such as web3.storage, or any Fireproof instance running in another browser or a cloud environment. In addition, Fireproof enables serving database snapshots from static asset servers, allowing for fast loading of game levels, web pages, and other content.
 
 ## Configuring Replication
 
@@ -49,3 +49,7 @@ You can [see an application test case using the S3 connection here](https://fire
 ### Web3 Connection
 
 [web3.storage](https://web3.storage) is an IPFS upload API that uses self-sovereign [UCAN](https://ucan.xyz) authorization. Currently it's the recommended option if you want your users to be able to store to the cloud, and link to them from the web. Read about the web3.storage connection [here](./docs/connect).
+
+### PartyKit Connection
+
+[PartyKit](https://partykit.io) is a realtime program host for collaborative applications. It is a great option if you want to build a realtime application with Fireproof. Read about the PartyKit connection [here](./docs/connect).

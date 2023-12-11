@@ -11,9 +11,10 @@ Clients can ship CAR transactions to other clients on the network. Each CAR tran
 Furthermore, Fireproof allows each database to be archived to a single CAR file, enabling high-performance page loads and other use cases where fast start is crucial. By leveraging IPLD-over-ObjectStores, Fireproof can function as an IPLD database with key-value stores, indexing, and a powerful query language that can handle privacy and access patterns. Object stores like S3, R2, or any cloud provider with compatible interfaces can be used to host Fireproof backends. By following some simple patterns, Fireproof enables the creation of a larger graph database that can travel like a graph itself, mutate into other states, filter out data, and combine data from different sources, with limitless options for storage and distribution, all enabled by efficient append-only hash-linked immutable data structures.
 
 ## Storage Format
+
 Fireproof uses encrypted [IPLD](https://ipld.io/) ((InterPlanetary Linked Data](https://ipld.io/)) for local and remote storage. This means that all data is stored as a Merkle DAG (Directed Acyclic Graph). This means all operations in Fireproof are immutable, and you can always access the history of your data.
 
-IPLD blocks are stored in [CAR (Content Addressable aRchive)](https://ipld.io/specs/transport/car/) files, with each 
+IPLD blocks are stored in [CAR (Content Addressable aRchive)](https://ipld.io/specs/transport/car/) files, with each
 
 ## Storage Backends
 
@@ -31,8 +32,7 @@ A header:
 
 ```json
 {
-  "car": {"/":"bafkreia2zaxpnlarzkh2ss7iekuggzrirdl2vwzuulrdh4xfnvfqntboua"},
+  "car": { "/": "bafkreia2zaxpnlarzkh2ss7iekuggzrirdl2vwzuulrdh4xfnvfqntboua" },
   "key": "9b8a11b88f43fc9045736ae73ef99dbcddfb6ca1be584a1202a061917c166677"
 }
 ```
-

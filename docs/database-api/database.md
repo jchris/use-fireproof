@@ -8,35 +8,6 @@ Read about creating and configuring a database, and APIs for interacting with da
 
 See the [basics page for a super quick start about the raw database API](/docs/database-api/basics)
 
-```js
-import { fireproof } from 'use-fireproof';
-
-const db = fireproof('my-db')
-
-// const { put, get, del, query, changes, subscribe } = db
-
-// put a document
-const ok = await db.put({ _id: 'my-doc', hello: 'world' })
-
-// get a document
-const doc = await db.get('my-doc')
-
-// delete a document
-const ok = await db.del('my-doc')
-
-// query for documents, leave out the options for all documents with the queried field
-const { rows } = await db.query('hello', { range: ['a', 'z'] })
-
-// recent changes since a clock. leave out the clock for all changes.
-const changes = await db.changes(ok.clock)
-
-// subscribe to live updates
-const unsub = db.subscribe((updates) => {
-  // updates is an array of documents
-})
-```
-
-
 ## Creating a Database
 
 ### `fireproof("database-name")`

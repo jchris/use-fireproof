@@ -4,30 +4,66 @@ sidebar_position: 1
 
 # useLiveQuery
 
-For a step-by-step tutorial building an app with `useLiveQuery`, check out the [React tutorial](/docs/react-tutorial).
+`useLiveQuery` is a React hook that provides access to live query results, enabling real-time updates in your app. For a step-by-step tutorial building an app with `useLiveQuery`, check out the [React tutorial](/docs/react-tutorial).
+
+## Quick Start
+
+Install the package:
+
+```bash
+npm install use-fireproof
+```
+
+Import the library:
+
+```js
+import { useLiveQuery } from 'use-fireproof'
+```
+
+Call the `useLiveQuery` hook from within a React component, in this case to sort by `date`:
+
+```js
+const todos = useLiveQuery('date')
+```
+
+Render based on the results:
+
+```jsx
+<ul>
+  {todos.map(todo => (
+    <li key={todo._id}>{todo.text}</li>
+  ))}
+</ul>
+```
+
+Save a new todo item via the `useLiveQuery.database` convenience accessor:
+
+```js
+useLiveQuery.database.put({ text: 'New Todo', date: Date.now(), completed: false })
+```
+
+That's it! Read on for details or customize the database you connect to with the [`useFireproof`](./use-fireproof) hook.
+
+## Basic Example
 
 In your app, you can use the top-level `useLiveQuery` hook to get access to the database and live query responses. Here's an example to-do list that initializes the database and sets up automatic refresh for query results. It also uses the `database.put` function to add new todos. With sync connected, the list of todos will redraw for all users in real-time. Here's the code:
 
 ```js
-import { useLiveQuery } from 'use-fireproof';
+import { useLiveQuery } from 'use-fireproof'
 
 export default TodoList = () => {
-  const todos = useLiveQuery('date').docs;
-  const database = useLiveQuery.database;
-  const [newTodo, setNewTodo] = useState('');
+  const todos = useLiveQuery('date').docs
+  const database = useLiveQuery.database
+  const [newTodo, setNewTodo] = useState('')
 
   return (
     <div>
-      <input type="text" onChange={(e) => setNewTodo(e.target.value)} />
-      <button
-        onClick={() =>
-          database.put({ text: newTodo, date: Date.now(), completed: false })
-        }
-      >
+      <input type="text" onChange={e => setNewTodo(e.target.value)} />
+      <button onClick={() => database.put({ text: newTodo, date: Date.now(), completed: false })}>
         Save
       </button>
       <ul>
-        {todos.map((todo) => (
+        {todos.map(todo => (
           <li key={todo._id}>
             <input
               type="checkbox"
@@ -39,11 +75,13 @@ export default TodoList = () => {
         ))}
       </ul>
     </div>
-  );
-};
+  )
+}
 ```
 
-This example shows calling `useLiveQuery` and `database.put`. It may be all you need to get started. You can [try out a running version here.](https://codepen.io/jchrisa/pen/vYVVxez?editors=0010)
+This example shows calling `useLiveQuery` and `database.put`. It may be all you need to get started.
+
+<!-- You can [try out a running version here.](https://codepen.io/jchrisa/pen/vYVVxez?editors=0010) -->
 
 ## Top-level Usage
 
@@ -57,10 +95,9 @@ export default TodoList = () => {
   ...
 ```
 
-The top-level call (above) will use the default database name, and the default replication options. 
+The top-level call (above) will use the default database name, and the default replication options.
 
 ## Configuring with useFireproof
-
 
 You can also call `useLiveQuery` with a database name and replication options, by instantiating the [`useFireproof`](./use-fireproof) hook directly. Here's an example that uses the lower-level API:
 
@@ -73,4 +110,4 @@ export default TodoList = () => {
   ...
 ```
 
-This [running CodePen example](https://codepen.io/jchrisa/pen/vYVVxez?editors=0010) uses the `useLiveQuery` to display a list of todos, and the `database.put` function to add new todos. 
+<!-- This [running CodePen example](https://codepen.io/jchrisa/pen/vYVVxez?editors=0010) uses the `useLiveQuery` to display a list of todos, and the `database.put` function to add new todos.  -->
