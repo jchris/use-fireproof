@@ -6,6 +6,8 @@ sidebar_position: 3
 
 Before we get into how Fireproof storage, sync and sharing work, it’s worth discussing their design goals.
 
+Fireproof leverages encrypted, immutable files for storage, ensuring data safety and integrity across any storage provider. The system is built to handle eventual consistency, making it robust and expanding the range of suitable storage backends. The synchronization process is managed by the Fireproof metadata endpoint, which also handles encryption keys, ensuring secure and up-to-date data sharing across devices. Sharing is facilitated by the host environment, allowing for flexible access control based on the application's needs.
+
 ## Storage
 
 Fireproof makes it safe and fast to use any storage provider. It uses encrypted files so you can connect to any storage provider without exposing your data. Fireproof’s files are immutable, which means they are written once and never changed. This makes Fireproof reliable even on eventually consistent infrastructure, expanding the set of acceptable storage backends even further.

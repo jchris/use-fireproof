@@ -10,9 +10,7 @@ Here's an example of querying data from a database that stores todos on multiple
 
 ```js
 // Querying all lists
-const allLists = await database.query(doc => {
-  if (doc.type === 'list') return doc
-})
+const allLists = await database.query('type', { key: 'list'})
 
 // Querying all todos from a specific list
 const todosByList = await database.query(

@@ -24,19 +24,19 @@ We are always expanding the list of backend connectors, so check back or join th
 
 ### Netlify
 
-One edge function enables your app to use Fireproof.
+One edge function enables your app to use Fireproof. Fireproof runs inside of your Netlify site's domain, so you can use the same domain for your app and your data, simplifying security. [Contribute to the Netlify connector here.](https://github.com/fireproof-storage/fireproof/tree/main/packages/connect-netlify)
 
 ### PartyKit
 
-Fireproof deploys as its own party alongside your app.
+Fireproof deploys as its own party alongside your app, so it's super easy to connect the database alongside your real-time message bus. [Install the PartyKit connector here.](https://www.npmjs.com/package/@fireproof/partykit)
 
 ### IPFS
 
-User-owned storage makes it free to write code, no matter your app’s success.
+User-owned storage makes it free to write code, no matter your app’s success. [Install the IPFS connector here.](https://www.npmjs.com/package/@fireproof/ipfs)
 
 ### S3
 
-The S3 adapter uses signed URLs so data flows directly from your users to the bucket, with no intermediate copy, saving costs and easing integration.
+The S3 adapter uses signed URLs so data flows directly from your users to the bucket, with no intermediate copy, saving costs and easing integration. See S3 connector [here](https://github.com/fireproof-storage/fireproof/blob/main/packages/connect/src/connect-s3.ts).
 
 ## Monitor your apps – use your session store, observability tools
 
