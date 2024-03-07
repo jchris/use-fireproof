@@ -23,9 +23,9 @@ Among the local-first and JavaScript database renaissance, Fireproof stands at t
 Fireproof is optimized to make [building React apps](https://github.com/fireproof-storage/fireproof/blob/main/packages/react/README.md) fast and fun, with reliable results and verifiable data. Suitable for mission-critical data workloads like [LLM orchestration](https://fireproof.storage/posts/why-proofs-matter-for-ai/), supply-chain provenance, and field management of auditable data, [Fireproof is also great](https://fireproof.storage/posts/great-opportunites-to-use-fireproof/) for social media, collaborative world-building, and rapidly implementing executive decision support tools that can stand up to blockchain levels of scrutiny.
 
 <p align="right">
-  <img src="https://img.shields.io/bundlephobia/minzip/%40fireproof%2Fcore" alt="Package size">
+  <img src="https://img.shields.io/bundlephobia/minzip/%40fireproof%2Fcore" alt="Package size" />
   <a href="https://github.com/fireproof-storage/fireproof/actions/workflows/ci.yaml">
-    <img src="https://github.com/fireproof-storage/fireproof/actions/workflows/ci.yaml/badge.svg" alt="Build status">
+    <img src="https://github.com/fireproof-storage/fireproof/actions/workflows/ci.yaml/badge.svg" alt="Build status" />
   </a>
 </p>
 
