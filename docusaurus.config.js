@@ -68,6 +68,7 @@ const config = {
         logo: {
           alt: 'Fireproof Flame Logo',
           src: 'img/logo.svg',
+          href: 'https://fireproof.storage/',
         },
         items: [
           {
