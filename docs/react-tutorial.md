@@ -103,7 +103,11 @@ For convenience, the `database` object is attached to the `useLiveQuery` and `us
 Next, we'll add a form to create new todos. Notice how `useDocument` is called with an initial value for the document:
 
 ```js
-const [todo, setTodo, saveTodo] = useDocument({ text: '', date: Date.now(), completed: false })
+const [todo, setTodo, saveTodo] = useDocument(() => ({
+    text: "",
+    date: Date.now(),
+    completed: false,
+  }));
 ```
 
 The return value is essentially the return value of [`useState`](https://react.dev/reference/react/useState) but with a save document function added, in this case called `saveTodo`. A very common pattern in React is to use a state variable and a setter function to manage the state of a form. This hook is a convenience for that pattern, but it also handles saving the document to the database. Follow the interactions in the code below to see how `useDocument` is compatible with the patterns you're already using with `useState`.
@@ -122,16 +126,16 @@ Here is the JSX that renders the form. The common React pattern described above 
     onChange={e => setTodo({ text: e.target.value })} 
   />
   <button
-    onClick={() => {
-      saveTodo()
-      setTodo(false)
+    onClick={async () => {
+       await saveTodo()
+       setTodo()
     }}
   >
     Save
   </button>
 </div>
 ```
-Another convenience detail: `setTodo` is called with `false` to clear the input field (and reset to the `useDocument` call's initial value) after the todo is saved. This is a common pattern in React, and it's handled automatically by the hook. In our current application, we want the document managed by `useDocument` to be a new one each time, so we do not specify an `_id` in the initial document value. If the initial document value had an `_id` field, the hook would update that document instead of creating a new one with each save. [Read more about the `useDocument` hook](/docs/react-hooks/use-document.md).
+Another convenience detail: `setTodo` is called to clear the input field (and reset to the `useDocument` call's initial value) after the todo is saved. This is a common pattern in React, and it's handled automatically by the hook. In our current application, we want the document managed by `useDocument` to be a new one each time, so we do not specify an `_id` in the initial document value. If the initial document value had an `_id` field, the hook would update that document instead of creating a new one with each save. [Read more about the `useDocument` hook](/docs/react-hooks/use-document.md).
 
 ### Where's My Data?
 
@@ -144,13 +148,17 @@ Once your data is replicated to the cloud, you can view and edit it with the Fir
 Here's the example to-do list that initializes the database and sets up automatic refresh for query results. The list of todos will redraw for all users in real-time. Replace the code in `src/App.js` with the following:
 
 ```jsx
-import './App.css'
-import { useLiveQuery, useDocument } from 'use-fireproof'
+import {useDocument, useLiveQuery} from "use-fireproof";
+import "./App.css";
 
 function App() {
-  const response = useLiveQuery('date')
+  const response = useLiveQuery('date', {limit: 10, descending: true})
   const todos = response.docs
-  const [todo, setTodo, saveTodo] = useDocument({ text: '', date: Date.now(), completed: false })
+  const [todo, setTodo, saveTodo] = useDocument(() => ({
+    text: "",
+    date: Date.now(),
+    completed: false,
+  }))
 
   return (
     <>
@@ -158,25 +166,28 @@ function App() {
         title="text"
         type="text"
         value={todo.text as string}
-        onChange={e => setTodo({ text: e.target.value })}
+        onChange={(e) => setTodo({text: e.target.value})}
       />
       <button
-        onClick={e => {
-          e.preventDefault()
-          saveTodo()
-          setTodo(false)
+        onClick={async () => {
+          await saveTodo()
+          setTodo()
         }}
       >
         Save
       </button>
       <ul>
-        {todos.map(todo => (
+        {todos.map((todo) => (
           <li key={todo._id}>
             <input
               title="completed"
               type="checkbox"
               checked={todo.completed as boolean}
-              onChange={() => useLiveQuery.database.put({ ...todo, completed: !todo.completed })}
+              onChange={() =>
+                useLiveQuery.database.put({
+                  ...todo,
+                  completed: !todo.completed,
+                })}
             />
             {todo.text as string}
           </li>
@@ -186,7 +197,7 @@ function App() {
   )
 }
 
-export default App
+export default App;
 ```
 
 ## Run the App
