@@ -52,8 +52,8 @@ You can [see an application test case using the S3 connection here](https://fire
 
 ### Web3 Connection
 
-[web3.storage](https://web3.storage) is an IPFS upload API that uses self-sovereign [UCAN](https://ucan.xyz) authorization. Currently it's the recommended option if you want your users to be able to store to the cloud, and link to them from the web. Read about the web3.storage connection [here](./docs/connect).
+[web3.storage](https://web3.storage) is an IPFS upload API that uses self-sovereign [UCAN](https://ucan.xyz) authorization. Currently it's the recommended option if you want your users to be able to store to the cloud, and link to them from the web. Read about the web3.storage connection [here](/docs/connect).
 
 ### PartyKit Connection
 
-[PartyKit](https://partykit.io) is a realtime program host for collaborative applications. It is a great option if you want to build a realtime application with Fireproof. Read about the PartyKit connection [here](./docs/connect).
+[PartyKit](https://partykit.io) is a realtime program host for collaborative applications. It is a great option if you want to build a realtime application with Fireproof. Read about the PartyKit connection [here](/docs/connect).
