@@ -42,7 +42,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           // editUrl:
-            // 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          // 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         // blog: {
         //   showReadingTime: true,
@@ -77,17 +77,17 @@ const config = {
             position: 'left',
             label: 'Documentation',
           },
-          {to: '/docs/react-tutorial', label: 'Tutorial', position: 'left'},
+          { to: '/docs/react-tutorial', label: 'Tutorial', position: 'left' },
           // {to: '/docs/faq', label: 'FAQ', position: 'left'},
           {
             label: 'Blog',
             to: 'https://fireproof.storage/blog/',
-            position: 'left'
+            position: 'left',
           },
           {
             label: 'Demo Dashboard',
             to: 'https://fireproof.storage/try-free/',
-            position: 'right'
+            position: 'right',
           },
           {
             href: 'https://github.com/fireproof-storage/fireproof',
@@ -156,6 +156,18 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+      },
+      algolia: {
+        // The application ID provided by Algolia
+        appId: 'LPECO32JOJ',
+
+        // Public API key: it is safe to commit it
+        apiKey: '0ba664435d303eb4796062a1403e2046',
+
+        indexName: 'use-fireproof',
+
+        // Optional: see doc section below
+        contextualSearch: false,
       },
     }),
 };
