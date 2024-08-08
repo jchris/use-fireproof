@@ -48,6 +48,19 @@ const todosByDate = await database.query(
 
 In this example, `todosByDate` queries for all todos belonging to a specific list and within a specific date range. Here, `startDate` and `endDate` can be used to specify the beginning and end of the range.
 
+Valid paramaters you can use are: 
+```js
+{
+    descending: boolean;
+    limit: number;
+    includeDocs: boolean;
+    range: [IndexKey, IndexKey];
+    key: DocFragment;
+    keys: DocFragment[];
+    prefix: DocFragment | [DocFragment];
+}
+```
+
 ## External Indexers
 
 Fireproof is designed to make indexing in external indexers efficient and seamless. Each database tracks it's change history and provides a feed of changes since any clock. If you don't provide a clock, you'll get all changes. Each change includes it's clock, so if you keep track of a high water mark, you can safely restart your indexing process and know you aren't missing any updates.
