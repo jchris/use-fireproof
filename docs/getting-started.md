@@ -75,3 +75,7 @@ const docs = await db.query('hello') // This will return documents with 'world' 
 And that's it! You've successfully set up Fireproof in your project. Happy coding!
 
 See the [React tutorial](/docs/react-tutorial) for a more complete example, or the [database basics](/docs/database-api/basics) section for more details on how to use Fireproof. Check out the [GitHub Discussions](https://github.com/fireproof-storage/fireproof/discussions) for example apps and more help.
+
+---
+
+Fireproof is an embedded database that brings seamless live sync to any infrastructure, allowing developers to build rich, local-first, collaborative apps. Ideal for finance, trading, point-of-sale, shopping cart, ERP, inventory, supply-chain, set-top box, call-center automation, AI agents, social software, pilot scheduling, event data recorder, IoT edge, distributed configuration, and more—**anywhere trust and availability are critical**.
