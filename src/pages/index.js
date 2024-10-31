@@ -36,6 +36,10 @@ function HomepageHeader() {
 
 export default function Home() {
   // const { siteConfig } = useDocusaurusContext()
+  if (typeof window !== 'undefined') {
+    window.location.href = 'https://fireproof.storage'
+    return null
+  }
   return (
     <Layout
       title={`Live database for the web`}
