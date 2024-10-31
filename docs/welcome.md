@@ -14,6 +14,12 @@ sidebar_position: 1
 
 Developers want to build features, not maintain complex stacks. Fireproof eliminates the traditional database setup, maintenance, and operations overhead, allowing developers to focus on building rich, local-first, collaborative apps. Fireproof turns any storage into an end-to-end encrypted, tamperproof ledger, empowering developers to build trustworthy apps that run anywhere with minimal operational cost and risk.
 
+## Getting Started
+
+All it takes is `npm install @fireproof/core` and `import { fireproof } from '@fireproof/core'` in your project. Then you can open a ledger with `const ledger = await fireproof('my-ledger')` and write data with `ledger.put({ hello: 'world' })`. To query everything by date, `const { docs } = await ledger.query("created_at")`. Learn more about the [API](/docs/database-api/documents) or try the [React tutorial](/docs/react-tutorial).
+
+### What is Fireproof?
+
 Fireproof uses immutable data and distributed protocols to offer a new kind of database that:
 
 - can be embedded in any page or app, with a flexible data ownership model
