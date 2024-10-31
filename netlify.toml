@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/"
+  to = "https://fireproof.storage"
+  status = 301
