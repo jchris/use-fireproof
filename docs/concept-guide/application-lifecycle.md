@@ -28,7 +28,7 @@ One edge function enables your app to use Fireproof. Fireproof runs inside of yo
 
 ### PartyKit
 
-Fireproof deploys as its own party alongside your app, so it's super easy to connect the database alongside your real-time message bus. [Install the PartyKit connector here.](https://www.npmjs.com/package/@fireproof/partykit)
+Fireproof deploys as its own party alongside your app, so it's super easy to connect the ledger alongside your real-time message bus. [Install the PartyKit connector here.](https://www.npmjs.com/package/@fireproof/partykit)
 
 ### IPFS
 
@@ -40,7 +40,7 @@ The S3 adapter uses signed URLs so data flows directly from your users to the bu
 
 ## Monitor your apps – use your session store, observability tools
 
-Log Fireproof clock metadata to your existing tools to make it trivial to reconstruct any database at any time.
+Log Fireproof clock metadata to your existing tools to make it trivial to reconstruct any ledger at any time.
 
 <!-- Figures:
 App Development Process: A flowchart showing the process of developing an app with Fireproof, from npm install to state management.

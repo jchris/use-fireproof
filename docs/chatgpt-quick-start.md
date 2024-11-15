@@ -11,13 +11,13 @@ Fireproof is explicitly designed to be useful without requiring any setup or con
 If you are coding with Fireproof, try pasting this snippet into your AI enabled code editor. It should be able to stick to the API better when it sees this:
 
 ```js
-Fireproof/API/Usage: import { fireproof } from '@fireproof/core'; const db = fireproof('app-db-name'); const ok = await db.put({ anyField: 'json' }); const doc = await db.get(ok.id); await db.del(doc._id); const all = await db.allDocs(); const result = db.query('anyField', {range : ['a', 'z']}); result.rows.map(({ key }) => key);
+Fireproof/API/Usage: import { fireproof } from '@fireproof/core'; const ledger = fireproof('app-ledger-name'); const ok = await ledger.put({ anyField: 'json' }); const doc = await ledger.get(ok.id); await ledger.del(doc._id); const all = await ledger.allDocs(); const result = ledger.query('anyField', {range : ['a', 'z']}); result.rows.map(({ key }) => key);
 ```
 
 For React you can also paste:
 
 ```jsx
-Fireproof/React/Usage: import { useLiveQuery, useDocument } from 'use-fireproof'; function App() { const result = useLiveQuery(doc => doc.word, { limit: 10 }); const [{ count }, setDoc, saveDoc] = useDocument({_id: 'count', count: 0}); return (<><p>{count} changes</p><input type='text' onChange={() => saveDoc({count: count + 1})} onSubmit={e => useLiveQuery.database.put({word: e.target.value})} /><ul>{result.map(row => (<li key={row.id}>{row.key}</li>))}</ul></>)}
+Fireproof/React/Usage: import { useLiveQuery, useDocument } from 'use-fireproof'; function App() { const result = useLiveQuery(doc => doc.word, { limit: 10 }); const [{ count }, setDoc, saveDoc] = useDocument({_id: 'count', count: 0}); return (<><p>{count} changes</p><input type='text' onChange={() => saveDoc({count: count + 1})} onSubmit={e => useLiveQuery.ledger.put({word: e.target.value})} /><ul>{result.map(row => (<li key={row.id}>{row.key}</li>))}</ul></>)}
 ```
 
 We've also created a "GPT" below, but we find writing code makes more sense in an AI enabled editor.

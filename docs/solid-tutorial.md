@@ -4,7 +4,9 @@ sidebar_position: 2
 
 # SolidJS Tutorial
 
-This tutorial will show you the basics of using Fireproof in SolidJS. It contains a simple example as well as additional details on how it all works. 
+This tutorial will show you the basics of using Fireproof in SolidJS. It contains a simple example as well as additional details on how it all works.
+
+**NOTE:** The `@fireproof/solid-js` package is still on 0.18 and contributions are welcome.
 
 ## Installation
 
