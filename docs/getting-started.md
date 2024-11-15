@@ -72,6 +72,21 @@ const docs = await db.allDocs()
 const docs = await db.query('hello') // This will return documents with 'world' and 'universe'.
 ```
 
+## Connect to Fireproof Cloud
+
+Additionally, import the Fireproof cloud package:
+
+```js
+import { connect } from "@fireproof/cloud";
+```
+
+You can call the `connect` function with a ledger and it will provision a remote UUID for the ledger, and sync the ledger to the remote. It will also log a URL to the console that you can open in a browser to connect to the ledger, as well as try to open the URL in a new tab. Tell us what you think about this workflow!
+
+```typescript
+const ledger = await fireproof("my-ledger-name");
+const connection = await connect(ledger);
+```
+
 And that's it! You've successfully set up Fireproof in your project. Happy coding!
 
 See the [React tutorial](/docs/react-tutorial) for a more complete example, or the [database basics](/docs/database-api/basics) section for more details on how to use Fireproof. Check out the [GitHub Discussions](https://github.com/fireproof-storage/fireproof/discussions) for example apps and more help.
