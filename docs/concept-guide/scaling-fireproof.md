@@ -24,7 +24,7 @@ There’s no limit to the number of ledgers a Fireproof install can have, so nam
 
 Each ledger transaction is written to a new file or key as a lightweight encrypted diff, including links to the previous diff to allow reconstructing the complete dataset. After a certain number of transactions have accumulated, the set of diffs to load creates its own performance challenges. To address this, Fireproof periodically compacts the dataset to a single file, by default when the number of diffs is greater than 100.
 
-There are numerous compaction optimizations that can be implemented. Before 1.0, we need to decide on semantics for data preservation. Most ledgers allow for a system purge to remove old versions of data, either on a key or historic basis. Currently, Fireproof compaction preserves all ledger history, but discards unreferenced internal index blocks, etc. Each compaction links to the dataset it replaces, so it’s possible to reconstruct history from immutable archives even from a compacted lean dataset. This is a great topic to bring up in the [Discord](https://discord.gg/xC55bhgf6n).
+There are numerous compaction optimizations that can be implemented. Before 1.0, we need to decide on semantics for data preservation. Most databases allow for a system purge to remove old versions of data, either on a key or historic basis. Currently, Fireproof compaction preserves all ledger history, but discards unreferenced internal index blocks, etc. Each compaction links to the dataset it replaces, so it’s possible to reconstruct history from immutable archives even from a compacted lean dataset. This is a great topic to bring up in the [Discord](https://discord.gg/xC55bhgf6n).
 
 ## When to Use File Attachments
 
