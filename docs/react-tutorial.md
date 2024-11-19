@@ -103,11 +103,11 @@ For convenience, the `ledger` object is attached to the `useLiveQuery` and `useD
 Next, we'll add a form to create new todos. Notice how `useDocument` is called with an initial value for the document:
 
 ```js
-const [todo, setTodo, saveTodo] = useDocument(() => ({
+const [todo, setTodo, saveTodo] = useDocument({
     text: "",
     date: Date.now(),
     completed: false,
-  }));
+  });
 ```
 
 The return value is essentially the return value of [`useState`](https://react.dev/reference/react/useState) but with a save document function added, in this case called `saveTodo`. A very common pattern in React is to use a state variable and a setter function to manage the state of a form. This hook is a convenience for that pattern, but it also handles saving the document to the ledger. Follow the interactions in the code below to see how `useDocument` is compatible with the patterns you're already using with `useState`.
@@ -154,11 +154,11 @@ import "./App.css";
 function App() {
   const response = useLiveQuery('date', {limit: 10, descending: true})
   const todos = response.docs
-  const [todo, setTodo, saveTodo] = useDocument(() => ({
+  const [todo, setTodo, saveTodo] = useDocument({
     text: "",
     date: Date.now(),
     completed: false,
-  }))
+  })
 
   return (
     <>
