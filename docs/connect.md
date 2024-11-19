@@ -8,13 +8,13 @@ Fireproof's verifiable CRDTs make it ideal for multi-user applications involving
 
 ### Modular Connectors
 
-Fireproof works with any cloud storage provider. Because encryption keys are managed separately from the data, you aren't giving control of your data to 3rd parties, you are just using the cloud as a place to store opaque bytes. Content addressing makes this fast and secure, so it doesn't matter much which cloud provider you choose. Fireproof database metadata consists of a pointer to the latest immutable database commit (CAR file) and its encryption key. Assuming your CAR data files are accessible you can keep Fireproof metadata in your existing authenticated session management, cloud provider, or pub/sub system.
+Fireproof works with any cloud storage provider. Because encryption keys are managed separately from the data, you aren't giving control of your data to 3rd parties, you are just using the cloud as a place to store opaque bytes. Content addressing makes this fast and secure, so it doesn't matter much which cloud provider you choose. Fireproof ledger metadata consists of a pointer to the latest immutable ledger commit (CAR file) and its encryption key. Assuming your CAR data files are accessible you can keep Fireproof metadata in your existing authenticated session management, cloud provider, or pub/sub system.
 
 Fireproof provides a variety of connectors, including [web3.storage](https://web3.storage) — a web-first bridge to the IPFS ecosystem. This connector Fireproof is configured to work with [user-owned storage accounts using UCAN](https://ucan.xyz), so application developers can ship without having to worry about the business implications of managing user data. Hiding these implementation details from your users is easy, either by using our S3 adapter instead, or [delegating your users the ability to write to your app's web3.storage account.](https://blog.web3.storage/posts/ucan-delegation-with-w3up)
 
 ### Built-in Sharing 👥
 
-We know that getting data between your users is the second thing you'll want to do after you have a working app experience. Fireproof APIs allow you to connect databases among multiple users with just a few lines of code by forwarding simple tokens. Read on for an example.
+We know that getting data between your users is the second thing you'll want to do after you have a working app experience. Fireproof APIs allow you to connect ledgers among multiple users with just a few lines of code by forwarding simple tokens. Read on for an example.
 
 ## PartyKit
 
@@ -50,8 +50,8 @@ Finally, connect to the party in your client code:
 import { useFireproof } from 'use-fireproof'
 import { connect } from '@fireproof/partykit'
 
-const { database } = useFireproof('my-app-database-name')
-const connection = connect.partykit(database, process.env.PUBLIC_PARTYKIT_HOST!)
+const { ledger } = useFireproof('my-app-ledger-name')
+const connection = connect.partykit(ledger, process.env.PUBLIC_PARTYKIT_HOST!)
 ```
 
 The end result is that your app will sync data with all users connected to the party. Perfect for collaboration, or for sharing data between a user's devices. Take a look at the full instructions in the [PartyKit connector docs](https://www.npmjs.com/package/@fireproof/partykit).
@@ -67,16 +67,16 @@ import { fireproof } from 'use-fireproof'
 import { connect } from '@fireproof/ipfs'
 ```
 
-Next, initialize a Fireproof database instance with the name 'myDbName':
+Next, initialize a Fireproof ledger instance with the name 'myLedgerName':
 
 ```js
-const db = fireproof('myDbName')
+const ledger = fireproof('myLedgerName')
 ```
 
-Then, connect to the database:
+Then, connect to the ledger:
 
 ```js
-const cx = connect.ipfs(db)
+const cx = connect.ipfs(ledger)
 ```
 
 Once the connection is ready, you can check if the user is already authorized:
@@ -97,7 +97,7 @@ else {
 }
 ```
 
-The call to `cx.authorize(email)` will send the user a validation email from web3.storage. Once they click the link, they will be able to read and write to the cloud. Logging into the app from another device is as simple as entering the same email address. Fireproof automatically syncs a copy of the database to the new device. Connected devices continue to sync.
+The call to `cx.authorize(email)` will send the user a validation email from web3.storage. Once they click the link, they will be able to read and write to the cloud. Logging into the app from another device is as simple as entering the same email address. Fireproof automatically syncs a copy of the ledger to the new device. Connected devices continue to sync.
 
 In the repo, there is a [full plain JavaScript application](https://github.com/fireproof-storage/fireproof/blob/main/packages/fireproof/test/www/todo.html) that utilizes `connect` as well as the sharing features described below. You can [try a running copy of it here.](https://fireproof.storage/test/todo.html)
 
@@ -117,9 +117,9 @@ const myShareToken = await cx.shareToken()
 
 The `shareToken` is a long DID key that looks something like this: `did:key:z4MXj1wBzi9jUstyPWCrgoqyPVcZgGUPU51VmPmChhgAQ8wNqddQ3kWJ763SABec1ddBFQjk5BB7Vf1aHAkrQVpZpFqPXbechbi4STuXmmTFB4R7tRAWFeCWoHoEfn4yGvyCc7PZvTDtn9jD8mHANv3yGNvHHR1zgfHYLXsjzHyKjDpxumjPWP8uy3Sh7T2qNCsW2R2uxYHaSqRZFQ3U651EaUgf5EJNfGWRAtdXKBXJ2tPj3agEwd1UQUJHpjrfxg5wccQJ4HmNJBFrMt4CXZ8tzxkzYRc1Zx6EM6GurghidZEccKHVpKbiUFPai76CsB951vQT1GkC4DSxhDDHA4mYgCAaPnVhWzcrEqmvbt4a9ydg5jAxQ`
 
-It's probably best to think of it as an ugly user handle or contact ID. It corresponds to the user's current device public key. By communicating it to people you want to collaborate with, you give them the opportunity to share databases with you.
+It's probably best to think of it as an ugly user handle or contact ID. It corresponds to the user's current device public key. By communicating it to people you want to collaborate with, you give them the opportunity to share ledgers with you.
 
-On the database owner's device, they can initiate sharing by calling:
+On the ledger owner's device, they can initiate sharing by calling:
 
 ```js
 const inviteLinkCid = await cx.shareWith(myShareToken)
@@ -128,14 +128,14 @@ const inviteLinkCid = await cx.shareWith(myShareToken)
 The resulting CID looks something like this: `bafkreifzpfmjjmkrqwtzazzj46l6m4sa4umhyd5fv7hvjauyz2eftcvbda` -- this material is safe to publish because it can only be utilized by someone who has the private key the share token corresponds with. Send this `inviteLinkCid` to the person who's share token you used to initiate the share. They can then call:
 
 ```js
-const { database, connection } = await cx.joinShared(inviteLinkCid)
+const { ledger, connection } = await cx.joinShared(inviteLinkCid)
 ```
 
-Now you can query your shared database as usual, only results will be synced with the other participants, enabling interactive collaboration.
+Now you can query your shared ledger as usual, only results will be synced with the other participants, enabling interactive collaboration.
 
 ### Open a snapshot
 
-Once you are connected, you can open a snapshot of the database by calling `db.openDashboard()` which will open a new window with a read-only view of the database. This is useful for debugging, or for sharing a read-only view of the database with a friend.
+Once you are connected, you can open a snapshot of the ledger by calling `ledger.openDashboard()` which will open a new window with a read-only view of the ledger. This is useful for debugging, or for sharing a read-only view of the ledger with a friend.
 
 ## S3 Storage
 

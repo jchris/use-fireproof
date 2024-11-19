@@ -8,22 +8,22 @@ Replication allows you to store data in multiple locations for backup or perform
 
 If you are just getting started [try the PartyKit connector for multi-user development](https://www.npmjs.com/package/@fireproof/partykit) — the README should be enough to get your users connected.
 
-Fireproof's replication can use WebSocket, S3, IPFS, HTTP, and more, which enables the efficient and reliable replication of data across multiple nodes on the network. Each node on the network maintains its own copy of the database and its clock. When a new update is made to the database, a new CID is generated and added to the local clock. The CID is then shared with other devices in the group, which validate the update and applies it to their local copy of the database.
+Fireproof's replication can use WebSocket, S3, IPFS, HTTP, and more, which enables the efficient and reliable replication of data across multiple nodes on the network. Each node on the network maintains its own copy of the ledger and its clock. When a new update is made to the ledger, a new CID is generated and added to the local clock. The CID is then shared with other devices in the group, which validate the update and applies it to their local copy of the ledger.
 
-This replication mechanism allows for storage in a PartyKit instance, an S3 bucket, basic REST server, or IPFS-compatible block store, such as web3.storage, or any Fireproof instance running in another browser or a cloud environment. In addition, Fireproof enables serving database snapshots from static asset servers, allowing for fast loading of game levels, web pages, and other content.
+This replication mechanism allows for storage in a PartyKit instance, an S3 bucket, basic REST server, or IPFS-compatible block store, such as web3.storage, or any Fireproof instance running in another browser or a cloud environment. In addition, Fireproof enables serving ledger snapshots from static asset servers, allowing for fast loading of game levels, web pages, and other content.
 
 To learn more about Fireproof's storage and sync capabilities, read the [Storage, Sync and Sharing Model](/docs/concept-guide/storage-sync-and-sharing-model) section of the Concept Guide.
 
 ## Configuring Replication
 
-Import the `connect` module to configure replication, create a database, and connect it to a service:
+Import the `connect` module to configure replication, create a ledger, and connect it to a service:
 
 ```js
 import { fireproof, connect } from 'use-fireproof'
 
-const db = fireproof('my-database')
+const ledger = fireproof('my-ledger')
 const connection = new connect.raw({ upload, download })
-const connection = connect(db, connection)
+const connection = connect(ledger, connection)
 ```
 
 Raw connection config a simple object with upload and download fields:

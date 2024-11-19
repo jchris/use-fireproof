@@ -2,11 +2,11 @@
 sidebar_position: 3
 ---
 
-# Database Config
+# Ledger Config
 
-Most applications will only need the [`useLiveQuery`](./use-live-query) or [`useDocument`](./use-document) hooks, which use the default configuration. But if you need to do custom database setup, or configure a database name other than the React hook default (`"useFireproof"`) you can call the `useFireproof` hook directly. This is also useful if you want to distribute the Fireproof React hooks through your app with a React Context.
+Most applications will only need the [`useLiveQuery`](./use-live-query) or [`useDocument`](./use-document) hooks, which use the default configuration. But if you need to do custom ledger setup, or configure a ledger name other than the React hook default (`"useFireproof"`) you can call the `useFireproof` hook directly. This is also useful if you want to distribute the Fireproof React hooks through your app with a React Context.
 
-The main thing you'd use the top-level hook for is if you want to configure a custom database name, or pass a database instance instead of a string name. You can also [see this option in use in the Create React App bundler workaround.](https://github.com/fireproof-storage/fireproof/issues/2)
+The main thing you'd use the top-level hook for is if you want to configure a custom ledger name, or pass a ledger instance instead of a string name. You can also [see this option in use in the Create React App bundler workaround.](https://github.com/fireproof-storage/fireproof/issues/2)
 
 ## Top-level useFireproof Example
 
@@ -15,11 +15,11 @@ import { useFireproof } from 'use-fireproof';
 
 function MyComponent() {
   const { 
-    database, 
+    ledger, 
     useLiveQuery, 
     useDocument 
   } = useFireproof(
-    "database-name" | databaseInstance
+    "ledger-name" | ledgerInstance
   );
 
   return (<div>
@@ -28,24 +28,24 @@ function MyComponent() {
 }
 ```
 
- The return value looks like `{ useLiveQuery, useDocument, database }` where the `database` is the Fireproof instance that you can interact with using `put` and `get`, or via your indexes. The `useLiveQuery` and `useDocument` functions are configured versions of the top-level hooks and are the recommended API to update your React app in real-time.
+ The return value looks like `{ useLiveQuery, useDocument, ledger }` where the `ledger` is the Fireproof instance that you can interact with using `put` and `get`, or via your indexes. The `useLiveQuery` and `useDocument` functions are configured versions of the top-level hooks and are the recommended API to update your React app in real-time.
 
 ### Use Live Query
 
-You can configure `useLiveQuery` with a database name by instantiating the `useFireproof` hook directly. Here's an example:
+You can configure `useLiveQuery` with a ledger name by instantiating the `useFireproof` hook directly. Here's an example:
 
 ```js
 import { useFireproof } from 'use-fireproof';
 
 export default TodoList = () => {
-  const { database, useLiveQuery } = useFireproof("my-todo-app")
+  const { ledger, useLiveQuery } = useFireproof("my-todo-app")
   const todos = useLiveQuery('date').docs
   ...
 ```
 
 ### Use Document
 
-You can configure `useDocument` with a database name instantiating the `useFireproof` hook directly. Here's an example:
+You can configure `useDocument` with a ledger name instantiating the `useFireproof` hook directly. Here's an example:
 
 ```js
 import { useFireproof } from 'use-fireproof';
@@ -57,17 +57,17 @@ export default TodoList = () => {
 ```
 
 
-### Database subscription
+### Ledger subscription
 
-Changes made via remote sync peers, or other members of your cloud replica group will appear automatically if you use the `useLiveQuery` and `useDocument` APIs. This make writing collaborative workgroup software, and multiplayer games super easy. If you want to manage subscriptions to the database yourself, you can use the `database.subscribe` function. This is useful if you want to manage your own state, or if you want to use the database API directly instead of the hooks.
+Changes made via remote sync peers, or other members of your cloud replica group will appear automatically if you use the `useLiveQuery` and `useDocument` APIs. This make writing collaborative workgroup software, and multiplayer games super easy. If you want to manage subscriptions to the ledger yourself, you can use the `ledger.subscribe` function. This is useful if you want to manage your own state, or if you want to use the ledger API directly instead of the hooks.
 
-Here is an example that uses direct database APIs instead of document and query hooks. You might see this in more complex applications that want to manage low-level details.
+Here is an example that uses direct ledger APIs instead of document and query hooks. You might see this in more complex applications that want to manage low-level details.
 
 ```js
 import { useFireproof } from 'use-fireproof';
 
 function MyComponent() {
-  const { ready, database } = useFireproof("database-name");
+  const { ready, ledger } = useFireproof("ledger-name");
 
   // set a default empty document
   const [doc, setDoc] = useState({});
@@ -75,15 +75,15 @@ function MyComponent() {
   // run the loader on first mount
   useEffect(() => {
     const getDataFn = async () => {
-      setDoc(await database.get('my-doc-id'));
+      setDoc(await ledger.get('my-doc-id'));
     };
     getDataFn();
-    return database.subscribe(getDataFn);
-  }, [database]);
+    return ledger.subscribe(getDataFn);
+  }, [ledger]);
 
   // a function to change the value of the document
   const updateFn = async () => {
-    await database.put({ _id: 'my-doc-id', hello: 'world', updated_at: new Date() });
+    await ledger.put({ _id: 'my-doc-id', hello: 'world', updated_at: new Date() });
   };
 
   // render the document with a click handler to update it
@@ -109,7 +109,7 @@ function mulberry32(a) {
 }
 const rand = mulberry32(1); // determinstic fixtures
 
-export default async function loadFixtures(database) {
+export default async function loadFixtures(ledger) {
   const nextId = (prefix = '') => prefix + rand().toString(32).slice(2);
   const listTitles = ['Building Apps', 'Having Fun', 'Getting Groceries'];
   const todoTitles = [
@@ -133,13 +133,13 @@ export default async function loadFixtures(database) {
   ];
   let ok;
   for (let j = 0; j < 3; j++) {
-    ok = await database.put({
+    ok = await ledger.put({
       title: listTitles[j],
       type: 'list',
       _id: nextId('' + j),
     });
     for (let i = 0; i < todoTitles[j].length; i++) {
-      await database.put({
+      await ledger.put({
         _id: nextId(),
         title: todoTitles[j][i],
         listId: ok.id,

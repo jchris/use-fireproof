@@ -4,7 +4,7 @@ sidebar_position: 2.5
 
 # Documents
 
-Fireproof uses JSON documents to store data. Documents are stored in a single collection, and each document has a unique ID. Documents can be read, written, and deleted. Validation functions can prevent unwanted changes from being written to the database.
+Fireproof uses JSON documents to store data. Documents are stored in a single ledger, and each document has a unique ID. Documents can be read, written, and deleted. Validation functions can prevent unwanted changes from being written to the ledger.
 
 ## Document read and write
 
@@ -13,13 +13,13 @@ Fireproof uses a simple API for reading and writing documents. You can read a do
 ### Read with `get()`
 
 ```js
-await database.get("my-doc-id")
+await ledger.get("my-doc-id")
 ```
 
 This returns a document with an `_id` field that matches the ID you passed in. If the document doesn't exist, it throws an error.
 
 ```js
-const theDocument = await database.get("my-doc-id")
+const theDocument = await ledger.get("my-doc-id")
 // { _id: "my-doc-id", hello: "world" }
 ```
 
@@ -28,9 +28,9 @@ const theDocument = await database.get("my-doc-id")
 Creating and reading a document, where Fireproof generates a random ID:
 
 ```js
-const ok = await database.put({ hello: "world" })
+const ok = await ledger.put({ hello: "world" })
 // { id, clock }
-const theDocument = await database.get(ok.id)
+const theDocument = await ledger.get(ok.id)
 // { _id: ok.id, hello : "world" }
 ```
 
@@ -42,9 +42,9 @@ You can put to the same `id` over and over again, like this:
 
 ```js
 theDocument.hello = "again"
-const putResponse3 = await database.put(theDocument)
+const putResponse3 = await ledger.put(theDocument)
 theDocument.hello = "universe"
-const putResponse4 = await database.put(theDocument)
+const putResponse4 = await ledger.put(theDocument)
 ```
 
 If multiple users are working this way, whoever writes last wins, overwriting the other changes. (Coming soon: multi-version concurrency control to provide more options.)
@@ -71,14 +71,14 @@ function handleFiles() {
     // under doc._files["myname.jpeg"]
     doc._files[file.name] = file
   }
-  const ok = db.put(doc);
+  const ok = ledger.put(doc);
 }
 
 const fileInput = document.getElementById("files");
 fileInput.addEventListener("change", handleFiles, false);
 ```
 
-Fireproof will take care of encoding it to UnixFS, encrypting it, and replicating with your chosen storage backend. Files are synced outside the main database, so they replicate on-demand and then are made available offline via the database. By default the files are encrypted, so they are safe to store in untrusted storage. 
+Fireproof will take care of encoding it to UnixFS, encrypting it, and replicating with your chosen storage backend. Files are synced outside the main ledger, so they replicate on-demand and then are made available offline via the ledger. By default the files are encrypted, so they are safe to store in untrusted storage. 
 
 ### Load file data 
 
@@ -106,7 +106,7 @@ The document looks like:
 In the example below, note how we use `await` to get the file from the promise, and also that we've wrapped each file in an async function so the images can load in parallel. The user of `revokeObjectURL` is important to avoid memory leaks. [Here is a React component that handles this](https://github.com/fireproof-storage/catbot/blob/cd8056121bc42fa71a078b8501b5cfb2ed4fc7b3/src/components/ChatBubbles.tsx#L79).
 
 ```js
-const doc = await db.get(ok.id)
+const doc = await ledger.get(ok.id)
 
 // adjust this for your app
 const li = document
@@ -143,10 +143,10 @@ The public file feature is only available on the IPFS connector.
 
 If you want to prevent that scenario, you can enable multi-version concurrency control, which will require that writers prove they are updating from the latest version, or else the write fails. This can give them a chance to reload from the source and incorporate their changes before writing, instead of doing it later as a conflict merge.
 
-The put response includes an `id` which is unique for the document in the database, and a `clock` which represents the current snapshot of the database. You can also request that Fireproof inline the clock with the document by passing the `{ mvcc: true }` option:
+The put response includes an `id` which is unique for the document in the ledger, and a `clock` which represents the current snapshot of the ledger. You can also request that Fireproof inline the clock with the document by passing the `{ mvcc: true }` option:
 
 ```js
-const theDocumentV4 = await database.get(putResponse.id, { mvcc: true })
+const theDocumentV4 = await ledger.get(putResponse.id, { mvcc: true })
 // theDocumentV4._clock === putResponse4.clock
 ```
 
@@ -154,9 +154,9 @@ If the clock is inline in the document it will protect against writing with stal
 
 ```js
 theDocument.hello = "friends"
-const putResponse5 = await database.put(theDocument)
+const putResponse5 = await ledger.put(theDocument)
 // now theDocumentV4, which has _clock, is out of date
-const putResponse5 = await database.put(theDocumentV4)
+const putResponse5 = await ledger.put(theDocumentV4)
 // throws new Error('MVCC conflict, document is changed, please reload the document and try again.')
 ```
 
