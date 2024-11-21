@@ -44,14 +44,14 @@ If you haven't added PartyKit to your app, run the PartyKit CLI:
 npx partykit init
 ```
 
-Finally, connect to the party in your client code:
+Finally, connect to the party in your client code. Note that the connect function takes three arguments, the current ledger, the remote ledger name, and the host of your PartyKit server.:
 
 ```js
 import { useFireproof } from 'use-fireproof'
 import { connect } from '@fireproof/partykit'
 
 const { ledger } = useFireproof('my-app-ledger-name')
-const connection = connect.partykit(ledger, process.env.PUBLIC_PARTYKIT_HOST!)
+const connection = connect(ledger,'', process.env.PUBLIC_PARTYKIT_HOST!)
 ```
 
 The end result is that your app will sync data with all users connected to the party. Perfect for collaboration, or for sharing data between a user's devices. Take a look at the full instructions in the [PartyKit connector docs](https://www.npmjs.com/package/@fireproof/partykit).
