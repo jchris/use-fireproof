@@ -101,18 +101,18 @@ For convenience, the `ledger` object is attached to the `useLiveQuery` and `useD
 
 ### Create a New Todo
 
-Next, we'll add a form to create new todos. Notice how we get `useDocument` from `useFireproof` and call it with an initial value for the document:
+Next, we'll add a form to create new todos. Notice how we get `useDocument` from `useFireproof` and call it with a callback that returns the initial document state:
 
 ```js
 const { useDocument } = useFireproof("my-todo-app")
-const [todo, setTodo, saveTodo] = useDocument({
+const [todo, setTodo, saveTodo] = useDocument(() => ({
     text: "",
     date: Date.now(),
-    completed: false,
-  });
+    completed: false
+}));
 ```
 
-The return value is essentially the return value of [`useState`](https://react.dev/reference/react/useState) but with a save document function added, in this case called `saveTodo`. A very common pattern in React is to use a state variable and a setter function to manage the state of a form. This hook is a convenience for that pattern, but it also handles saving the document to the ledger. Follow the interactions in the code below to see how `useDocument` is compatible with the patterns you're already using with `useState`.
+The return value is essentially the return value of [`useState`](https://react.dev/reference/react/useState) but with a save document function added, in this case called `saveTodo`. A very common pattern in React is to use a state variable and a setter function to manage the state of a form. This hook is a convenience for that pattern, but it also handles saving the document to the ledger.
 
 The `useDocument` hook is used to create a new document with an empty `text` field. The `saveTodo` function is called when the form is submitted, and it saves the document to the ledger. The `setTodo` function is used to update the `text` field as the user types. 
 
@@ -157,11 +157,11 @@ function App() {
   const { useLiveQuery, useDocument } = useFireproof("my-todo-app")
   const response = useLiveQuery('date', {limit: 10, descending: true})
   const todos = response.docs
-  const [todo, setTodo, saveTodo] = useDocument({
+  const [todo, setTodo, saveTodo] = useDocument(() => ({
     text: "",
     date: Date.now(),
-    completed: false,
-  })
+    completed: false
+  }))
 
   return (
     <>
