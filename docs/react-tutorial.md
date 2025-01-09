@@ -57,19 +57,20 @@ In this app, we use the top-level `useLiveQuery` hook to auto-refresh query resp
 The first step is to import the hooks into your new app. In `src/App.js`, add the following line to the top of the file:
 
 ```js
-import { useLiveQuery, useDocument } from 'use-fireproof'
+import { useFireproof } from 'use-fireproof'
 ```
 
-These hooks are all you need to automatically initiate a browser-local copy of the ledger and begin development. The `useLiveQuery` hook will automatically refresh query results, and the `useDocument` hook loads and saves Fireproof documents and handles refreshing them when data changes.
+This hook provides access to `useLiveQuery` and `useDocument` configured for your application. The hooks will automatically initiate a browser-local copy of the ledger and begin development. The `useLiveQuery` hook will automatically refresh query results, and the `useDocument` hook loads and saves Fireproof documents and handles refreshing them when data changes.
 
 Fireproof takes a build-first approach, so after your UI is running, you can connect to your cloud of choice. For now, let's build the app.
 
 ### Query Todos
 
-Now, inside of your component, you can call `useLiveQuery` to get a list of todos (it will start empty):
+Now, inside of your component, you can get the hooks from `useFireproof` and use `useLiveQuery` to get a list of todos (it will start empty):
 
 ```js
 function App() {
+  const { useLiveQuery } = useFireproof("my-todo-app")
   const response = useLiveQuery('date', {limit: 10, descending: true})
   const todos = response.docs
 ```
@@ -100,9 +101,10 @@ For convenience, the `ledger` object is attached to the `useLiveQuery` and `useD
 
 ### Create a New Todo
 
-Next, we'll add a form to create new todos. Notice how `useDocument` is called with an initial value for the document:
+Next, we'll add a form to create new todos. Notice how we get `useDocument` from `useFireproof` and call it with an initial value for the document:
 
 ```js
+const { useDocument } = useFireproof("my-todo-app")
 const [todo, setTodo, saveTodo] = useDocument({
     text: "",
     date: Date.now(),
@@ -148,10 +150,11 @@ Once your data is replicated to the cloud, you can view and edit it with the Fir
 Here's the example to-do list that initializes the ledger and sets up automatic refresh for query results. The list of todos will redraw for all users in real-time. Replace the code in `src/App.js` with the following:
 
 ```jsx
-import {useDocument, useLiveQuery} from "use-fireproof";
+import { useFireproof } from "use-fireproof";
 import "./App.css";
 
 function App() {
+  const { useLiveQuery, useDocument } = useFireproof("my-todo-app")
   const response = useLiveQuery('date', {limit: 10, descending: true})
   const todos = response.docs
   const [todo, setTodo, saveTodo] = useDocument({
@@ -184,7 +187,7 @@ function App() {
               type="checkbox"
               checked={todo.completed as boolean}
               onChange={() =>
-                useLiveQuery.ledger.put({
+                response.ledger.put({
                   ...todo,
                   completed: !todo.completed,
                 })}
