@@ -2,13 +2,15 @@
 sidebar_position: 3
 ---
 
-# Ledger Config
+# useFireproof
 
-Most applications will only need the [`useLiveQuery`](./use-live-query) or [`useDocument`](./use-document) hooks, which use the default configuration. But if you need to do custom ledger setup, or configure a ledger name other than the React hook default (`"useFireproof"`) you can call the `useFireproof` hook directly. This is also useful if you want to distribute the Fireproof React hooks through your app with a React Context.
+The `useFireproof` hook provides access to Fireproof's React hooks and ledger instance. You'll use it to get the [`useLiveQuery`](./use-live-query) and [`useDocument`](./use-document) hooks configured for your application.
 
-The main thing you'd use the top-level hook for is if you want to configure a custom ledger name, or pass a ledger instance instead of a string name. You can also [see this option in use in the Create React App bundler workaround.](https://github.com/fireproof-storage/fireproof/issues/2)
+The hook accepts either a ledger name as a string, or a ledger instance. This allows you to configure a custom ledger name (instead of the default "useFireproof"), or pass an existing ledger instance. You can also [see configuration examples in the Create React App bundler workaround.](https://github.com/fireproof-storage/fireproof/issues/2)
 
-## Top-level useFireproof Example
+The hook is also useful for distributing Fireproof's React hooks throughout your app using React Context.
+
+## Basic Example
 
 ```js
 import { useFireproof } from 'use-fireproof';
