@@ -3,7 +3,7 @@ sidebar_position: 1
 ---
 # Intro
 
-In my days of rapid fire management consulting and solutions engineering, I was always amazed by how fast the technical environment can change. You might be building on one cloud provider, but have the client move to another vendor days before the deadline. Building apps and features amongst all that churn is a constant challenge. I designed Fireproof to allow anyone to build trustworthy, reliable interactive applications even when the platform is uncertain and shifting.
+"Realtime database, runs anywhere!" -- in my solutions engineering days, I was always amazed by how fast the technical environment can change. You might be building on one cloud provider, but have the client move to another vendor days before the deadline. Building apps and features amongst all that churn is a constant challenge. I designed Fireproof to allow anyone to build trustworthy, reliable interactive applications even when the platform is uncertain and shifting.
 
 Fireproof offers a zero-setup developer experience so a few lines of code enable a local database API with provable ledger semantics. This allows anyone who can wield JavaScript to write enterprise-critical apps for point-of-sale, IoT, supply chain, trading compensation, etc. that take advantage of friendly defaults for live sync, sharing, collaboration, audit, and cloud archive. Fireproof is designed so you can start in the browser, but write wide-ranging distributed applications that show up anywhere, whether as a tamperproof log of your AI agent interactions, trading desk collaboration, restaurant orders, or drone swarm goal management.
 
